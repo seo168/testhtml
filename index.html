@@ -629,7 +629,7 @@
 
       <div class="nav-menu">
         <button onclick="showPage('overview')" id="btn-overview" class="menu-btn active"><i class="fas fa-layer-group"></i> 总览</button>
-        <button onclick="showPage('performance')" id="btn-performance" class="menu-btn"><i class="fas fa-chart-line"></i> 绩效</button>
+        <button onclick="showPage('performance')" id="btn-performance" class="menu-btn"><i class="fas fa-calendar-days"></i> 排班</button>
         <button onclick="showPage('absent')" id="btn-absent" class="menu-btn"><i class="fas fa-calendar-alt"></i> 考勤</button>
         <button onclick="showPage('salary')" id="btn-salary" class="menu-btn"><i class="fas fa-money-bill-wave"></i> 薪资</button>
       </div>
@@ -662,25 +662,96 @@
       </div>
 
       <div id="performance" class="page-content">
-        <div class="filter-wrapper"><h3 style="font-weight:900;color:#eaf2ff;"><i class="fas fa-chart-line"></i> 实时绩效监控</h3></div>
-        <div class="perf-section-wrapper" style="display:flex;flex-direction:column;gap:2rem;">
-          <div class="table-container">
-            <div style="padding:1rem 1.2rem;background:linear-gradient(135deg,rgba(96,165,250,.26),rgba(71,85,105,.18));color:white;font-weight:900;display:flex;justify-content:space-between;align-items:center;"><span>出款（出款）</span><div class="online-status-wrapper"><div class="pulse-dot"></div><span id="online-wd">0 在线</span></div></div>
-            <table class="perf-table"><thead><tr><th class="col-id">员工ID</th><th class="col-name">员工姓名</th><th class="col-ment">导师姓名</th><th class="col-d1 perf-date-1">-</th><th class="col-d2 perf-date-2"></th><th class="col-d3 perf-date-3"></th><th class="col-tot">总计</th><th class="col-avg">平均</th><th class="col-acc">账号</th><th class="col-act"></th></tr></thead></table>
-            <div class="perf-scroll-area"><table class="perf-table"><tbody id="tbody-perf-wd"></tbody></table></div>
-          </div>
-          <div class="table-container">
-            <div style="padding:1rem 1.2rem;background:linear-gradient(135deg,rgba(167,139,250,.24),rgba(71,85,105,.18));color:white;font-weight:900;display:flex;justify-content:space-between;align-items:center;"><span>客服（客服）</span><div class="online-status-wrapper"><div class="pulse-dot"></div><span id="online-cs">0 在线</span></div></div>
-            <table class="perf-table"><thead><tr><th class="col-id">员工ID</th><th class="col-name">员工姓名</th><th class="col-ment">导师姓名</th><th class="col-d1 perf-date-1">-</th><th class="col-d2 perf-date-2"></th><th class="col-d3 perf-date-3"></th><th class="col-tot">总计</th><th class="col-avg">平均</th><th class="col-acc">账号</th><th class="col-act"></th></tr></thead></table>
-            <div class="perf-scroll-area"><table class="perf-table"><tbody id="tbody-perf-cs"></tbody></table></div>
-          </div>
-          <div class="table-container">
-            <div style="padding:1rem 1.2rem;background:linear-gradient(135deg,rgba(251,191,36,.22),rgba(71,85,105,.18));color:white;font-weight:900;display:flex;justify-content:space-between;align-items:center;"><span>财务（财务）</span><div class="online-status-wrapper"><div class="pulse-dot"></div><span id="online-fn">0 在线</span></div></div>
-            <table class="perf-table"><thead><tr><th class="col-id">员工ID</th><th class="col-name">员工姓名</th><th class="col-ment">导师姓名</th><th class="col-d1 perf-date-1">-</th><th class="col-d2 perf-date-2"></th><th class="col-d3 perf-date-3"></th><th class="col-tot">总计</th><th class="col-avg">平均</th><th class="col-acc">账号</th><th class="col-act"></th></tr></thead></table>
-            <div class="perf-scroll-area"><table class="perf-table"><tbody id="tbody-perf-fn"></tbody></table></div>
-          </div>
-        </div>
+  <div class="filter-wrapper">
+    <h3 style="font-weight:900;color:#eaf2ff;">
+      <i class="fas fa-calendar-days"></i> 实时排班表
+    </h3>
+  </div>
+
+  <div class="shift-board">
+    <div class="shift-board-top">
+      <div class="shift-board-title">
+        <i class="fas fa-building-user"></i> 现场排班
       </div>
+      <button class="menu-btn" style="padding:8px 16px;min-width:auto;" onclick="downloadShiftCSV('现场')">
+        <i class="fas fa-download"></i> 下载CSV
+      </button>
+    </div>
+    <div class="shift-table-wrap">
+      <table class="shift-table">
+        <thead>
+          <tr>
+            <th>班次</th>
+            <th>岗位盘口</th>
+            <th>岗位</th>
+            <th>类型</th>
+            <th>工作内容</th>
+            <th>姓名</th>
+            <th>ID</th>
+            <th>国籍</th>
+          </tr>
+        </thead>
+        <tbody id="shift-table-xianchang"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="shift-board">
+    <div class="shift-board-top">
+      <div class="shift-board-title">
+        <i class="fas fa-house-laptop"></i> 现场居家排班
+      </div>
+      <button class="menu-btn" style="padding:8px 16px;min-width:auto;" onclick="downloadShiftCSV('现场居家')">
+        <i class="fas fa-download"></i> 下载CSV
+      </button>
+    </div>
+    <div class="shift-table-wrap">
+      <table class="shift-table">
+        <thead>
+          <tr>
+            <th>班次</th>
+            <th>岗位盘口</th>
+            <th>岗位</th>
+            <th>类型</th>
+            <th>工作内容</th>
+            <th>姓名</th>
+            <th>ID</th>
+            <th>国籍</th>
+          </tr>
+        </thead>
+        <tbody id="shift-table-xianchangjvjia"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="shift-board">
+    <div class="shift-board-top">
+      <div class="shift-board-title">
+        <i class="fas fa-house-user"></i> 居家排班
+      </div>
+      <button class="menu-btn" style="padding:8px 16px;min-width:auto;" onclick="downloadShiftCSV('居家')">
+        <i class="fas fa-download"></i> 下载CSV
+      </button>
+    </div>
+    <div class="shift-table-wrap">
+      <table class="shift-table">
+        <thead>
+          <tr>
+            <th>班次</th>
+            <th>岗位盘口</th>
+            <th>岗位</th>
+            <th>类型</th>
+            <th>工作内容</th>
+            <th>姓名</th>
+            <th>ID</th>
+            <th>国籍</th>
+          </tr>
+        </thead>
+        <tbody id="shift-table-jvjia"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
       <div id="absent" class="page-content">
         <div class="filter-wrapper"><h3 style="font-weight:900;color:#eaf2ff;"><i class="fas fa-calendar-alt"></i> 考勤记录</h3></div>
@@ -838,6 +909,98 @@
       document.getElementById('btn-' + pageId).classList.add('active');
       setTimeout(() => { syncPerfHeaderWidths(); bindSmartTips(); }, 50);
     }
+
+    function renderShiftPageTables() {
+  const map = {
+    '现场': 'shift-table-xianchang',
+    '现场居家': 'shift-table-xianchangjvjia',
+    '居家': 'shift-table-jvjia'
+  };
+
+  Object.keys(map).forEach(mode => {
+    const body = document.getElementById(map[mode]);
+    if (!body) return;
+
+    const rows = dbMaster
+      .filter(r => detectWorkMode(r) === mode)
+      .sort((a, b) =>
+        String(a[5] || '').localeCompare(String(b[5] || ''), 'zh') ||
+        String(a[0] || '').localeCompare(String(b[0] || ''), 'zh')
+      );
+
+    if (!rows.length) {
+      body.innerHTML = `<tr><td colspan="8"><div class="shift-empty">暂无排班数据</div></td></tr>`;
+      return;
+    }
+
+    body.innerHTML = rows.map(r => {
+      const shift = r[5] || '-';
+      const role = detectOnsiteRole(r) || getRoleDisplay(r);
+      const typeText = detectOnsiteRole(r) ? '其他' : mode;
+      const workContent = role || r[1] || '-';
+
+      return `
+        <tr>
+          <td><span class="shift-pill ${getShiftClass(shift)}">${esc(shift)}</span></td>
+          <td>${esc(r[0] || '-')}</td>
+          <td><span class="role-pill">${esc(r[1] || '-')}</span></td>
+          <td>${esc(typeText)}</td>
+          <td>${esc(workContent)}</td>
+          <td class="shift-name-cell">${esc(r[3] || '-')}</td>
+          <td>#${esc(r[2] || '-')}</td>
+          <td>${esc(r[8] || '-')}</td>
+        </tr>
+      `;
+    }).join('');
+  });
+}
+
+function downloadShiftCSV(mode) {
+  const rows = dbMaster.filter(r => detectWorkMode(r) === mode);
+
+  const headers = [
+    "班次",
+    "岗位盘口",
+    "岗位",
+    "类型",
+    "工作内容",
+    "姓名",
+    "ID",
+    "国籍"
+  ];
+
+  const data = rows.map(r => {
+    const role = detectOnsiteRole(r) || getRoleDisplay(r);
+    const typeText = detectOnsiteRole(r) ? "其他" : mode;
+    const workContent = role || r[1] || "-";
+
+    return [
+      r[5] || "",
+      r[0] || "",
+      r[1] || "",
+      typeText,
+      workContent,
+      r[3] || "",
+      r[2] || "",
+      r[8] || ""
+    ];
+  });
+
+  const csv = [headers, ...data]
+    .map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(","))
+    .join("\n");
+
+  const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+
+  a.href = url;
+  a.download = `HGX_${mode}_排班表_${new Date().toISOString().slice(0,10)}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
 
     async function loadData() {
       try {
@@ -1113,6 +1276,7 @@
       });
 
       updateUI();
+      renderShiftPageTables();
     }
 
     function updateUI() {

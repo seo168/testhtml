@@ -382,6 +382,172 @@
     .stat-member-v{font-size:.78rem;font-weight:900;color:#dbeafe;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
     .stat-empty{padding:2rem;text-align:center;color:#9fb0cf;font-weight:900}
 
+    .shift-board{
+      margin:1.2rem 0;
+      padding:1.2rem;
+      border-radius:26px;
+      border:1px solid rgba(148,163,184,.22);
+      background:linear-gradient(145deg,rgba(15,23,42,.78),rgba(30,41,59,.48));
+      box-shadow:0 24px 64px rgba(0,0,0,.20);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .shift-board::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:radial-gradient(circle at 16% 10%,rgba(96,165,250,.10),transparent 24%),radial-gradient(circle at 86% 18%,rgba(167,139,250,.08),transparent 24%);
+    }
+
+    .shift-board-top{
+      position:relative;
+      z-index:1;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      margin-bottom:1rem;
+      flex-wrap:wrap;
+    }
+
+    .shift-board-title{
+      font-size:1.02rem;
+      font-weight:900;
+      color:#eaf2ff;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .shift-board-title i{color:#bfdbfe}
+
+    .shift-board-note{
+      font-size:.72rem;
+      font-weight:800;
+      color:#9fb0cf;
+      background:rgba(255,255,255,.055);
+      border:1px solid rgba(148,163,184,.14);
+      padding:7px 12px;
+      border-radius:999px;
+    }
+
+    .shift-mode-grid{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:1rem;
+    }
+
+    .shift-mode-card{
+      border:1px solid rgba(148,163,184,.18);
+      border-radius:22px;
+      overflow:hidden;
+      background:rgba(15,23,42,.58);
+      box-shadow:0 16px 42px rgba(0,0,0,.16);
+    }
+
+    .shift-mode-head{
+      padding:14px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      border-bottom:1px solid rgba(148,163,184,.14);
+      background:rgba(8,17,31,.50);
+    }
+
+    .shift-mode-name{
+      font-weight:900;
+      font-size:.92rem;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      color:#fff;
+    }
+
+    .shift-mode-count{
+      min-width:34px;
+      text-align:center;
+      padding:4px 10px;
+      border-radius:999px;
+      font-size:.72rem;
+      font-weight:900;
+      background:rgba(96,165,250,.12);
+      color:#bfdbfe;
+      border:1px solid rgba(96,165,250,.16);
+    }
+
+    .shift-table-wrap{overflow:auto;max-height:360px}
+    .shift-table{width:100%;border-collapse:collapse;min-width:520px}
+    .shift-table th{
+      background:rgba(8,17,31,.72);
+      padding:.75rem .7rem;
+      font-size:.66rem;
+      color:#9fb0cf;
+      text-align:center;
+      border-bottom:1px solid rgba(148,163,184,.12);
+    }
+    .shift-table td{
+      padding:.72rem .7rem;
+      font-size:.74rem;
+      border-bottom:1px solid rgba(148,163,184,.10);
+      text-align:center;
+      color:#dbeafe;
+    }
+
+    .shift-name-cell{
+      text-align:left!important;
+      font-weight:900;
+      color:#fff!important;
+      max-width:120px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .shift-pill{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width:54px;
+      padding:4px 9px;
+      border-radius:999px;
+      font-size:.67rem;
+      font-weight:900;
+      border:1px solid rgba(148,163,184,.16);
+    }
+
+    .shift-day{background:rgba(96,165,250,.13);color:#bfdbfe}
+    .shift-mid{background:rgba(251,191,36,.13);color:#fde68a}
+    .shift-night{background:rgba(167,139,250,.13);color:#ddd6fe}
+    .shift-other{background:rgba(148,163,184,.13);color:#cbd5e1}
+
+    .role-pill{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:4px 9px;
+      border-radius:8px;
+      font-size:.67rem;
+      font-weight:900;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(148,163,184,.14);
+      color:#dbeafe;
+      white-space:nowrap;
+    }
+
+    .shift-empty{
+      padding:1.5rem;
+      text-align:center;
+      color:#9fb0cf;
+      font-weight:900;
+      font-size:.8rem;
+    }
+
+    @media(max-width:1280px){.shift-mode-grid{grid-template-columns:1fr}.shift-table-wrap{max-height:300px}}
     @media(max-width:1200px){.dept-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
     @media(max-width:900px){.container{padding:1rem}.stat-summary-grid,.stat-member-grid{grid-template-columns:1fr}.dept-grid{grid-template-columns:1fr}.nav-menu{overflow-x:auto}.menu-btn{min-width:150px}.filter-grid{grid-template-columns:1fr}.amt-clock{min-width:auto;padding:10px 18px}.brand-title{font-size:1rem}.work-mode-btn,.onsite-role-btn{flex:1;min-width:135px}.table-container{overflow-x:auto}}
     @media(max-width:560px){nav{padding:.75rem 1rem}.brand-title span{display:none}.container{padding:.85rem}.glass-shell{padding:.9rem;border-radius:22px}.work-mode-wrap,.onsite-role-wrap{border-radius:20px;padding:10px}.work-mode-title,.onsite-role-title{width:100%;padding:0 4px}.work-mode-btn,.onsite-role-btn{min-width:calc(50% - 8px);padding:11px 12px}.dept-card{min-height:210px}.filter-wrapper{padding:1rem}.table-head-bar{min-width:720px}.table-container table{min-width:760px}.modal-content{padding:1.4rem}.perf-grid{grid-template-columns:1fr}.perf-item.full{grid-column:span 1}}
@@ -451,6 +617,14 @@
           <div class="dept-card"><div style="color:var(--country)" class="dept-title">国家分类</div><div class="chart-box"><canvas id="cGEO"></canvas><div class="chart-val" id="tGEO">0</div></div><div class="stat-list" id="list_cGEO"></div></div>
           <div class="dept-card"><div style="color:var(--shift)" class="dept-title">班次</div><div class="chart-box"><canvas id="cSH"></canvas><div class="chart-val" id="tSH">0</div></div><div class="stat-list" id="list_cSH"></div></div>
         </div>
+      </div>
+
+      <div class="shift-board">
+        <div class="shift-board-top">
+          <div class="shift-board-title"><i class="fas fa-table-list"></i> 实时排班表</div>
+          <div class="shift-board-note">按工作模式自动分组：现场 / 现场居家 / 居家</div>
+        </div>
+        <div class="shift-mode-grid" id="shiftModeGrid"></div>
       </div>
 
       <div class="nav-menu">
@@ -681,6 +855,7 @@
         updateOnsiteRoleButtons();
         toggleOnsiteRoleWrap();
         runFilters();
+        renderShiftTables();
 
         setInterval(() => {
           document.getElementById('clock').innerText =
@@ -810,6 +985,82 @@
       });
     }
 
+    function getShiftClass(shift) {
+      const s = clean(shift);
+      if (s.includes('DAY') || s.includes('白班')) return 'shift-day';
+      if (s.includes('MID') || s.includes('中班')) return 'shift-mid';
+      if (s.includes('NIGHT') || s.includes('夜班')) return 'shift-night';
+      return 'shift-other';
+    }
+
+    function getRoleDisplay(row) {
+      const onsiteRole = detectOnsiteRole(row);
+      if (onsiteRole) return onsiteRole;
+      const b = row[1] || '';
+      const j = row[9] || '';
+      if (b.includes('出款') || j.includes('出款')) return '出款';
+      if (b.includes('风控') || j.includes('风控')) return '风控';
+      if (b.includes('客服') || j.includes('客服')) return '客服';
+      if (b.includes('财务') || j.includes('财务')) return '财务';
+      return b || j || '-';
+    }
+
+    function renderShiftTables() {
+      const wrap = document.getElementById('shiftModeGrid');
+      if (!wrap) return;
+
+      const modes = ['现场', '现场居家', '居家'];
+      const iconMap = {
+        '现场': 'fa-building-user',
+        '现场居家': 'fa-house-laptop',
+        '居家': 'fa-house-user'
+      };
+
+      wrap.innerHTML = modes.map(mode => {
+        const rows = dbMaster
+          .filter(r => detectWorkMode(r) === mode)
+          .sort((a, b) => String(a[5] || '').localeCompare(String(b[5] || ''), 'zh') || String(a[9] || '').localeCompare(String(b[9] || ''), 'zh'));
+
+        const tableBody = rows.length ? rows.map(r => {
+          const shift = r[5] || '-';
+          const shiftClass = getShiftClass(shift);
+          const role = getRoleDisplay(r);
+          return `
+            <tr>
+              <td><span class="shift-pill ${shiftClass}">${esc(shift)}</span></td>
+              <td><span class="role-pill">${esc(role)}</span></td>
+              <td class="shift-name-cell">${esc(r[3] || '-')}</td>
+              <td>#${esc(r[2] || '-')}</td>
+              <td>${esc(r[8] || '-')}</td>
+            </tr>
+          `;
+        }).join('') : `<tr><td colspan="5"><div class="shift-empty">暂无排班数据</div></td></tr>`;
+
+        return `
+          <div class="shift-mode-card">
+            <div class="shift-mode-head">
+              <div class="shift-mode-name"><i class="fas ${iconMap[mode]}"></i> ${mode}</div>
+              <div class="shift-mode-count">${rows.length}</div>
+            </div>
+            <div class="shift-table-wrap">
+              <table class="shift-table">
+                <thead>
+                  <tr>
+                    <th>班次</th>
+                    <th>岗位/角色</th>
+                    <th>姓名</th>
+                    <th>ID</th>
+                    <th>国籍</th>
+                  </tr>
+                </thead>
+                <tbody>${tableBody}</tbody>
+              </table>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
     function initFilters() {
       const getU = i => [...new Set(dbMaster.map(r => r[i]))].filter(v => v && v !== "-").sort();
       const fill = (id, v) => {
@@ -910,6 +1161,7 @@
       updatePerfTable('FN', '财务');
       syncCharts();
       updateExtraPages();
+      renderShiftTables();
 
       setTimeout(() => { syncPerfHeaderWidths(); bindSmartTips(); }, 50);
     }

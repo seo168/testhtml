@@ -729,39 +729,76 @@
       let ds = { cWD: {}, cCS: {}, cFN: {}, cGEO: {}, cSH: {} };
       filtered.forEach(r => {
         const b = r[1]||"", j = r[9]||"";
-        if (b.includes('出款') || j.includes('出款')) ds.cWD[b] = (ds.cWD[b]||0)+1;
-        else if (b.includes('客服') || j.includes('客服') || b.includes('风控')) ds.cCS[b] = (ds.cCS[b]||0)+1;
-        else if (b.includes('财务') || j.includes('财务')) ds.cFN[b] = (ds.cFN[b]||0)+1;
+        if (b.includes('出款') || j.includes('出款')) {
+  ds.cWD[b] = (ds.cWD[b]||0)+1;
+
+} else if (b.includes('客服') || j.includes('客服') || b.includes('风控')) {
+  ds.cCS[b] = (ds.cCS[b]||0)+1;
+
+} else if (b.includes('财务') || j.includes('财务')) {
+  ds.cFN[b] = (ds.cFN[b]||0)+1;
+}
+
+/* 🔥 TAMBAHAN LOGIC UNTUK OTHER */
+if (activeWorkMode === '现场' && activeOnsiteRole === '其他') {
+  const role = detectOnsiteRole(r);
+
+  if (role === '行政' || role === '保姆' || role === '厨师') {
+    ds.cWD[role] = (ds.cWD[role] || 0) + 1;
+  }
+}
         if(r[8]) ds.cGEO[r[8]] = (ds.cGEO[r[8]]||0)+1;
         if(r[5]) ds.cSH[r[5]] = (ds.cSH[r[5]]||0)+1;
       });
 
       Object.keys(ds).forEach(id => {
-        const entries = Object.entries(ds[id]).sort((a,b)=>b[1]-a[1]);
-        const vals = entries.map(e => e[1]);
-        const colors = entries.map((_, i) => palette[i % palette.length]);
-        const canvas = document.getElementById(id);
-        if(!canvas) return;
-        if (charts[id]) charts[id].destroy();
-        charts[id] = new Chart(canvas.getContext('2d'), {
-          type: 'doughnut',
-          data: { datasets: [{ data: vals.length ? vals : [1], backgroundColor: vals.length ? colors : ['rgba(148,163,184,.18)'], borderWidth: 0, hoverOffset: 4 }] },
-          options: { plugins: { legend: false }, cutout: '76%', animation: {duration: 450}, responsive: true, maintainAspectRatio: false }
-        });
-        document.getElementById('t' + id.slice(1)).innerText = vals.reduce((a, b) => a + b, 0);
-        const list = document.getElementById('list_' + id);
-        if(list) {
-          list.innerHTML = entries.slice(0, 4).map(([n, v], i) => `
-            <div class="stat-row" onclick="openStatModal('${id}', '${encodeURIComponent(n)}', '${colors[i]}')">
-              <div class="indicator">
-                <span class="dot" style="background:${colors[i]}; box-shadow:0 0 0 4px ${hexToRgba(colors[i], 0.12)},0 0 14px ${hexToRgba(colors[i], 0.45)}"></span>
-                <span><span class="remark-text">${n}</span></span>
-              </div>
-              <span class="count-badge">${v}</span>
-            </div>`).join('');
-        }
-      });
-    }
+  let entries = Object.entries(ds[id]).sort((a,b)=>b[1]-a[1]);
+
+  if (activeOnsiteRole === '其他') {
+    entries = entries.filter(e => ['行政','保姆','厨师'].includes(e[0]));
+  }
+
+  const vals = entries.map(e => e[1]);
+  const colors = entries.map((_, i) => palette[i % palette.length]);
+  const canvas = document.getElementById(id);
+
+  if(!canvas) return;
+  if (charts[id]) charts[id].destroy();
+
+  charts[id] = new Chart(canvas.getContext('2d'), { 
+    type: 'doughnut',
+    data: { 
+      datasets: [{ 
+        data: vals.length ? vals : [1],
+        backgroundColor: vals.length ? colors : ['rgba(148,163,184,0.25)'],
+        borderWidth: 0
+      }] 
+    }, 
+    options: { 
+      plugins: { legend: false }, 
+      cutout: '76%', 
+      animation: { duration: 450 }, 
+      responsive: true 
+    } 
+  });
+
+  document.getElementById('t' + id.slice(1)).innerText = vals.reduce((a, b) => a + b, 0);
+
+  const list = document.getElementById('list_' + id);
+  if(list) {
+    list.innerHTML = entries.slice(0, 4).map(([n, v], i) => `
+      <div class="stat-row" onclick="openStatModal('${id}', '${encodeURIComponent(n)}', '${colors[i]}')">
+        <div class="indicator">
+          <span class="dot" style="background:${colors[i]}; box-shadow:0 0 0 4px ${hexToRgba(colors[i], 0.12)}"></span>
+          <span>
+            <span class="remark-text">${n}</span>
+          </span>
+        </div>
+        <span class="count-badge">${v}</span>
+      </div>
+    `).join('');
+  }
+});
 
     function initFilters() {
       const getU = (i) => [...new Set(dbMaster.map(r => r[i]))].filter(v => v && v !== "-").sort();

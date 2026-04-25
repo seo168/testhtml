@@ -800,6 +800,8 @@ if (activeWorkMode === '现场' && activeOnsiteRole === '其他') {
   }
 });
 
+      }
+
     function initFilters() {
       const getU = (i) => [...new Set(dbMaster.map(r => r[i]))].filter(v => v && v !== "-").sort();
       const fill = (id, v) => {

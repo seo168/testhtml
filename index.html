@@ -943,48 +943,44 @@
     }
 
     function renderShiftPageTables() {
-  const map = {
-    '现场': 'shift-table-xianchang',
-    '现场居家': 'shift-table-xianchangjvjia',
-    '居家': 'shift-table-jvjia'
-  };
+  const body = document.getElementById('shiftPageBody');
+  const title = document.getElementById('shiftPageTitle');
+  if (!body || !title) return;
 
-  Object.keys(map).forEach(mode => {
-    const body = document.getElementById(map[mode]);
-    if (!body) return;
+  const titleText = activeWorkMode === '全部' ? '全部排班' : `${activeWorkMode}排班`;
+  title.innerHTML = `<i class="fas fa-table-list"></i> ${titleText}`;
 
-    const rows = dbMaster
-      .filter(r => detectWorkMode(r) === mode)
-      .sort((a, b) =>
-        String(a[5] || '').localeCompare(String(b[5] || ''), 'zh') ||
-        String(a[0] || '').localeCompare(String(b[0] || ''), 'zh')
-      );
+  const rows = getShiftPageRows().sort((a, b) =>
+    String(detectWorkMode(a) || '').localeCompare(String(detectWorkMode(b) || ''), 'zh') ||
+    String(a[5] || '').localeCompare(String(b[5] || ''), 'zh') ||
+    String(a[0] || '').localeCompare(String(b[0] || ''), 'zh')
+  );
 
-    if (!rows.length) {
-      body.innerHTML = `<tr><td colspan="8"><div class="shift-empty">暂无排班数据</div></td></tr>`;
-      return;
-    }
+  if (!rows.length) {
+    body.innerHTML = `<tr><td colspan="8"><div class="shift-empty">暂无排班数据</div></td></tr>`;
+    return;
+  }
 
-    body.innerHTML = rows.map(r => {
-      const shift = r[5] || '-';
-      const role = detectOnsiteRole(r) || getRoleDisplay(r);
-      const typeText = detectOnsiteRole(r) ? '其他' : mode;
-      const workContent = role || r[1] || '-';
+  body.innerHTML = rows.map(r => {
+    const mode = detectWorkMode(r);
+    const shift = r[5] || '-';
+    const role = detectOnsiteRole(r) || getRoleDisplay(r);
+    const typeText = detectOnsiteRole(r) ? '其他' : mode;
+    const workContent = role || r[1] || '-';
 
-      return `
-        <tr>
-          <td><span class="shift-pill ${getShiftClass(shift)}">${esc(shift)}</span></td>
-          <td>${esc(r[0] || '-')}</td>
-          <td><span class="role-pill">${esc(r[1] || '-')}</span></td>
-          <td>${esc(typeText)}</td>
-          <td>${esc(workContent)}</td>
-          <td class="shift-name-cell">${esc(r[3] || '-')}</td>
-          <td>#${esc(r[2] || '-')}</td>
-          <td>${esc(r[8] || '-')}</td>
-        </tr>
-      `;
-    }).join('');
-  });
+    return `
+      <tr>
+        <td><span class="shift-pill ${getShiftClass(shift)}">${esc(shift)}</span></td>
+        <td>${esc(r[0] || '-')}</td>
+        <td><span class="role-pill">${esc(r[1] || '-')}</span></td>
+        <td>${esc(typeText)}</td>
+        <td>${esc(workContent)}</td>
+        <td class="shift-name-cell">${esc(r[3] || '-')}</td>
+        <td>#${esc(r[2] || '-')}</td>
+        <td>${esc(r[8] || '-')}</td>
+      </tr>
+    `;
+  }).join('');
 }
 
 function downloadShiftCSV(mode) {
@@ -1050,7 +1046,7 @@ function downloadShiftCSV(mode) {
         updateOnsiteRoleButtons();
         toggleOnsiteRoleWrap();
         runFilters();
-        renderShiftTables();
+        renderShiftPageTables();
 
         setInterval(() => {
           document.getElementById('clock').innerText =

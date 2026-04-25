@@ -482,21 +482,58 @@
 
     .shift-table-wrap{overflow:auto;max-height:360px}
     .shift-table{width:100%;border-collapse:collapse;min-width:520px}
-    .shift-table th{
-      background:rgba(8,17,31,.72);
-      padding:.75rem .7rem;
-      font-size:.66rem;
-      color:#9fb0cf;
-      text-align:center;
-      border-bottom:1px solid rgba(148,163,184,.12);
-    }
-    .shift-table td{
-      padding:.72rem .7rem;
-      font-size:.74rem;
-      border-bottom:1px solid rgba(148,163,184,.10);
-      text-align:center;
-      color:#dbeafe;
-    }
+    .shift-table th,
+.shift-table td{
+  text-align:center;
+  vertical-align:middle;
+  white-space:nowrap;
+}
+
+.shift-table th:nth-child(6),
+.shift-table td:nth-child(6){
+  text-align:left;
+  padding-left:16px;
+}
+
+.shift-table th:nth-child(1),
+.shift-table td:nth-child(1){
+  width:110px;
+}
+
+.shift-table th:nth-child(2),
+.shift-table td:nth-child(2){
+  width:120px;
+}
+
+.shift-table th:nth-child(3),
+.shift-table td:nth-child(3){
+  width:120px;
+}
+
+.shift-table th:nth-child(4),
+.shift-table td:nth-child(4){
+  width:100px;
+}
+
+.shift-table th:nth-child(5),
+.shift-table td:nth-child(5){
+  width:160px;
+}
+
+.shift-table th:nth-child(6),
+.shift-table td:nth-child(6){
+  width:140px;
+}
+
+.shift-table th:nth-child(7),
+.shift-table td:nth-child(7){
+  width:110px;
+}
+
+.shift-table th:nth-child(8),
+.shift-table td:nth-child(8){
+  width:100px;
+}
 
     .shift-name-cell{
       text-align:left!important;
@@ -619,14 +656,6 @@
         </div>
       </div>
 
-      <div class="shift-board">
-        <div class="shift-board-top">
-          <div class="shift-board-title"><i class="fas fa-table-list"></i> 实时排班表</div>
-          <div class="shift-board-note">按工作模式自动分组：现场 / 现场居家 / 居家</div>
-        </div>
-        <div class="shift-mode-grid" id="shiftModeGrid"></div>
-      </div>
-
       <div class="nav-menu">
         <button onclick="showPage('overview')" id="btn-overview" class="menu-btn active"><i class="fas fa-layer-group"></i> 总览</button>
         <button onclick="showPage('performance')" id="btn-performance" class="menu-btn"><i class="fas fa-calendar-days"></i> 排班</button>
@@ -664,19 +693,21 @@
       <div id="performance" class="page-content">
   <div class="filter-wrapper">
     <h3 style="font-weight:900;color:#eaf2ff;">
-      <i class="fas fa-calendar-days"></i> 实时排班表
+      <i class="fas fa-calendar-days"></i> 排班表
     </h3>
   </div>
 
   <div class="shift-board">
     <div class="shift-board-top">
-      <div class="shift-board-title">
-        <i class="fas fa-building-user"></i> 现场排班
+      <div class="shift-board-title" id="shiftPageTitle">
+        <i class="fas fa-table-list"></i> 全部排班
       </div>
-      <button class="menu-btn" style="padding:8px 16px;min-width:auto;" onclick="downloadShiftCSV('现场')">
+
+      <button class="menu-btn" style="padding:8px 16px;min-width:auto;" onclick="downloadCurrentShiftCSV()">
         <i class="fas fa-download"></i> 下载CSV
       </button>
     </div>
+
     <div class="shift-table-wrap">
       <table class="shift-table">
         <thead>
@@ -691,10 +722,11 @@
             <th>国籍</th>
           </tr>
         </thead>
-        <tbody id="shift-table-xianchang"></tbody>
+        <tbody id="shiftPageBody"></tbody>
       </table>
     </div>
   </div>
+</div>
 
   <div class="shift-board">
     <div class="shift-board-top">
@@ -1168,61 +1200,97 @@ function downloadShiftCSV(mode) {
       return b || j || '-';
     }
 
-    function renderShiftTables() {
-      const wrap = document.getElementById('shiftModeGrid');
-      if (!wrap) return;
+    function getShiftPageRows() {
+  if (activeWorkMode === '全部') {
+    return dbMaster.filter(r => {
+      const mode = detectWorkMode(r);
+      return mode === '居家' || mode === '现场居家' || mode === '现场';
+    });
+  }
 
-      const modes = ['现场', '现场居家', '居家'];
-      const iconMap = {
-        '现场': 'fa-building-user',
-        '现场居家': 'fa-house-laptop',
-        '居家': 'fa-house-user'
-      };
+  return filtered;
+}
 
-      wrap.innerHTML = modes.map(mode => {
-        const rows = dbMaster
-          .filter(r => detectWorkMode(r) === mode)
-          .sort((a, b) => String(a[5] || '').localeCompare(String(b[5] || ''), 'zh') || String(a[9] || '').localeCompare(String(b[9] || ''), 'zh'));
+function renderShiftPageTables() {
+  const body = document.getElementById('shiftPageBody');
+  const title = document.getElementById('shiftPageTitle');
+  if (!body || !title) return;
 
-        const tableBody = rows.length ? rows.map(r => {
-          const shift = r[5] || '-';
-          const shiftClass = getShiftClass(shift);
-          const role = getRoleDisplay(r);
-          return `
-            <tr>
-              <td><span class="shift-pill ${shiftClass}">${esc(shift)}</span></td>
-              <td><span class="role-pill">${esc(role)}</span></td>
-              <td class="shift-name-cell">${esc(r[3] || '-')}</td>
-              <td>#${esc(r[2] || '-')}</td>
-              <td>${esc(r[8] || '-')}</td>
-            </tr>
-          `;
-        }).join('') : `<tr><td colspan="5"><div class="shift-empty">暂无排班数据</div></td></tr>`;
+  const titleText = activeWorkMode === '全部' ? '全部排班' : `${activeWorkMode}排班`;
+  title.innerHTML = `<i class="fas fa-table-list"></i> ${titleText}`;
 
-        return `
-          <div class="shift-mode-card">
-            <div class="shift-mode-head">
-              <div class="shift-mode-name"><i class="fas ${iconMap[mode]}"></i> ${mode}</div>
-              <div class="shift-mode-count">${rows.length}</div>
-            </div>
-            <div class="shift-table-wrap">
-              <table class="shift-table">
-                <thead>
-                  <tr>
-                    <th>班次</th>
-                    <th>岗位/角色</th>
-                    <th>姓名</th>
-                    <th>ID</th>
-                    <th>国籍</th>
-                  </tr>
-                </thead>
-                <tbody>${tableBody}</tbody>
-              </table>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
+  const rows = getShiftPageRows().sort((a, b) =>
+    String(detectWorkMode(a) || '').localeCompare(String(detectWorkMode(b) || ''), 'zh') ||
+    String(a[5] || '').localeCompare(String(b[5] || ''), 'zh') ||
+    String(a[0] || '').localeCompare(String(b[0] || ''), 'zh')
+  );
+
+  if (!rows.length) {
+    body.innerHTML = `<tr><td colspan="8"><div class="shift-empty">暂无排班数据</div></td></tr>`;
+    return;
+  }
+
+  body.innerHTML = rows.map(r => {
+    const mode = detectWorkMode(r);
+    const shift = r[5] || '-';
+    const role = detectOnsiteRole(r) || getRoleDisplay(r);
+    const typeText = detectOnsiteRole(r) ? '其他' : mode;
+    const workContent = role || r[1] || '-';
+
+    return `
+      <tr>
+        <td><span class="shift-pill ${getShiftClass(shift)}">${esc(shift)}</span></td>
+        <td>${esc(r[0] || '-')}</td>
+        <td><span class="role-pill">${esc(r[1] || '-')}</span></td>
+        <td>${esc(typeText)}</td>
+        <td>${esc(workContent)}</td>
+        <td class="shift-name-cell">${esc(r[3] || '-')}</td>
+        <td>#${esc(r[2] || '-')}</td>
+        <td>${esc(r[8] || '-')}</td>
+      </tr>
+    `;
+  }).join('');
+}
+
+function downloadCurrentShiftCSV() {
+  const rows = getShiftPageRows();
+
+  const headers = ["班次", "岗位盘口", "岗位", "类型", "工作内容", "姓名", "ID", "国籍"];
+
+  const data = rows.map(r => {
+    const mode = detectWorkMode(r);
+    const role = detectOnsiteRole(r) || getRoleDisplay(r);
+    const typeText = detectOnsiteRole(r) ? "其他" : mode;
+    const workContent = role || r[1] || "-";
+
+    return [
+      r[5] || "",
+      r[0] || "",
+      r[1] || "",
+      typeText,
+      workContent,
+      r[3] || "",
+      r[2] || "",
+      r[8] || ""
+    ];
+  });
+
+  const csv = [headers, ...data]
+    .map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(","))
+    .join("\n");
+
+  const modeName = activeWorkMode === '全部' ? '全部' : activeWorkMode;
+  const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+
+  a.href = url;
+  a.download = `HGX_${modeName}_排班表_${new Date().toISOString().slice(0,10)}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
 
     function initFilters() {
       const getU = i => [...new Set(dbMaster.map(r => r[i]))].filter(v => v && v !== "-").sort();

@@ -557,472 +557,713 @@
   </div>
 
   <script>
-    const URL_MASTER = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRTWdis5deT7Foc0n9WvjY45n-Yl5oujgHKUKo8yncqAiMfxi42VZEh3OezV3BSozJsY_b9jexKArco/pub?gid=0&output=csv";
-    const URL_PERF = "https://docs.google.com/spreadsheets/d/1nVAlnCEtdkhwC52l7Vo9Q1ywfpPUBR4bscYzMpH4sLg/export?format=csv&gid=1680695165";
+const URL_MASTER = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRTWdis5deT7Foc0n9WvjY45n-Yl5oujgHKUKo8yncqAiMfxi42VZEh3OezV3BSozJsY_b9jexKArco/pub?gid=0&output=csv";
+const URL_PERF = "https://docs.google.com/spreadsheets/d/1nVAlnCEtdkhwC52l7Vo9Q1ywfpPUBR4bscYzMpH4sLg/export?format=csv&gid=1680695165";
 
-    let dbMaster = [], dbPerf = [], filtered = [], charts = {};
-    let mainPage = 1; const mainRows = 10;
-    let activeWorkMode = '全部';
-    let activeOnsiteRole = '全部';
-    const palette = ["#38bdf8", "#8b5cf6", "#f59e0b", "#f43f5e", "#06b6d4", "#22c55e"];
+let dbMaster = [], dbPerf = [], filtered = [], charts = {};
+let mainPage = 1;
+const mainRows = 10;
+let activeWorkMode = '全部';
+let activeOnsiteRole = '现场';
 
-    const cleanID = (s) => String(s || "").replace(/\D/g, '');
-    const clean = (s) => String(s || "").trim().toUpperCase();
-    const esc = (s) => String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+const palette = ["#38bdf8", "#8b5cf6", "#f59e0b", "#f43f5e", "#06b6d4", "#22c55e"];
 
-    function detectWorkMode(row) {
-      const text = row.join(' ').replace(/\s+/g, '');
-      if (text.includes('现场居家')) return '现场居家';
-      if (text.includes('居家')) return '居家';
-      return '现场';
-    }
+const cleanID = s => String(s || "").replace(/\D/g, '');
+const clean = s => String(s || "").trim().toUpperCase();
+const esc = s => String(s || "")
+  .replace(/&/g, "&amp;")
+  .replace(/</g, "&lt;")
+  .replace(/>/g, "&gt;")
+  .replace(/"/g, "&quot;");
 
-    function detectOnsiteRole(row) {
-      const text = row.join(' ').replace(/\s+/g, '');
-      if (text.includes('行政')) return '行政';
-      if (text.includes('保姆')) return '保姆';
-      if (text.includes('厨师')) return '厨师';
-      return '';
-    }
+function detectWorkMode(row) {
+  const text = row.join(' ').replace(/\s+/g, '');
+  if (text.includes('现场居家')) return '现场居家';
+  if (text.includes('居家')) return '居家';
+  return '现场';
+}
 
-    function updateWorkModeButtons() {
-      document.querySelectorAll('.work-mode-btn').forEach(btn => btn.classList.remove('active'));
-      const map = {'全部':'modeBtn-all','现场':'modeBtn-xianchang','现场居家':'modeBtn-xianchangjvjia','居家':'modeBtn-jvjia'};
-      const activeBtn = document.getElementById(map[activeWorkMode]);
-      if (activeBtn) activeBtn.classList.add('active');
-    }
+function detectOnsiteRole(row) {
+  const text = row.join(' ').replace(/\s+/g, '');
+  if (text.includes('行政')) return '行政';
+  if (text.includes('保姆')) return '保姆';
+  if (text.includes('厨师')) return '厨师';
+  return '';
+}
 
-    function updateOnsiteRoleButtons() {
+function updateWorkModeButtons() {
+  document.querySelectorAll('.work-mode-btn').forEach(btn => btn.classList.remove('active'));
+  const map = {
+    '全部': 'modeBtn-all',
+    '现场': 'modeBtn-xianchang',
+    '现场居家': 'modeBtn-xianchangjvjia',
+    '居家': 'modeBtn-jvjia'
+  };
+  const activeBtn = document.getElementById(map[activeWorkMode]);
+  if (activeBtn) activeBtn.classList.add('active');
+}
+
+function updateOnsiteRoleButtons() {
   document.querySelectorAll('.onsite-role-btn').forEach(btn => btn.classList.remove('active'));
-
   if (activeOnsiteRole === '现场') {
-    document.getElementById('roleBtn-xianchang').classList.add('active');
+    document.getElementById('roleBtn-xianchang')?.classList.add('active');
   } else {
-    document.getElementById('roleBtn-other').classList.add('active');
+    document.getElementById('roleBtn-other')?.classList.add('active');
   }
 }
 
-    function toggleOnsiteRoleWrap() {
-      const wrap = document.getElementById('onsiteRoleWrap');
-      if (!wrap) return;
-      wrap.style.display = activeWorkMode === '现场' ? 'flex' : 'none';
-    }
+function toggleOnsiteRoleWrap() {
+  const wrap = document.getElementById('onsiteRoleWrap');
+  if (!wrap) return;
+  wrap.style.display = activeWorkMode === '现场' ? 'flex' : 'none';
+}
 
-    function updateWorkModeCounts() {
-      const counts = {'全部':0,'现场':0,'现场居家':0,'居家':0};
-      dbMaster.forEach(r => {
-        const mode = detectWorkMode(r);
-        counts[mode] = (counts[mode] || 0) + 1;
-        if (mode === '居家' || mode === '现场居家') counts['全部'] += 1;
-      });
-      document.getElementById('countModeAll').innerText = counts['全部'] || 0;
-      document.getElementById('countModeXianChang').innerText = counts['现场'] || 0;
-      document.getElementById('countModeXianChangJuJia').innerText = counts['现场居家'] || 0;
-      document.getElementById('countModeJuJia').innerText = counts['居家'] || 0;
-    }
+function updateWorkModeCounts() {
+  const counts = { '全部': 0, '现场': 0, '现场居家': 0, '居家': 0 };
 
-    function updateOnsiteRoleCounts() {
+  dbMaster.forEach(r => {
+    const mode = detectWorkMode(r);
+    counts[mode] = (counts[mode] || 0) + 1;
+    if (mode === '居家' || mode === '现场居家') counts['全部'] += 1;
+  });
+
+  document.getElementById('countModeAll').innerText = counts['全部'] || 0;
+  document.getElementById('countModeXianChang').innerText = counts['现场'] || 0;
+  document.getElementById('countModeXianChangJuJia').innerText = counts['现场居家'] || 0;
+  document.getElementById('countModeJuJia').innerText = counts['居家'] || 0;
+}
+
+function updateOnsiteRoleCounts() {
   let onsiteCount = 0;
   let otherCount = 0;
 
   dbMaster.forEach(r => {
     if (detectWorkMode(r) !== '现场') return;
-
     const role = detectOnsiteRole(r);
-
-    if (role === '') {
-      onsiteCount++;
-    } else {
-      otherCount++;
-    }
+    if (role === '') onsiteCount++;
+    else otherCount++;
   });
 
   document.getElementById('countRoleXianChang').innerText = onsiteCount;
   document.getElementById('countRoleOther').innerText = otherCount;
 }
 
-    function setWorkMode(mode) {
-      activeWorkMode = mode;
-      if (mode !== '现场') activeOnsiteRole = '全部';
-      mainPage = 1;
-      updateWorkModeButtons();
-      updateOnsiteRoleButtons();
-      toggleOnsiteRoleWrap();
-      runFilters();
-    }
-
-    function setOnsiteRole(role) {
-      activeOnsiteRole = role;
-      mainPage = 1;
-      updateOnsiteRoleButtons();
-      runFilters();
-    }
-
-    function showPage(pageId) {
-      document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
-      document.querySelectorAll('.menu-btn').forEach(b => b.classList.remove('active'));
-      document.getElementById(pageId).classList.add('active');
-      document.getElementById('btn-' + pageId).classList.add('active');
-      setTimeout(() => { syncPerfHeaderWidths(); bindSmartTips(); }, 50);
-    }
-
-    async function loadData() {
-      try {
-        const [resM, resP] = await Promise.all([
-          fetch(`${URL_MASTER}&t=${Date.now()}`), fetch(`${URL_PERF}&t=${Date.now()}`)
-        ]);
-        dbMaster = smartParse(await resM.text()).slice(1).filter(r => r[2]);
-        dbPerf = smartParse(await resP.text()).slice(1);
-        setPerfDateHeaders();
-        initFilters();
-        updateWorkModeCounts();
-        updateOnsiteRoleCounts();
-        updateWorkModeButtons();
-        updateOnsiteRoleButtons();
-        toggleOnsiteRoleWrap();
-        runFilters();
-        setInterval(() => {
-          document.getElementById('clock').innerText = new Date(new Date().toLocaleString("en-US", {timeZone: "Asia/Yerevan"})).toLocaleTimeString('en-GB') + " AMT";
-        }, 1000);
-        setTimeout(() => { syncPerfHeaderWidths(); bindSmartTips(); }, 100);
-        window.addEventListener('resize', () => { syncPerfHeaderWidths(); bindSmartTips(); });
-        window.addEventListener('scroll', updateVisibleTooltips, true);
-      } catch (e) { console.error("Koneksi gagal", e); }
-    }
-
-    function smartParse(text) {
-      return text.split(/\r?\n/).filter(l => l.trim() !== "").map(line =>
-        line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"|"$/g, '').trim())
-      );
-    }
-
-    function openDetail(masterIdx) {
-      const staff = dbMaster[masterIdx];
-      if(!staff) return;
-      const targetIDNum = cleanID(staff[2]);
-      const p = dbPerf.find(row => cleanID(row[0]) === targetIDNum);
-      document.getElementById('mName').innerText = staff[3] || "-";
-      document.getElementById('mID').innerText = "#" + (staff[2] || "-");
-      document.getElementById('mAccountName').innerText = staff[4] || "-";
-      if (p) {
-        document.getElementById('mMentor').innerText = p[2] || "-";
-        document.getElementById('mTotalOrder').innerText = p[3] || "0";
-        document.getElementById('mAvg').innerText = p[4] || "0";
-      } else {
-        document.getElementById('mMentor').innerText = "-";
-        document.getElementById('mTotalOrder').innerText = "0";
-        document.getElementById('mAvg').innerText = "0";
-      }
-      const joinDate = new Date(staff[6]);
-      if(!isNaN(joinDate)){
-        const diff = Math.ceil(Math.abs(new Date() - joinDate) / (1000 * 60 * 60 * 24));
-        document.getElementById('mTenure').innerText = diff + " 日 (" + staff[6] + ")";
-      } else {
-        document.getElementById('mTenure').innerText = "-";
-      }
-      document.getElementById('modalOverlay').style.display = 'flex';
-    }
-
-    function closeModal() { document.getElementById('modalOverlay').style.display = 'none'; }
-
-    function syncCharts() {
-      let ds = { cWD: {}, cCS: {}, cFN: {}, cGEO: {}, cSH: {} };
-      filtered.forEach(r => {
-        const b = r[1]||"", j = r[9]||"";
-        if (b.includes('出款') || j.includes('出款')) {
-  ds.cWD[b] = (ds.cWD[b]||0)+1;
-
-} else if (b.includes('客服') || j.includes('客服') || b.includes('风控')) {
-  ds.cCS[b] = (ds.cCS[b]||0)+1;
-
-} else if (b.includes('财务') || j.includes('财务')) {
-  ds.cFN[b] = (ds.cFN[b]||0)+1;
+function setWorkMode(mode) {
+  activeWorkMode = mode;
+  if (mode !== '现场') activeOnsiteRole = '现场';
+  mainPage = 1;
+  updateWorkModeButtons();
+  updateOnsiteRoleButtons();
+  toggleOnsiteRoleWrap();
+  runFilters();
 }
 
-/* 🔥 TAMBAHAN LOGIC UNTUK OTHER */
-if (activeWorkMode === '现场' && activeOnsiteRole === '其他') {
-  const role = detectOnsiteRole(r);
+function setOnsiteRole(role) {
+  activeOnsiteRole = role;
+  mainPage = 1;
+  updateOnsiteRoleButtons();
+  runFilters();
+}
 
-  if (role === '行政' || role === '保姆' || role === '厨师') {
-    ds.cWD[role] = (ds.cWD[role] || 0) + 1;
+function showPage(pageId) {
+  document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.menu-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(pageId).classList.add('active');
+  document.getElementById('btn-' + pageId).classList.add('active');
+
+  setTimeout(() => {
+    syncPerfHeaderWidths();
+    bindSmartTips();
+  }, 50);
+}
+
+async function loadData() {
+  try {
+    const [resM, resP] = await Promise.all([
+      fetch(`${URL_MASTER}&t=${Date.now()}`),
+      fetch(`${URL_PERF}&t=${Date.now()}`)
+    ]);
+
+    dbMaster = smartParse(await resM.text()).slice(1).filter(r => r[2]);
+    dbPerf = smartParse(await resP.text()).slice(1);
+
+    setPerfDateHeaders();
+    initFilters();
+    updateWorkModeCounts();
+    updateOnsiteRoleCounts();
+    updateWorkModeButtons();
+    updateOnsiteRoleButtons();
+    toggleOnsiteRoleWrap();
+    runFilters();
+
+    setInterval(() => {
+      document.getElementById('clock').innerText =
+        new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Yerevan" }))
+          .toLocaleTimeString('en-GB') + " AMT";
+    }, 1000);
+
+    setTimeout(() => {
+      syncPerfHeaderWidths();
+      bindSmartTips();
+    }, 100);
+
+    window.addEventListener('resize', () => {
+      syncPerfHeaderWidths();
+      bindSmartTips();
+    });
+
+    window.addEventListener('scroll', updateVisibleTooltips, true);
+
+  } catch (e) {
+    console.error("Koneksi gagal", e);
   }
 }
-        if(r[8]) ds.cGEO[r[8]] = (ds.cGEO[r[8]]||0)+1;
-        if(r[5]) ds.cSH[r[5]] = (ds.cSH[r[5]]||0)+1;
-      });
 
-      Object.keys(ds).forEach(id => {
-  let entries = Object.entries(ds[id]).sort((a,b)=>b[1]-a[1]);
+function smartParse(text) {
+  return text
+    .split(/\r?\n/)
+    .filter(l => l.trim() !== "")
+    .map(line => line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"|"$/g, '').trim()));
+}
 
-  if (activeOnsiteRole === '其他') {
-    entries = entries.filter(e => ['行政','保姆','厨师'].includes(e[0]));
+function openDetail(masterIdx) {
+  const staff = dbMaster[masterIdx];
+  if (!staff) return;
+
+  const targetIDNum = cleanID(staff[2]);
+  const p = dbPerf.find(row => cleanID(row[0]) === targetIDNum);
+
+  document.getElementById('mName').innerText = staff[3] || "-";
+  document.getElementById('mID').innerText = "#" + (staff[2] || "-");
+  document.getElementById('mAccountName').innerText = staff[4] || "-";
+
+  if (p) {
+    document.getElementById('mMentor').innerText = p[2] || "-";
+    document.getElementById('mTotalOrder').innerText = p[3] || "0";
+    document.getElementById('mAvg').innerText = p[4] || "0";
+  } else {
+    document.getElementById('mMentor').innerText = "-";
+    document.getElementById('mTotalOrder').innerText = "0";
+    document.getElementById('mAvg').innerText = "0";
   }
 
-  const vals = entries.map(e => e[1]);
-  const colors = entries.map((_, i) => palette[i % palette.length]);
-  const canvas = document.getElementById(id);
+  const joinDate = new Date(staff[6]);
+  document.getElementById('mTenure').innerText =
+    !isNaN(joinDate)
+      ? Math.ceil(Math.abs(new Date() - joinDate) / (1000 * 60 * 60 * 24)) + " 日 (" + staff[6] + ")"
+      : "-";
 
-  if(!canvas) return;
-  if (charts[id]) charts[id].destroy();
+  document.getElementById('modalOverlay').style.display = 'flex';
+}
 
-  charts[id] = new Chart(canvas.getContext('2d'), { 
-    type: 'doughnut',
-    data: { 
-      datasets: [{ 
-        data: vals.length ? vals : [1],
-        backgroundColor: vals.length ? colors : ['rgba(148,163,184,0.25)'],
-        borderWidth: 0
-      }] 
-    }, 
-    options: { 
-      plugins: { legend: false }, 
-      cutout: '76%', 
-      animation: { duration: 450 }, 
-      responsive: true 
-    } 
+function closeModal() {
+  document.getElementById('modalOverlay').style.display = 'none';
+}
+
+function updateDeptTitles() {
+  const cards = document.querySelectorAll('.dept-card .dept-title');
+  const isOther = activeWorkMode === '现场' && activeOnsiteRole === '其他';
+
+  if (cards[0]) cards[0].innerText = isOther ? '行政' : '出款/风控';
+  if (cards[1]) cards[1].innerText = isOther ? '保姆' : '客服';
+  if (cards[2]) cards[2].innerText = isOther ? '厨师' : '财务';
+}
+
+function syncCharts() {
+  updateDeptTitles();
+
+  let ds = { cWD: {}, cCS: {}, cFN: {}, cGEO: {}, cSH: {} };
+  const isOther = activeWorkMode === '现场' && activeOnsiteRole === '其他';
+
+  filtered.forEach(r => {
+    const b = r[1] || "";
+    const j = r[9] || "";
+    const role = detectOnsiteRole(r);
+
+    if (isOther) {
+      if (role === '行政') ds.cWD['行政'] = (ds.cWD['行政'] || 0) + 1;
+      if (role === '保姆') ds.cCS['保姆'] = (ds.cCS['保姆'] || 0) + 1;
+      if (role === '厨师') ds.cFN['厨师'] = (ds.cFN['厨师'] || 0) + 1;
+    } else {
+      if (b.includes('出款') || j.includes('出款')) ds.cWD[b] = (ds.cWD[b] || 0) + 1;
+      else if (b.includes('客服') || j.includes('客服') || b.includes('风控')) ds.cCS[b] = (ds.cCS[b] || 0) + 1;
+      else if (b.includes('财务') || j.includes('财务')) ds.cFN[b] = (ds.cFN[b] || 0) + 1;
+    }
+
+    if (r[8]) ds.cGEO[r[8]] = (ds.cGEO[r[8]] || 0) + 1;
+    if (r[5]) ds.cSH[r[5]] = (ds.cSH[r[5]] || 0) + 1;
   });
 
-  document.getElementById('t' + id.slice(1)).innerText = vals.reduce((a, b) => a + b, 0);
+  Object.keys(ds).forEach(id => {
+    const entries = Object.entries(ds[id]).sort((a, b) => b[1] - a[1]);
+    const vals = entries.map(e => e[1]);
+    const colors = entries.map((_, i) => palette[i % palette.length]);
+    const canvas = document.getElementById(id);
 
-  const list = document.getElementById('list_' + id);
-  if(list) {
-    list.innerHTML = entries.slice(0, 4).map(([n, v], i) => `
-      <div class="stat-row" onclick="openStatModal('${id}', '${encodeURIComponent(n)}', '${colors[i]}')">
-        <div class="indicator">
-          <span class="dot" style="background:${colors[i]}; box-shadow:0 0 0 4px ${hexToRgba(colors[i], 0.12)}"></span>
-          <span>
-            <span class="remark-text">${n}</span>
-          </span>
+    if (!canvas) return;
+    if (charts[id]) charts[id].destroy();
+
+    charts[id] = new Chart(canvas.getContext('2d'), {
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          data: vals.length ? vals : [1],
+          backgroundColor: vals.length ? colors : ['rgba(148,163,184,0.25)'],
+          borderWidth: 0
+        }]
+      },
+      options: {
+        plugins: { legend: false },
+        cutout: '76%',
+        animation: { duration: 450 },
+        responsive: true,
+        maintainAspectRatio: true
+      }
+    });
+
+    document.getElementById('t' + id.slice(1)).innerText = vals.reduce((a, b) => a + b, 0);
+
+    const list = document.getElementById('list_' + id);
+    if (list) {
+      list.innerHTML = entries.slice(0, 4).map(([n, v], i) => `
+        <div class="stat-row" onclick="openStatModal('${id}', '${encodeURIComponent(n)}', '${colors[i] || '#38bdf8'}')">
+          <div class="indicator">
+            <span class="dot" style="background:${colors[i] || '#38bdf8'}; box-shadow:0 0 0 4px ${hexToRgba(colors[i] || '#38bdf8', 0.12)}"></span>
+            <span><span class="remark-text">${esc(n)}</span></span>
+          </div>
+          <span class="count-badge">${v}</span>
         </div>
-        <span class="count-badge">${v}</span>
-      </div>
+      `).join('');
+    }
+  });
+}
+
+function initFilters() {
+  const getU = i => [...new Set(dbMaster.map(r => r[i]))].filter(v => v && v !== "-").sort();
+
+  const fill = (id, v) => {
+    const s = document.getElementById(id);
+    if (s) s.innerHTML = `<option value="">全部</option>` + v.map(x => `<option value="${esc(x)}">${esc(x)}</option>`).join('');
+  };
+
+  fill('fPlatform', getU(0));
+  fill('fGroup', getU(1));
+  fill('fTeam', getU(9));
+  fill('fShift', getU(5));
+  fill('fCountry', getU(8));
+
+  ['searchName', 'fShift', 'fTeam', 'fGroup', 'fCountry', 'fPlatform'].forEach(id => {
+    document.getElementById(id).addEventListener('input', () => {
+      mainPage = 1;
+      runFilters();
+    });
+  });
+}
+
+function runFilters() {
+  const sn = document.getElementById('searchName').value.toLowerCase();
+  const sf = document.getElementById('fShift').value;
+  const st = document.getElementById('fTeam').value;
+  const sg = document.getElementById('fGroup').value;
+  const sc = document.getElementById('fCountry').value;
+  const sp = document.getElementById('fPlatform').value;
+
+  filtered = dbMaster.filter(r => {
+    const mode = detectWorkMode(r);
+    const role = detectOnsiteRole(r);
+
+    const modeOk = activeWorkMode === '全部'
+      ? (mode === '居家' || mode === '现场居家')
+      : mode === activeWorkMode;
+
+    const onsiteRoleOk = activeWorkMode !== '现场'
+      ? true
+      : activeOnsiteRole === '现场'
+        ? role === ''
+        : ['行政', '保姆', '厨师'].includes(role);
+
+    const formOk =
+      r.join(' ').toLowerCase().includes(sn) &&
+      (!sf || r[5] === sf) &&
+      (!sg || r[1] === sg) &&
+      (!st || r[9] === st) &&
+      (!sc || r[8] === sc) &&
+      (!sp || r[0] === sp);
+
+    return modeOk && onsiteRoleOk && formOk;
+  });
+
+  updateUI();
+}
+
+function updateUI() {
+  const total = Math.ceil(filtered.length / mainRows) || 1;
+  if (mainPage < 1) mainPage = 1;
+  if (mainPage > total) mainPage = total;
+
+  const start = (mainPage - 1) * mainRows;
+  const current = filtered.slice(start, start + mainRows);
+
+  document.getElementById('tbody').innerHTML = current.map(r => {
+    const b = r[1] || "";
+    const j = r[9] || "";
+    const role = detectOnsiteRole(r);
+
+    let cls = 'tag-fn';
+    let groupText = r[1] || '-';
+
+    if (activeWorkMode === '现场' && activeOnsiteRole === '其他' && role) {
+      groupText = role;
+      cls = role === '行政' ? 'tag-wd' : role === '保姆' ? 'tag-cs' : 'tag-fn';
+    } else {
+      cls = (b.includes('出款') || j.includes('出款')) ? 'tag-wd'
+        : (b.includes('客服') || j.includes('客服')) ? 'tag-cs'
+        : 'tag-fn';
+    }
+
+    return `
+      <tr>
+        <td><b>${esc(r[0])}</b></td>
+        <td><span class="${cls}">${esc(groupText)}</span></td>
+        <td>${esc(r[9])}</td>
+        <td><span class="id-link" onclick="openDetail(${dbMaster.indexOf(r)})">#${esc(r[2])}</span></td>
+        <td style="font-weight:900;color:#fff;">${esc(r[3])}</td>
+        <td>${esc(r[5])}</td>
+        <td><span class="date-badge">${esc(r[6])}</span></td>
+        <td>${esc(r[8])}</td>
+      </tr>
+    `;
+  }).join('');
+
+  document.getElementById('infoMain').innerText = `第 ${mainPage} 页 / 共 ${total} 页`;
+
+  updatePerfTable('WD', '出款');
+  updatePerfTable('CS', '客服');
+  updatePerfTable('FN', '财务');
+  syncCharts();
+  updateExtraPages();
+
+  setTimeout(() => {
+    syncPerfHeaderWidths();
+    bindSmartTips();
+  }, 50);
+}
+
+function renderPerfNameCell(name, isOnline) {
+  const text = name || '-';
+  return `<div class="perf-name-wrap"><span class="perf-name-dot ${isOnline ? '' : 'hidden'}"></span><span class="smart-tip" data-full="${esc(text)}"><span class="perf-name-text">${esc(text)}</span></span></div>`;
+}
+
+function renderPerfMentorCell(name) {
+  const text = name || '-';
+  return `<div class="perf-mentor-wrap"><span class="smart-tip" data-full="${esc(text)}"><span class="perf-mentor-text">${esc(text)}</span></span></div>`;
+}
+
+function renderPerfAccCell(name) {
+  const text = name || '-';
+  return `<div class="perf-acc-wrap"><span class="smart-tip" data-full="${esc(text)}"><span class="perf-acc-text">${esc(text)}</span></span></div>`;
+}
+
+function updatePerfTable(type, keyword) {
+  const body = document.getElementById(`tbody-perf-${type.toLowerCase()}`);
+  if (!body) return;
+
+  const now = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Yerevan" }));
+  const hour = now.getHours();
+  const isOther = activeWorkMode === '现场' && activeOnsiteRole === '其他';
+
+  let deptData = [];
+
+  if (isOther) {
+    const roleMap = { WD: '行政', CS: '保姆', FN: '厨师' };
+    deptData = filtered.filter(r => detectOnsiteRole(r) === roleMap[type]);
+  } else {
+    deptData = filtered.filter(r =>
+      (r[1] || "").includes(keyword) ||
+      (r[9] || "").includes(keyword) ||
+      (keyword === '客服' && (r[1] || "").includes('风控'))
+    );
+  }
+
+  let onlineCount = 0;
+
+  body.innerHTML = deptData.map(r => {
+    const shift = clean(r[5]);
+    let isOnline = false;
+
+    if ((shift.includes("DAY") || shift.includes("白班")) && hour >= 8 && hour < 20) isOnline = true;
+    else if ((shift.includes("NIGHT") || shift.includes("夜班")) && (hour >= 20 || hour < 8)) isOnline = true;
+    else if ((shift.includes("MID") || shift.includes("中班")) && hour >= 12 && hour < 24) isOnline = true;
+
+    if (isOnline) onlineCount++;
+
+    const p = dbPerf.find(x => cleanID(x[0]) === cleanID(r[2]));
+    const mIdx = dbMaster.indexOf(r);
+
+    return `
+      <tr style="${isOnline ? 'background:rgba(34,197,94,.06);' : ''}">
+        <td class="col-id"><span class="id-link" onclick="openDetail(${mIdx})">#${esc(r[2])}</span></td>
+        <td class="col-name" style="font-weight:900;">${renderPerfNameCell(r[3], isOnline)}</td>
+        <td class="col-ment">${renderPerfMentorCell(p ? (p[2] || "-") : "-")}</td>
+        <td class="col-d1">-</td>
+        <td class="col-d2">-</td>
+        <td class="col-d3">-</td>
+        <td class="col-tot">${p ? (p[3] || "0") : "0"}</td>
+        <td class="col-avg" style="color:#7dd3fc;font-weight:900;">${p ? (p[4] || "0") : "0"}</td>
+        <td class="col-acc">${renderPerfAccCell(p ? (p[5] || "-") : "-")}</td>
+        <td class="col-act"><div style="display:flex;justify-content:center;"><button class="menu-btn" style="padding:5px 12px;font-size:.6rem;min-width:auto;" onclick="openDetail(${mIdx})">查看</button></div></td>
+      </tr>
+    `;
+  }).join('');
+
+  document.getElementById(`online-${type.toLowerCase()}`).innerText = `${onlineCount} 在线`;
+}
+
+function updateExtraPages() {
+  const absBody = document.getElementById('tbody-absent');
+  if (absBody) {
+    absBody.innerHTML = filtered.slice(0, 15).map(r => `
+      <tr>
+        <td>#${esc(r[2])}</td>
+        <td style="font-weight:900;color:#fff;">${esc(r[3])}</td>
+        <td><span class="status-absent">未上班</span></td>
+        <td>${esc(r[5])}</td>
+        <td>${esc(r[8])}</td>
+      </tr>
     `).join('');
+  }
+
+  const salBody = document.getElementById('tbody-salary');
+  if (salBody) {
+    salBody.innerHTML = filtered.slice(0, 15).map(r => {
+      const p = dbPerf.find(x => cleanID(x[0]) === cleanID(r[2]));
+      const b = 500;
+      const bon = p ? (parseInt(p[3] || 0) * 0.05) : 0;
+      return `
+        <tr>
+          <td>#${esc(r[2])}</td>
+          <td style="font-weight:900;color:#fff;">${esc(r[3])}</td>
+          <td>$ ${b}</td>
+          <td>$ ${bon.toFixed(2)}</td>
+          <td style="font-weight:900;color:#fff;">$ ${(b + bon).toFixed(2)}</td>
+        </tr>
+      `;
+    }).join('');
+  }
+}
+
+function getLast3Dates() {
+  const today = new Date();
+  const format = d => `${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}`;
+  const d1 = new Date(today); d1.setDate(today.getDate() - 2);
+  const d2 = new Date(today); d2.setDate(today.getDate() - 1);
+  const d3 = new Date(today);
+  return [format(d1), format(d2), format(d3)];
+}
+
+function setPerfDateHeaders() {
+  const [d1, d2, d3] = getLast3Dates();
+  document.querySelectorAll('.perf-date-1').forEach(el => el.innerText = d1);
+  document.querySelectorAll('.perf-date-2').forEach(el => el.innerText = d2);
+  document.querySelectorAll('.perf-date-3').forEach(el => el.innerText = d3);
+}
+
+function getScrollbarWidth(el) {
+  return el.offsetWidth - el.clientWidth;
+}
+
+function syncPerfHeaderWidths() {
+  document.querySelectorAll('.perf-section-wrapper .table-container').forEach(container => {
+    const headerTable = container.querySelector(':scope > table.perf-table');
+    const scrollArea = container.querySelector('.perf-scroll-area');
+    const bodyTable = scrollArea ? scrollArea.querySelector('table.perf-table') : null;
+
+    if (!headerTable || !scrollArea || !bodyTable) return;
+
+    const scrollbarWidth = getScrollbarWidth(scrollArea);
+    headerTable.style.width = `calc(100% - ${scrollbarWidth}px)`;
+    bodyTable.style.width = `100%`;
+  });
+}
+
+function bindSmartTips() {
+  document.querySelectorAll('.smart-tip').forEach(el => {
+    el.removeEventListener('mouseenter', handleTipEnter);
+    el.removeEventListener('mousemove', handleTipMove);
+    el.removeEventListener('mouseleave', handleTipLeave);
+    el.addEventListener('mouseenter', handleTipEnter);
+    el.addEventListener('mousemove', handleTipMove);
+    el.addEventListener('mouseleave', handleTipLeave);
+  });
+}
+
+function handleTipEnter(e) {
+  positionTooltip(e.currentTarget);
+}
+
+function handleTipMove(e) {
+  positionTooltip(e.currentTarget);
+}
+
+function handleTipLeave(e) {
+  e.currentTarget.style.removeProperty('--tip-left');
+  e.currentTarget.style.removeProperty('--tip-top');
+}
+
+function updateVisibleTooltips() {
+  document.querySelectorAll('.smart-tip:hover').forEach(el => positionTooltip(el));
+}
+
+function positionTooltip(el) {
+  const rect = el.getBoundingClientRect();
+  const margin = 14;
+  const tooltipWidth = 320;
+  const tooltipHeight = 56;
+
+  let left = rect.right + 12;
+  let top = rect.top + rect.height / 2;
+
+  if (left + tooltipWidth > window.innerWidth - margin) left = Math.max(margin, rect.left - tooltipWidth - 12);
+  if (top + tooltipHeight / 2 > window.innerHeight - margin) top = window.innerHeight - margin - tooltipHeight / 2;
+  if (top - tooltipHeight / 2 < margin) top = margin + tooltipHeight / 2;
+
+  el.style.setProperty('--tip-left', `${left}px`);
+  el.style.setProperty('--tip-top', `${top}px`);
+}
+
+function openStatModal(chartId, encodedLabel, color) {
+  const label = decodeURIComponent(encodedLabel || '');
+  const members = getStatMembers(chartId, label);
+
+  document.getElementById('statModalOverlay').style.display = 'flex';
+  document.getElementById('statModalDot').style.background = color || '#3b82f6';
+  document.getElementById('statModalDot').style.boxShadow = `0 0 0 6px ${hexToRgba(color || '#3b82f6', 0.15)}`;
+  document.getElementById('statModalTitle').innerText = label || '统计详情';
+  document.getElementById('statModalSub').innerText = getStatModalSub(chartId);
+  document.getElementById('statTotalStaff').innerText = members.length;
+  document.getElementById('statCategory').innerText = label || '-';
+  document.getElementById('statTopPlatform').innerText = getTopValue(members.map(x => x.platform)) || '-';
+  document.getElementById('statTopShift').innerText = getTopValue(members.map(x => x.shift)) || '-';
+
+  const grid = document.getElementById('statMemberGrid');
+
+  if (!members.length) {
+    grid.innerHTML = `<div class="stat-empty">此分类暂无员工数据。</div>`;
+    return;
+  }
+
+  grid.innerHTML = members.map(m => `
+    <div class="stat-member-card">
+      <div class="stat-member-head">
+        <div class="stat-member-name">${esc(m.name)}</div>
+        <div class="stat-member-id">#${esc(m.id)}</div>
+      </div>
+      <div class="stat-member-meta">
+        <div class="stat-member-item"><div class="stat-member-k">平台</div><div class="stat-member-v">${esc(m.platform)}</div></div>
+        <div class="stat-member-item"><div class="stat-member-k">班次</div><div class="stat-member-v">${esc(m.shift)}</div></div>
+        <div class="stat-member-item"><div class="stat-member-k">组别</div><div class="stat-member-v">${esc(m.group)}</div></div>
+        <div class="stat-member-item"><div class="stat-member-k">团队</div><div class="stat-member-v">${esc(m.team)}</div></div>
+        <div class="stat-member-item"><div class="stat-member-k">国家</div><div class="stat-member-v">${esc(m.country)}</div></div>
+        <div class="stat-member-item"><div class="stat-member-k">分类</div><div class="stat-member-v">${esc(m.role)}</div></div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function closeStatModal() {
+  document.getElementById('statModalOverlay').style.display = 'none';
+}
+
+function getStatModalSub(chartId) {
+  const isOther = activeWorkMode === '现场' && activeOnsiteRole === '其他';
+
+  if (isOther) {
+    const mapOther = {
+      cWD: '行政成员明细',
+      cCS: '保姆成员明细',
+      cFN: '厨师成员明细',
+      cGEO: '国家成员明细',
+      cSH: '班次成员明细'
+    };
+    return mapOther[chartId] || '成员明细';
+  }
+
+  const map = {
+    cWD: '出款成员明细',
+    cCS: '客服与风控成员明细',
+    cFN: '财务成员明细',
+    cGEO: '国家成员明细',
+    cSH: '班次成员明细'
+  };
+
+  return map[chartId] || '成员明细';
+}
+
+function getStatMembers(chartId, label) {
+  const isOther = activeWorkMode === '现场' && activeOnsiteRole === '其他';
+
+  return filtered.filter(r => {
+    const b = r[1] || '';
+    const j = r[9] || '';
+    const role = detectOnsiteRole(r);
+
+    if (isOther) {
+      if (chartId === 'cWD') return role === '行政';
+      if (chartId === 'cCS') return role === '保姆';
+      if (chartId === 'cFN') return role === '厨师';
+      if (chartId === 'cGEO') return (r[8] || '') === label;
+      if (chartId === 'cSH') return (r[5] || '') === label;
+      return false;
+    }
+
+    if (chartId === 'cWD') return (b.includes('出款') || j.includes('出款')) && b === label;
+    if (chartId === 'cCS') return (b.includes('客服') || j.includes('客服') || b.includes('风控')) && b === label;
+    if (chartId === 'cFN') return (b.includes('财务') || j.includes('财务')) && b === label;
+    if (chartId === 'cGEO') return (r[8] || '') === label;
+    if (chartId === 'cSH') return (r[5] || '') === label;
+
+    return false;
+  }).map(r => ({
+    platform: r[0] || '-',
+    group: r[1] || '-',
+    team: r[9] || '-',
+    id: r[2] || '-',
+    name: r[3] || '-',
+    shift: r[5] || '-',
+    country: r[8] || '-',
+    role: detectOnsiteRole(r) || r[1] || '-'
+  }));
+}
+
+function getTopValue(arr) {
+  const map = {};
+  arr.filter(Boolean).forEach(v => map[v] = (map[v] || 0) + 1);
+  const sorted = Object.entries(map).sort((a, b) => b[1] - a[1]);
+  return sorted.length ? sorted[0][0] : '';
+}
+
+function hexToRgba(hex, alpha) {
+  const cleanHex = String(hex || '#38bdf8').replace('#', '');
+  const bigint = parseInt(cleanHex.length === 3 ? cleanHex.split('').map(c => c + c).join('') : cleanHex, 16);
+  const r = (bigint >> 16) & 255;
+  const g = (bigint >> 8) & 255;
+  const b = bigint & 255;
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
+function changeMainPage(s) {
+  mainPage += s;
+  updateUI();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === "Escape") {
+    closeModal();
+    closeStatModal();
   }
 });
 
-      }
-
-    function initFilters() {
-      const getU = (i) => [...new Set(dbMaster.map(r => r[i]))].filter(v => v && v !== "-").sort();
-      const fill = (id, v) => {
-        const s = document.getElementById(id);
-        if(s) s.innerHTML = `<option value="">全部</option>` + v.map(x => `<option value="${x}">${x}</option>`).join('');
-      };
-      fill('fPlatform', getU(0)); fill('fGroup', getU(1)); fill('fTeam', getU(9)); fill('fShift', getU(5)); fill('fCountry', getU(8));
-      ['searchName', 'fShift', 'fTeam', 'fGroup', 'fCountry', 'fPlatform'].forEach(id => {
-        document.getElementById(id).addEventListener('input', () => { mainPage = 1; runFilters(); });
-      });
-    }
-
-    function runFilters() {
-      const sn = document.getElementById('searchName').value.toLowerCase();
-      const sf = document.getElementById('fShift').value;
-      const st = document.getElementById('fTeam').value;
-      const sg = document.getElementById('fGroup').value;
-      const sc = document.getElementById('fCountry').value;
-      const sp = document.getElementById('fPlatform').value;
-      filtered = dbMaster.filter(r => {
-        const mode = detectWorkMode(r);
-        const role = detectOnsiteRole(r);
-        const modeOk = activeWorkMode === '全部' ? (mode === '居家' || mode === '现场居家') : mode === activeWorkMode;
-        const onsiteRoleOk = activeWorkMode !== '现场'
-  ? true
-  : (
-      activeOnsiteRole === '现场'
-        ? role === ''
-        : role !== ''
-    );
-        const formOk = (r.join(' ').toLowerCase().includes(sn)) && (!sf || r[5] === sf) && (!sg || r[1] === sg) && (!st || r[9] === st) && (!sc || r[8] === sc) && (!sp || r[0] === sp);
-        return modeOk && onsiteRoleOk && formOk;
-      });
-      updateUI();
-    }
-
-    function updateUI() {
-      const total = Math.ceil(filtered.length / mainRows) || 1;
-      if (mainPage < 1) mainPage = 1; if (mainPage > total) mainPage = total;
-      const start = (mainPage - 1) * mainRows;
-      const current = filtered.slice(start, start + mainRows);
-      document.getElementById('tbody').innerHTML = current.map((r) => {
-        const b = r[1]||"", j = r[9]||"";
-        let cls = (b.includes('出款') || j.includes('出款')) ? 'tag-wd' : (b.includes('客服') || j.includes('客服')) ? 'tag-cs' : 'tag-fn';
-        return `<tr><td><b>${r[0]}</b></td><td><span class="${cls}">${r[1]}</span></td><td>${r[9]}</td><td><span class="id-link" onclick="openDetail(${dbMaster.indexOf(r)})">#${r[2]}</span></td><td style="font-weight:900;color:#fff;">${r[3]}</td><td>${r[5]}</td><td><span class="date-badge">${r[6]}</span></td><td>${r[8]}</td></tr>`;
-      }).join('');
-      document.getElementById('infoMain').innerText = `第 ${mainPage} 页 / 共 ${total} 页`;
-      updatePerfTable('WD', '出款');
-      updatePerfTable('CS', '客服');
-      updatePerfTable('FN', '财务');
-      syncCharts();
-      updateExtraPages();
-      setTimeout(() => { syncPerfHeaderWidths(); bindSmartTips(); }, 50);
-    }
-
-    function renderPerfNameCell(name, isOnline) {
-      const text = name || '-';
-      return `<div class="perf-name-wrap"><span class="perf-name-dot ${isOnline ? '' : 'hidden'}"></span><span class="smart-tip" data-full="${esc(text)}"><span class="perf-name-text">${text}</span></span></div>`;
-    }
-    function renderPerfMentorCell(name) {
-      const text = name || '-';
-      return `<div class="perf-mentor-wrap"><span class="smart-tip" data-full="${esc(text)}"><span class="perf-mentor-text">${text}</span></span></div>`;
-    }
-    function renderPerfAccCell(name) {
-      const text = name || '-';
-      return `<div class="perf-acc-wrap"><span class="smart-tip" data-full="${esc(text)}"><span class="perf-acc-text">${text}</span></span></div>`;
-    }
-
-    function updatePerfTable(type, keyword) {
-      const body = document.getElementById(`tbody-perf-${type.toLowerCase()}`);
-      if(!body) return;
-      const now = new Date(new Date().toLocaleString("en-US", {timeZone: "Asia/Yerevan"}));
-      const hour = now.getHours();
-      const deptData = filtered.filter(r => (r[1]||"").includes(keyword) || (r[9]||"").includes(keyword) || (keyword === '客服' && (r[1]||"").includes('风控')));
-      let onlineCount = 0;
-      body.innerHTML = deptData.map((r) => {
-        const shift = clean(r[5]);
-        let isOnline = false;
-        if ((shift.includes("DAY") || shift.includes("白班")) && (hour >= 8 && hour < 20)) isOnline = true;
-        else if ((shift.includes("NIGHT") || shift.includes("夜班")) && (hour >= 20 || hour < 8)) isOnline = true;
-        else if ((shift.includes("MID") || shift.includes("中班")) && (hour >= 12 && hour < 24)) isOnline = true;
-        if (isOnline) onlineCount++;
-        const targetIDNum = cleanID(r[2]);
-        const p = dbPerf.find(x => cleanID(x[0]) === targetIDNum);
-        const mIdx = dbMaster.indexOf(r);
-        return `<tr style="${isOnline ? 'background:rgba(34,197,94,.06);' : ''}"><td class="col-id"><span class="id-link" onclick="openDetail(${mIdx})">#${r[2]}</span></td><td class="col-name" style="font-weight:900;">${renderPerfNameCell(r[3], isOnline)}</td><td class="col-ment">${renderPerfMentorCell(p ? (p[2] || "-") : "-")}</td><td class="col-d1">-</td><td class="col-d2">-</td><td class="col-d3">-</td><td class="col-tot">${p ? (p[3] || "0") : "0"}</td><td class="col-avg" style="color:#7dd3fc;font-weight:900;">${p ? (p[4] || "0") : "0"}</td><td class="col-acc">${renderPerfAccCell(p ? (p[5] || "-") : "-")}</td><td class="col-act"><div style="display:flex;justify-content:center;"><button class="menu-btn" style="padding:5px 12px;font-size:.6rem;min-width:auto;" onclick="openDetail(${mIdx})">查看</button></div></td></tr>`;
-      }).join('');
-      document.getElementById(`online-${type.toLowerCase()}`).innerText = `${onlineCount} 在线`;
-    }
-
-    function updateExtraPages() {
-      const absBody = document.getElementById('tbody-absent');
-      if(absBody) absBody.innerHTML = filtered.slice(0, 15).map(r => `<tr><td>#${r[2]}</td><td style="font-weight:900;color:#fff;">${r[3]}</td><td><span class="status-absent">未上班</span></td><td>${r[5]}</td><td>${r[8]}</td></tr>`).join('');
-      const salBody = document.getElementById('tbody-salary');
-      if(salBody) {
-        salBody.innerHTML = filtered.slice(0, 15).map(r => {
-          const p = dbPerf.find(x => cleanID(x[0]) === cleanID(r[2]));
-          const b = 500, bon = p ? (parseInt(p[3] || 0) * 0.05) : 0;
-          return `<tr><td>#${r[2]}</td><td style="font-weight:900;color:#fff;">${r[3]}</td><td>$ ${b}</td><td>$ ${bon.toFixed(2)}</td><td style="font-weight:900;color:#fff;">$ ${(b+bon).toFixed(2)}</td></tr>`;
-        }).join('');
-      }
-    }
-
-    function getLast3Dates() {
-      const today = new Date();
-      const format = (d) => `${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}`;
-      const d1 = new Date(today); d1.setDate(today.getDate() - 2);
-      const d2 = new Date(today); d2.setDate(today.getDate() - 1);
-      const d3 = new Date(today);
-      return [format(d1), format(d2), format(d3)];
-    }
-    function setPerfDateHeaders() {
-      const [d1, d2, d3] = getLast3Dates();
-      document.querySelectorAll('.perf-date-1').forEach(el => el.innerText = d1);
-      document.querySelectorAll('.perf-date-2').forEach(el => el.innerText = d2);
-      document.querySelectorAll('.perf-date-3').forEach(el => el.innerText = d3);
-    }
-
-    function getScrollbarWidth(el) { return el.offsetWidth - el.clientWidth; }
-    function syncPerfHeaderWidths() {
-      document.querySelectorAll('.perf-section-wrapper .table-container').forEach(container => {
-        const headerTable = container.querySelector(':scope > table.perf-table');
-        const scrollArea = container.querySelector('.perf-scroll-area');
-        const bodyTable = scrollArea ? scrollArea.querySelector('table.perf-table') : null;
-        if (!headerTable || !scrollArea || !bodyTable) return;
-        headerTable.classList.add('perf-header-table');
-        bodyTable.classList.add('perf-body-table');
-        const scrollbarWidth = getScrollbarWidth(scrollArea);
-        headerTable.style.width = `calc(100% - ${scrollbarWidth}px)`;
-        bodyTable.style.width = `100%`;
-        const headCells = headerTable.querySelectorAll('thead th');
-        const firstRow = bodyTable.querySelector('tbody tr');
-        if (!firstRow) return;
-        const widths = Array.from(headCells).map(th => th.getBoundingClientRect().width);
-        headCells.forEach((th, i) => { th.style.width = `${widths[i]}px`; });
-        bodyTable.querySelectorAll('tbody tr').forEach(row => {
-          const rowCells = row.querySelectorAll('td');
-          rowCells.forEach((td, i) => { if (widths[i]) td.style.width = `${widths[i]}px`; });
-        });
-      });
-    }
-
-    function bindSmartTips() {
-      document.querySelectorAll('.smart-tip').forEach(el => {
-        el.removeEventListener('mouseenter', handleTipEnter);
-        el.removeEventListener('mousemove', handleTipMove);
-        el.removeEventListener('mouseleave', handleTipLeave);
-        el.addEventListener('mouseenter', handleTipEnter);
-        el.addEventListener('mousemove', handleTipMove);
-        el.addEventListener('mouseleave', handleTipLeave);
-      });
-    }
-    function handleTipEnter(e) { positionTooltip(e.currentTarget); }
-    function handleTipMove(e) { positionTooltip(e.currentTarget); }
-    function handleTipLeave(e) { e.currentTarget.style.removeProperty('--tip-left'); e.currentTarget.style.removeProperty('--tip-top'); }
-    function updateVisibleTooltips() { document.querySelectorAll('.smart-tip:hover').forEach(el => positionTooltip(el)); }
-    function positionTooltip(el) {
-      const rect = el.getBoundingClientRect();
-      const margin = 14;
-      const tooltipWidth = 320;
-      const tooltipHeight = 56;
-      let left = rect.right + 12;
-      let top = rect.top + (rect.height / 2);
-      if (left + tooltipWidth > window.innerWidth - margin) left = Math.max(margin, rect.left - tooltipWidth - 12);
-      if (top + (tooltipHeight / 2) > window.innerHeight - margin) top = window.innerHeight - margin - (tooltipHeight / 2);
-      if (top - (tooltipHeight / 2) < margin) top = margin + (tooltipHeight / 2);
-      el.style.setProperty('--tip-left', `${left}px`);
-      el.style.setProperty('--tip-top', `${top}px`);
-    }
-
-    function openStatModal(chartId, encodedLabel, color) {
-      const label = decodeURIComponent(encodedLabel || '');
-      const members = getStatMembers(chartId, label);
-      document.getElementById('statModalOverlay').style.display = 'flex';
-      document.getElementById('statModalDot').style.background = color || '#3b82f6';
-      document.getElementById('statModalDot').style.boxShadow = `0 0 0 6px ${hexToRgba(color || '#3b82f6', 0.15)}`;
-      document.getElementById('statModalTitle').innerText = label || '统计详情';
-      document.getElementById('statModalSub').innerText = getStatModalSub(chartId);
-      document.getElementById('statTotalStaff').innerText = members.length;
-      document.getElementById('statCategory').innerText = label || '-';
-      document.getElementById('statTopPlatform').innerText = getTopValue(members.map(x => x.platform)) || '-';
-      document.getElementById('statTopShift').innerText = getTopValue(members.map(x => x.shift)) || '-';
-      const grid = document.getElementById('statMemberGrid');
-      if (!members.length) { grid.innerHTML = `<div class="stat-empty">此分类暂无员工数据。</div>`; return; }
-      grid.innerHTML = members.map(m => `<div class="stat-member-card"><div class="stat-member-head"><div class="stat-member-name">${esc(m.name)}</div><div class="stat-member-id">#${esc(m.id)}</div></div><div class="stat-member-meta"><div class="stat-member-item"><div class="stat-member-k">平台</div><div class="stat-member-v">${esc(m.platform)}</div></div><div class="stat-member-item"><div class="stat-member-k">班次</div><div class="stat-member-v">${esc(m.shift)}</div></div><div class="stat-member-item"><div class="stat-member-k">组别</div><div class="stat-member-v">${esc(m.group)}</div></div><div class="stat-member-item"><div class="stat-member-k">团队</div><div class="stat-member-v">${esc(m.team)}</div></div></div></div>`).join('');
-    }
-    function closeStatModal() { document.getElementById('statModalOverlay').style.display = 'none'; }
-    function getStatModalSub(chartId) {
-      const map = {cWD:'出款成员明细',cCS:'客服与风控成员明细',cFN:'财务成员明细',cGEO:'国家成员明细',cSH:'班次成员明细'};
-      return map[chartId] || '成员明细';
-    }
-    function getStatMembers(chartId, label) {
-      return filtered.filter(r => {
-        const b = r[1] || '';
-        const j = r[9] || '';
-        if (chartId === 'cWD') return (b.includes('出款') || j.includes('出款')) && b === label;
-        if (chartId === 'cCS') return (b.includes('客服') || j.includes('客服') || b.includes('风控')) && b === label;
-        if (chartId === 'cFN') return (b.includes('财务') || j.includes('财务')) && b === label;
-        if (chartId === 'cGEO') return (r[8] || '') === label;
-        if (chartId === 'cSH') return (r[5] || '') === label;
-        return false;
-      }).map(r => ({platform:r[0] || '-',group:r[1] || '-',team:r[9] || '-',id:r[2] || '-',name:r[3] || '-',shift:r[5] || '-',country:r[8] || '-'}));
-    }
-    function getTopValue(arr) {
-      const map = {};
-      arr.filter(Boolean).forEach(v => map[v] = (map[v] || 0) + 1);
-      const sorted = Object.entries(map).sort((a,b) => b[1] - a[1]);
-      return sorted.length ? sorted[0][0] : '';
-    }
-    function hexToRgba(hex, alpha) {
-      const cleanHex = hex.replace('#', '');
-      const bigint = parseInt(cleanHex.length === 3 ? cleanHex.split('').map(c => c + c).join('') : cleanHex, 16);
-      const r = (bigint >> 16) & 255;
-      const g = (bigint >> 8) & 255;
-      const b = bigint & 255;
-      return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-    }
-
-    function changeMainPage(s) { mainPage += s; updateUI(); }
-    document.addEventListener('keydown', (e) => { if (e.key === "Escape") { closeModal(); closeStatModal(); } });
-    loadData();
-  </script>
+loadData();
+</script>
 </body>
 </html>

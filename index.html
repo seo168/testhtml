@@ -425,12 +425,18 @@
 </div>
 
       <div class="onsite-role-wrap" id="onsiteRoleWrap">
-        <div class="onsite-role-title">现场职业分类</div>
-        <button class="onsite-role-btn active" id="roleBtn-all" onclick="setOnsiteRole('全部')"><span>全部</span><span class="onsite-role-count" id="countRoleAll">0</span></button>
-        <button class="onsite-role-btn" id="roleBtn-xingzheng" onclick="setOnsiteRole('行政')"><span>行政</span><span class="onsite-role-count" id="countRoleXingZheng">0</span></button>
-        <button class="onsite-role-btn" id="roleBtn-baomu" onclick="setOnsiteRole('保姆')"><span>保姆</span><span class="onsite-role-count" id="countRoleBaoMu">0</span></button>
-        <button class="onsite-role-btn" id="roleBtn-chushi" onclick="setOnsiteRole('厨师')"><span>厨师</span><span class="onsite-role-count" id="countRoleChuShi">0</span></button>
-      </div>
+  <div class="onsite-role-title">现场职业分类</div>
+
+  <button class="onsite-role-btn active" id="roleBtn-xianchang" onclick="setOnsiteRole('现场')">
+    <span>现场</span>
+    <span class="onsite-role-count" id="countRoleXianChang">0</span>
+  </button>
+
+  <button class="onsite-role-btn" id="roleBtn-other" onclick="setOnsiteRole('其他')">
+    <span>其他</span>
+    <span class="onsite-role-count" id="countRoleOther">0</span>
+  </button>
+</div>
 
       <div class="overview-panel">
         <div class="section-title"><i class="fas fa-layer-group"></i> 汇总概览</div>
@@ -587,11 +593,14 @@
     }
 
     function updateOnsiteRoleButtons() {
-      document.querySelectorAll('.onsite-role-btn').forEach(btn => btn.classList.remove('active'));
-      const map = {'全部':'roleBtn-all','行政':'roleBtn-xingzheng','保姆':'roleBtn-baomu','厨师':'roleBtn-chushi'};
-      const activeBtn = document.getElementById(map[activeOnsiteRole]);
-      if (activeBtn) activeBtn.classList.add('active');
-    }
+  document.querySelectorAll('.onsite-role-btn').forEach(btn => btn.classList.remove('active'));
+
+  if (activeOnsiteRole === '现场') {
+    document.getElementById('roleBtn-xianchang').classList.add('active');
+  } else {
+    document.getElementById('roleBtn-other').classList.add('active');
+  }
+}
 
     function toggleOnsiteRoleWrap() {
       const wrap = document.getElementById('onsiteRoleWrap');
@@ -613,17 +622,24 @@
     }
 
     function updateOnsiteRoleCounts() {
-      const counts = {'全部':0,'行政':0,'保姆':0,'厨师':0};
-      dbMaster.forEach(r => {
-        if (detectWorkMode(r) !== '现场') return;
-        const role = detectOnsiteRole(r);
-        if (role) { counts[role] = (counts[role] || 0) + 1; counts['全部'] += 1; }
-      });
-      document.getElementById('countRoleAll').innerText = counts['全部'] || 0;
-      document.getElementById('countRoleXingZheng').innerText = counts['行政'] || 0;
-      document.getElementById('countRoleBaoMu').innerText = counts['保姆'] || 0;
-      document.getElementById('countRoleChuShi').innerText = counts['厨师'] || 0;
+  let onsiteCount = 0;
+  let otherCount = 0;
+
+  dbMaster.forEach(r => {
+    if (detectWorkMode(r) !== '现场') return;
+
+    const role = detectOnsiteRole(r);
+
+    if (role === '') {
+      onsiteCount++;
+    } else {
+      otherCount++;
     }
+  });
+
+  document.getElementById('countRoleXianChang').innerText = onsiteCount;
+  document.getElementById('countRoleOther').innerText = otherCount;
+}
 
     function setWorkMode(mode) {
       activeWorkMode = mode;
@@ -770,7 +786,13 @@
         const mode = detectWorkMode(r);
         const role = detectOnsiteRole(r);
         const modeOk = activeWorkMode === '全部' ? (mode === '居家' || mode === '现场居家') : mode === activeWorkMode;
-        const onsiteRoleOk = activeWorkMode !== '现场' ? true : (activeOnsiteRole === '全部' ? true : role === activeOnsiteRole);
+        const onsiteRoleOk = activeWorkMode !== '现场'
+  ? true
+  : (
+      activeOnsiteRole === '现场'
+        ? role === ''
+        : role !== ''
+    );
         const formOk = (r.join(' ').toLowerCase().includes(sn)) && (!sf || r[5] === sf) && (!sg || r[1] === sg) && (!st || r[9] === st) && (!sc || r[8] === sc) && (!sp || r[0] === sp);
         return modeOk && onsiteRoleOk && formOk;
       });

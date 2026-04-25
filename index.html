@@ -401,12 +401,28 @@
   <div class="container">
     <div class="glass-shell">
       <div class="work-mode-wrap">
-        <div class="work-mode-title">工作模式</div>
-        <button class="work-mode-btn active" id="modeBtn-all" onclick="setWorkMode('全部')"><span>全部</span><span class="work-mode-count" id="countModeAll">0</span></button>
-        <button class="work-mode-btn" id="modeBtn-xianchang" onclick="setWorkMode('现场')"><span>现场</span><span class="work-mode-count" id="countModeXianChang">0</span></button>
-        <button class="work-mode-btn" id="modeBtn-xianchangjvjia" onclick="setWorkMode('现场居家')"><span>现场居家</span><span class="work-mode-count" id="countModeXianChangJuJia">0</span></button>
-        <button class="work-mode-btn" id="modeBtn-jvjia" onclick="setWorkMode('居家')"><span>居家</span><span class="work-mode-count" id="countModeJuJia">0</span></button>
-      </div>
+  <div class="work-mode-title">工作模式</div>
+
+  <button class="work-mode-btn active" id="modeBtn-all" onclick="setWorkMode('全部')">
+    <span>全部</span>
+    <span class="work-mode-count" id="countModeAll">0</span>
+  </button>
+
+  <button class="work-mode-btn" id="modeBtn-jvjia" onclick="setWorkMode('居家')">
+    <span>居家</span>
+    <span class="work-mode-count" id="countModeJuJia">0</span>
+  </button>
+
+  <button class="work-mode-btn" id="modeBtn-xianchangjvjia" onclick="setWorkMode('现场居家')">
+    <span>现场居家</span>
+    <span class="work-mode-count" id="countModeXianChangJuJia">0</span>
+  </button>
+
+  <button class="work-mode-btn" id="modeBtn-xianchang" onclick="setWorkMode('现场')">
+    <span>现场</span>
+    <span class="work-mode-count" id="countModeXianChang">0</span>
+  </button>
+</div>
 
       <div class="onsite-role-wrap" id="onsiteRoleWrap">
         <div class="onsite-role-title">现场职业分类</div>

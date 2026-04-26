@@ -125,10 +125,72 @@
       font-weight:900;
       display:flex;
       align-items:center;
-      gap:9px;
+      gap:10px;
       color:#fff;
     }
-    .brand-title i{color:#93c5fd}
+
+    .crab-logo{
+      width:42px;
+      height:42px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:16px;
+      position:relative;
+      isolation:isolate;
+      background:
+        radial-gradient(circle at 28% 20%,rgba(255,255,255,.95),rgba(147,197,253,.55) 20%,transparent 34%),
+        linear-gradient(135deg,rgba(96,165,250,.35),rgba(167,139,250,.32),rgba(56,189,248,.22));
+      border:1px solid rgba(255,255,255,.28);
+      box-shadow:0 0 18px rgba(96,165,250,.34),0 0 38px rgba(167,139,250,.18),inset 0 1px 0 rgba(255,255,255,.35);
+      animation:crabGlow 3.4s ease-in-out infinite;
+    }
+
+    .crab-logo::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      border-radius:18px;
+      padding:1px;
+      background:linear-gradient(135deg,#dbeafe,#67e8f9,#c4b5fd,#f0abfc,#93c5fd);
+      -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor;
+      mask-composite:exclude;
+      opacity:.92;
+      z-index:-1;
+    }
+
+    .crab-logo::after{
+      content:"";
+      position:absolute;
+      inset:6px;
+      border-radius:12px;
+      background:linear-gradient(120deg,transparent,rgba(255,255,255,.34),transparent 62%);
+      transform:translateX(-130%);
+      animation:crabShine 3.8s ease-in-out infinite;
+      pointer-events:none;
+    }
+
+    .crab-logo svg{
+      width:29px;
+      height:29px;
+      filter:drop-shadow(0 0 7px rgba(147,197,253,.85)) drop-shadow(0 0 12px rgba(216,180,254,.45));
+    }
+
+    .crab-logo .crab-fill{fill:url(#crabGradient)}
+    .crab-logo .crab-stroke{stroke:rgba(255,255,255,.82);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;fill:none}
+
+    @keyframes crabGlow{
+      0%,100%{transform:translateY(0) scale(1);filter:saturate(1)}
+      50%{transform:translateY(-1px) scale(1.04);filter:saturate(1.28)}
+    }
+
+    @keyframes crabShine{
+      0%,58%{transform:translateX(-135%);opacity:0}
+      72%{opacity:1}
+      100%{transform:translateX(135%);opacity:0}
+    }
+
     .brand-title span{
       background:linear-gradient(135deg,#dbeafe,#93c5fd,#c4b5fd);
       -webkit-background-clip:text;
@@ -636,6 +698,8 @@
       .perf-item.full{grid-column:span 1}
       .shift-member-compact{gap:5px}
       .shift-mini-tag{font-size:.61rem}
+      .crab-logo{width:38px;height:38px;border-radius:14px}
+      .crab-logo svg{width:26px;height:26px}
     }
   </style>
 </head>
@@ -657,7 +721,28 @@
   </div>
 
   <nav>
-    <div class="brand-title"><i class="fas fa-chart-pie"></i> HGX <span>员工信息</span></div>
+    <div class="brand-title">
+      <span class="crab-logo" aria-label="Hologram Crab Logo">
+        <svg viewBox="0 0 64 64" role="img">
+          <defs>
+            <linearGradient id="crabGradient" x1="8" y1="4" x2="56" y2="60" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#e0f2fe"/>
+              <stop offset=".28" stop-color="#67e8f9"/>
+              <stop offset=".56" stop-color="#a78bfa"/>
+              <stop offset=".82" stop-color="#f0abfc"/>
+              <stop offset="1" stop-color="#93c5fd"/>
+            </linearGradient>
+          </defs>
+          <path class="crab-fill" d="M21 30c0-8 5-14 11-14s11 6 11 14v7c0 7-5 12-11 12s-11-5-11-12v-7Z"/>
+          <path class="crab-fill" d="M18 28c-5-6-9-7-12-4-3 4 1 9 8 9l4-5Zm28 0c5-6 9-7 12-4 3 4-1 9-8 9l-4-5Z"/>
+          <path class="crab-stroke" d="M20 34H8M44 34h12M21 39l-11 7M43 39l11 7M24 24l-7-8M40 24l7-8"/>
+          <circle cx="27" cy="27" r="2.4" fill="#08111f" opacity=".82"/>
+          <circle cx="37" cy="27" r="2.4" fill="#08111f" opacity=".82"/>
+          <path class="crab-stroke" d="M28 38c2.4 2 5.6 2 8 0"/>
+        </svg>
+      </span>
+      HGX <span>员工信息</span>
+    </div>
     <div class="amt-clock" id="clock">00:00:00 AMT</div>
   </nav>
 

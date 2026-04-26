@@ -125,43 +125,10 @@
       font-weight:900;
       display:flex;
       align-items:center;
-      gap:10px;
+      gap:9px;
       color:#fff;
     }
-
-    .percent-logo{
-  width:42px;
-  height:42px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:16px;
-  font-size:1.45rem;
-  font-weight:900;
-  color:#fff;
-  background:linear-gradient(135deg,#60a5fa,#a78bfa,#38bdf8,#f0abfc);
-  border:1px solid rgba(255,255,255,.28);
-  box-shadow:
-    0 0 18px rgba(96,165,250,.45),
-    0 0 38px rgba(167,139,250,.25),
-    inset 0 1px 0 rgba(255,255,255,.35);
-  text-shadow:
-    0 0 10px rgba(255,255,255,.65),
-    0 0 18px rgba(96,165,250,.75);
-  animation:percentGlow 3.4s ease-in-out infinite;
-}
-
-@keyframes percentGlow{
-  0%,100%{
-    transform:translateY(0) scale(1);
-    filter:hue-rotate(0deg) saturate(1);
-  }
-  50%{
-    transform:translateY(-1px) scale(1.06);
-    filter:hue-rotate(55deg) saturate(1.35);
-  }
-}
-
+    .brand-title i{color:#93c5fd}
     .brand-title span{
       background:linear-gradient(135deg,#dbeafe,#93c5fd,#c4b5fd);
       -webkit-background-clip:text;
@@ -669,8 +636,6 @@
       .perf-item.full{grid-column:span 1}
       .shift-member-compact{gap:5px}
       .shift-mini-tag{font-size:.61rem}
-      .crab-logo{width:40px;height:40px;border-radius:15px}
-      .crab-logo svg{width:32px;height:32px}
     }
   </style>
 </head>
@@ -692,31 +657,7 @@
   </div>
 
   <nav>
-    <div class="brand-title">
-      <span class="percent-logo">%</span>
-  <svg viewBox="0 0 80 80" role="img">
-    <defs>
-      <linearGradient id="crabGradient" x1="10" y1="8" x2="70" y2="72" gradientUnits="userSpaceOnUse">
-        <stop offset="0" stop-color="#e0f2fe"/>
-        <stop offset=".35" stop-color="#67e8f9"/>
-        <stop offset=".7" stop-color="#a78bfa"/>
-        <stop offset="1" stop-color="#93c5fd"/>
-      </linearGradient>
-    </defs>
-
-    <ellipse class="crab-fill" cx="40" cy="43" rx="19" ry="15"/>
-    <path class="crab-fill" d="M25 34c-7-7-15-8-20-3 3 7 10 9 18 6z"/>
-    <path class="crab-fill" d="M55 34c7-7 15-8 20-3-3 7-10 9-18 6z"/>
-
-    <path class="crab-stroke" d="M24 49 11 55M27 55 16 66M56 49l13 6M53 55l11 11"/>
-    <path class="crab-stroke" d="M30 30 23 18M50 30l7-12"/>
-    <circle cx="31" cy="36" r="3" fill="#08111f"/>
-    <circle cx="49" cy="36" r="3" fill="#08111f"/>
-    <path class="crab-stroke" d="M34 48c4 3 8 3 12 0"/>
-  </svg>
-</span>
-      HGX <span>员工信息</span>
-    </div>
+    <div class="brand-title"><i class="fas fa-chart-pie"></i> HGX <span>员工信息</span></div>
     <div class="amt-clock" id="clock">00:00:00 AMT</div>
   </nav>
 
@@ -748,7 +689,7 @@
         </button>
       </div>
 
-            <div class="overview-panel">
+      <div class="overview-panel">
         <div class="section-title"><i class="fas fa-layer-group"></i> 汇总概览</div>
         <div class="dept-grid">
           <div class="dept-card">
@@ -1515,7 +1456,39 @@
       URL.revokeObjectURL(url);
     }
 
-    function updateExtraPages() {}
+    function updateExtraPages() {
+      const absBody = document.getElementById('tbody-absent');
+      if (absBody) {
+        absBody.innerHTML = filtered.slice(0,15).map(r => `
+          <tr>
+            <td>#${esc(r[2] || '-')}</td>
+            <td style="font-weight:900;color:#fff;">${esc(r[3] || '-')}</td>
+            <td><span class="status-absent">未上班</span></td>
+            <td>${esc(r[5] || '-')}</td>
+            <td>${esc(r[8] || '-')}</td>
+          </tr>
+        `).join('');
+      }
+
+      const salBody = document.getElementById('tbody-salary');
+      if (salBody) {
+        salBody.innerHTML = filtered.slice(0,15).map(r => {
+          const p = dbPerf.find(x => cleanID(x[0]) === cleanID(r[2]));
+          const base = 500;
+          const bonus = p ? (parseInt(p[3] || 0) * 0.05) : 0;
+
+          return `
+            <tr>
+              <td>#${esc(r[2] || '-')}</td>
+              <td style="font-weight:900;color:#fff;">${esc(r[3] || '-')}</td>
+              <td>$ ${base}</td>
+              <td>$ ${bonus.toFixed(2)}</td>
+              <td style="font-weight:900;color:#fff;">$ ${(base + bonus).toFixed(2)}</td>
+            </tr>
+          `;
+        }).join('');
+      }
+    }
 
     function openDetail(masterIdx) {
       const staff = dbMaster[masterIdx];
@@ -1670,3 +1643,4 @@
     loadData();
   </script>
 </body>
+</html>

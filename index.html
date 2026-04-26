@@ -508,86 +508,158 @@
       gap:10px;
     }
 
-    .shift-table-wrap{
-      overflow:auto;
-      max-height:620px;
-      border-radius:18px;
-      border:1px solid rgba(148,163,184,.14);
+    .shift-three-grid{
       position:relative;
       z-index:1;
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:1rem;
+      align-items:start;
     }
 
-    .shift-table{
-      width:100%;
-      border-collapse:collapse;
-      table-layout:fixed;
-      min-width:980px;
-    }
-
-    .shift-table th,.shift-table td{
-      text-align:center;
-      vertical-align:middle;
-      white-space:nowrap;
+    .shift-column-card{
+      border-radius:22px;
       overflow:hidden;
-      text-overflow:ellipsis;
-      height:54px;
-      padding:.78rem .75rem;
+      background:rgba(15,23,42,.58);
+      border:1px solid rgba(148,163,184,.18);
+      box-shadow:0 16px 42px rgba(0,0,0,.16);
+      min-height:220px;
     }
 
-    .shift-table th:nth-child(1),.shift-table td:nth-child(1){width:120px}
-    .shift-table th:nth-child(2),.shift-table td:nth-child(2){width:130px}
-    .shift-table th:nth-child(3),.shift-table td:nth-child(3){width:140px}
-    .shift-table th:nth-child(4),.shift-table td:nth-child(4){width:120px}
-    .shift-table th:nth-child(5),.shift-table td:nth-child(5){width:160px}
-    .shift-table th:nth-child(6),.shift-table td:nth-child(6){width:150px;text-align:left;padding-left:18px}
-    .shift-table th:nth-child(7),.shift-table td:nth-child(7){width:120px}
-    .shift-table th:nth-child(8),.shift-table td:nth-child(8){width:120px}
+    .shift-column-head{
+      padding:14px 16px;
+      border-bottom:1px solid rgba(148,163,184,.14);
+      background:rgba(8,17,31,.48);
+    }
 
-    .shift-pill{
+    .shift-column-title-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:8px;
+    }
+
+    .shift-column-title{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      color:#fff;
+      font-size:.94rem;
+      font-weight:900;
+      min-width:0;
+    }
+
+    .shift-column-total{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      min-width:76px;
-      height:28px;
-      padding:0 10px;
+      min-width:34px;
+      height:24px;
+      padding:0 9px;
       border-radius:999px;
-      font-size:.68rem;
+      font-size:.7rem;
       font-weight:900;
-      border:1px solid rgba(148,163,184,.16);
-      line-height:1;
+      background:rgba(96,165,250,.12);
+      color:#bfdbfe;
+      border:1px solid rgba(96,165,250,.16);
+      flex:0 0 auto;
     }
 
-    .shift-day{background:rgba(96,165,250,.13);color:#bfdbfe}
-    .shift-mid{background:rgba(251,191,36,.13);color:#fde68a}
-    .shift-night{background:rgba(167,139,250,.13);color:#ddd6fe}
-    .shift-other{background:rgba(148,163,184,.13);color:#cbd5e1}
+    .shift-country-mini{
+      display:flex;
+      flex-wrap:wrap;
+      gap:5px;
+      min-height:24px;
+    }
 
-    .role-pill{
+    .shift-country-chip{
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      min-width:70px;
-      max-width:120px;
-      height:28px;
-      padding:0 10px;
-      border-radius:8px;
-      font-size:.68rem;
+      gap:4px;
+      max-width:100%;
+      padding:3px 7px;
+      border-radius:999px;
+      font-size:.62rem;
       font-weight:900;
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(148,163,184,.14);
-      color:#dbeafe;
+      line-height:1;
+      color:#cbd5e1;
+      background:rgba(148,163,184,.10);
+      border:1px solid rgba(148,163,184,.13);
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
     }
 
-    .shift-name-cell{
-      text-align:left!important;
+    .shift-member-list{
+      max-height:620px;
+      overflow:auto;
+      padding:12px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .shift-member-card{
+      display:grid;
+      grid-template-columns:minmax(0,1fr) auto;
+      gap:8px 10px;
+      padding:12px;
+      border-radius:16px;
+      background:rgba(8,17,31,.38);
+      border:1px solid rgba(148,163,184,.12);
+      transition:.2s ease;
+    }
+
+    .shift-member-card:hover{
+      background:rgba(30,41,59,.44);
+      border-color:rgba(147,197,253,.24);
+      transform:translateY(-1px);
+    }
+
+    .shift-member-name{
+      color:#fff;
+      font-size:.82rem;
       font-weight:900;
-      color:#fff!important;
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
+      text-align:left;
+      min-width:0;
+    }
+
+    .shift-member-id{
+      color:#bfdbfe;
+      background:rgba(96,165,250,.12);
+      border:1px solid rgba(96,165,250,.14);
+      border-radius:999px;
+      padding:3px 8px;
+      font-size:.64rem;
+      font-weight:900;
+      white-space:nowrap;
+    }
+
+    .shift-member-meta{
+      grid-column:1 / -1;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:6px;
+    }
+
+    .shift-meta-pill{
+      min-width:0;
+      padding:5px 8px;
+      border-radius:10px;
+      background:rgba(255,255,255,.045);
+      border:1px solid rgba(148,163,184,.10);
+      color:#dbeafe;
+      font-size:.66rem;
+      font-weight:900;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      text-align:center;
     }
 
     .shift-empty{
@@ -663,6 +735,8 @@
     @media(max-width:1200px){
       .dept-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
       .filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .shift-three-grid{grid-template-columns:1fr}
+      .shift-member-list{max-height:360px}
     }
     @media(max-width:900px){
       .container{padding:1rem}
@@ -689,6 +763,7 @@
       .modal-content{padding:1.4rem}
       .perf-grid{grid-template-columns:1fr}
       .perf-item.full{grid-column:span 1}
+      .shift-member-meta{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -829,23 +904,7 @@
             </button>
           </div>
 
-          <div class="shift-table-wrap">
-            <table class="shift-table">
-              <thead>
-                <tr>
-                  <th>班次</th>
-                  <th>岗位盘口</th>
-                  <th>岗位</th>
-                  <th>类型</th>
-                  <th>工作内容</th>
-                  <th>姓名</th>
-                  <th>ID</th>
-                  <th>国籍</th>
-                </tr>
-              </thead>
-              <tbody id="shiftPageBody"></tbody>
-            </table>
-          </div>
+          <div class="shift-three-grid" id="shiftThreeGrid"></div>
         </div>
       </div>
 
@@ -981,12 +1040,19 @@
       return group || team || '-';
     }
 
-    function getShiftClass(shift) {
+    function getShiftType(shift) {
       const s = clean(shift);
-      if (s.includes('DAY') || s.includes('白班')) return 'shift-day';
-      if (s.includes('MID') || s.includes('中班')) return 'shift-mid';
-      if (s.includes('NIGHT') || s.includes('夜班')) return 'shift-night';
-      return 'shift-other';
+      if (s.includes('DAY') || s.includes('白班')) return '白班';
+      if (s.includes('MID') || s.includes('中班')) return '中班';
+      if (s.includes('NIGHT') || s.includes('夜班')) return '夜班';
+      return '其他';
+    }
+
+    function getShiftIcon(shiftType) {
+      if (shiftType === '白班') return 'fa-sun';
+      if (shiftType === '中班') return 'fa-cloud-sun';
+      if (shiftType === '夜班') return 'fa-moon';
+      return 'fa-clock';
     }
 
     function updateWorkModeButtons() {
@@ -1313,10 +1379,67 @@
       return filtered.slice();
     }
 
+    function getCountrySummary(rows) {
+      const map = {};
+      rows.forEach(r => {
+        const country = r[8] || '-';
+        map[country] = (map[country] || 0) + 1;
+      });
+      return Object.entries(map).sort((a, b) => b[1] - a[1] || String(a[0]).localeCompare(String(b[0]), 'zh'));
+    }
+
+    function renderShiftColumn(type, rows) {
+      const sortedRows = rows.sort((a,b) =>
+        String(a[0] || '').localeCompare(String(b[0] || ''), 'zh') ||
+        String(a[1] || '').localeCompare(String(b[1] || ''), 'zh') ||
+        String(a[3] || '').localeCompare(String(b[3] || ''), 'zh')
+      );
+
+      const countries = getCountrySummary(sortedRows);
+      const countryHtml = countries.length
+        ? countries.map(([name, count]) => `<span class="shift-country-chip">${esc(name)} ${count}</span>`).join('')
+        : `<span class="shift-country-chip">暂无</span>`;
+
+      const memberHtml = sortedRows.length
+        ? sortedRows.map(r => {
+            const mode = detectWorkMode(r);
+            const role = getRoleDisplay(r);
+            const typeText = detectOnsiteRole(r) ? '其他' : mode;
+            return `
+              <div class="shift-member-card">
+                <div class="shift-member-name">${esc(r[3] || '-')}</div>
+                <div class="shift-member-id">#${esc(r[2] || '-')}</div>
+                <div class="shift-member-meta">
+                  <div class="shift-meta-pill">${esc(r[0] || '-')}</div>
+                  <div class="shift-meta-pill">${esc(r[1] || '-')}</div>
+                  <div class="shift-meta-pill">${esc(typeText)}</div>
+                  <div class="shift-meta-pill">${esc(role || '-')}</div>
+                  <div class="shift-meta-pill">${esc(r[8] || '-')}</div>
+                  <div class="shift-meta-pill">${esc(r[9] || '-')}</div>
+                </div>
+              </div>
+            `;
+          }).join('')
+        : `<div class="shift-empty">暂无排班数据</div>`;
+
+      return `
+        <div class="shift-column-card">
+          <div class="shift-column-head">
+            <div class="shift-column-title-row">
+              <div class="shift-column-title"><i class="fas ${getShiftIcon(type)}"></i> ${type}</div>
+              <div class="shift-column-total">${sortedRows.length}</div>
+            </div>
+            <div class="shift-country-mini">${countryHtml}</div>
+          </div>
+          <div class="shift-member-list">${memberHtml}</div>
+        </div>
+      `;
+    }
+
     function renderShiftPageTables() {
-      const body = document.getElementById('shiftPageBody');
+      const grid = document.getElementById('shiftThreeGrid');
       const title = document.getElementById('shiftPageTitle');
-      if (!body || !title) return;
+      if (!grid || !title) return;
 
       const titleText = activeWorkMode === '全部'
         ? '全部排班'
@@ -1326,38 +1449,23 @@
 
       title.innerHTML = `<i class="fas fa-table-list"></i> ${titleText}`;
 
-      const rows = getShiftPageRows().sort((a,b) =>
-        String(detectWorkMode(a) || '').localeCompare(String(detectWorkMode(b) || ''), 'zh') ||
-        String(a[5] || '').localeCompare(String(b[5] || ''), 'zh') ||
-        String(a[0] || '').localeCompare(String(b[0] || ''), 'zh') ||
-        String(a[3] || '').localeCompare(String(b[3] || ''), 'zh')
-      );
+      const rows = getShiftPageRows();
+      const grouped = {
+        '白班': [],
+        '中班': [],
+        '夜班': []
+      };
 
-      if (!rows.length) {
-        body.innerHTML = `<tr><td colspan="8"><div class="shift-empty">暂无排班数据</div></td></tr>`;
-        return;
-      }
+      rows.forEach(r => {
+        const type = getShiftType(r[5] || '');
+        if (type === '白班' || type === '中班' || type === '夜班') grouped[type].push(r);
+      });
 
-      body.innerHTML = rows.map(r => {
-        const mode = detectWorkMode(r);
-        const shift = r[5] || '-';
-        const role = getRoleDisplay(r);
-        const typeText = detectOnsiteRole(r) ? '其他' : mode;
-        const workContent = role || r[1] || '-';
-
-        return `
-          <tr>
-            <td><span class="shift-pill ${getShiftClass(shift)}">${esc(shift)}</span></td>
-            <td>${esc(r[0] || '-')}</td>
-            <td><span class="role-pill">${esc(r[1] || '-')}</span></td>
-            <td>${esc(typeText)}</td>
-            <td>${esc(workContent)}</td>
-            <td class="shift-name-cell">${esc(r[3] || '-')}</td>
-            <td>#${esc(r[2] || '-')}</td>
-            <td>${esc(r[8] || '-')}</td>
-          </tr>
-        `;
-      }).join('');
+      grid.innerHTML = [
+        renderShiftColumn('白班', grouped['白班']),
+        renderShiftColumn('中班', grouped['中班']),
+        renderShiftColumn('夜班', grouped['夜班'])
+      ].join('');
     }
 
     function downloadCurrentShiftCSV() {

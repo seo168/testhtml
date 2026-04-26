@@ -851,8 +851,6 @@
       <div class="nav-menu">
         <button onclick="showPage('overview')" id="btn-overview" class="menu-btn active"><i class="fas fa-layer-group"></i> 总览</button>
         <button onclick="showPage('performance')" id="btn-performance" class="menu-btn"><i class="fas fa-calendar-days"></i> 排班</button>
-        <button onclick="showPage('absent')" id="btn-absent" class="menu-btn"><i class="fas fa-calendar-alt"></i> 考勤</button>
-        <button onclick="showPage('salary')" id="btn-salary" class="menu-btn"><i class="fas fa-money-bill-wave"></i> 薪资</button>
       </div>
 
       <div id="overview" class="page-content active">
@@ -905,31 +903,6 @@
           </div>
 
           <div class="shift-three-grid" id="shiftThreeGrid"></div>
-        </div>
-      </div>
-
-      <div id="absent" class="page-content">
-        <div class="filter-wrapper">
-          <h3 style="font-weight:900;color:#eaf2ff;"><i class="fas fa-calendar-alt"></i> 考勤记录</h3>
-        </div>
-        <div class="table-container">
-          <div class="table-head-bar">每日考勤汇总</div>
-          <table>
-            <thead><tr><th>ID</th><th>姓名</th><th>状态</th><th>班次</th><th>国家</th></tr></thead>
-            <tbody id="tbody-absent"></tbody>
-          </table>
-        </div>
-      </div>
-
-      <div id="salary" class="page-content">
-        <div class="filter-wrapper">
-          <h3 style="font-weight:900;color:#eaf2ff;"><i class="fas fa-money-bill-wave"></i> 薪资预览</h3>
-        </div>
-        <div class="table-container">
-          <table>
-            <thead><tr><th>员工ID</th><th>姓名</th><th>底薪</th><th>提成</th><th>总计</th></tr></thead>
-            <tbody id="tbody-salary"></tbody>
-          </table>
         </div>
       </div>
     </div>

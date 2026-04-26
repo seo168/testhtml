@@ -176,8 +176,8 @@
     }
 
     .crab-logo svg{
-      width:37px;
-      height:37px;
+      width:34px;
+      height:34px;
       filter:
         drop-shadow(0 0 7px rgba(147,197,253,.88))
         drop-shadow(0 0 14px rgba(216,180,254,.52));
@@ -732,45 +732,28 @@
 
   <nav>
     <div class="brand-title">
-      <span class="crab-logo" aria-label="Hologram Crab Logo">
-        <svg viewBox="0 0 96 96" role="img">
-          <defs>
-            <linearGradient id="crabBodyGradient" x1="16" y1="8" x2="80" y2="88" gradientUnits="userSpaceOnUse">
-              <stop offset="0" stop-color="#f8fbff"/>
-              <stop offset=".18" stop-color="#7dd3fc"/>
-              <stop offset=".47" stop-color="#818cf8"/>
-              <stop offset=".74" stop-color="#f0abfc"/>
-              <stop offset="1" stop-color="#67e8f9"/>
-            </linearGradient>
-            <linearGradient id="crabStrokeGradient" x1="10" y1="10" x2="86" y2="86" gradientUnits="userSpaceOnUse">
-              <stop offset="0" stop-color="#e0f2fe"/>
-              <stop offset=".35" stop-color="#67e8f9"/>
-              <stop offset=".7" stop-color="#c4b5fd"/>
-              <stop offset="1" stop-color="#f0abfc"/>
-            </linearGradient>
-          </defs>
+      <span class="crab-logo" aria-label="HGX Crab Logo">
+  <svg viewBox="0 0 80 80" role="img">
+    <defs>
+      <linearGradient id="crabGradient" x1="10" y1="8" x2="70" y2="72" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#e0f2fe"/>
+        <stop offset=".35" stop-color="#67e8f9"/>
+        <stop offset=".7" stop-color="#a78bfa"/>
+        <stop offset="1" stop-color="#93c5fd"/>
+      </linearGradient>
+    </defs>
 
-          <path class="crab-leg" d="M27 45C16 38 9 36 6 41c-3 5 2 11 14 11"/>
-          <path class="crab-leg" d="M69 45c11-7 18-9 21-4 3 5-2 11-14 11"/>
-          <path class="crab-leg" d="M27 56 12 65"/>
-          <path class="crab-leg" d="M69 56 84 65"/>
-          <path class="crab-leg" d="M31 66 18 77"/>
-          <path class="crab-leg" d="M65 66 78 77"/>
+    <ellipse class="crab-fill" cx="40" cy="43" rx="19" ry="15"/>
+    <path class="crab-fill" d="M25 34c-7-7-15-8-20-3 3 7 10 9 18 6z"/>
+    <path class="crab-fill" d="M55 34c7-7 15-8 20-3-3 7-10 9-18 6z"/>
 
-          <path class="crab-main" d="M29 43c0-15 8-25 19-25s19 10 19 25v12c0 14-8 23-19 23s-19-9-19-23V43Z"/>
-          <path class="crab-main" d="M31 39c-9-11-16-14-22-9-6 6 1 17 16 16l6-7Z"/>
-          <path class="crab-main" d="M65 39c9-11 16-14 22-9 6 6-1 17-16 16l-6-7Z"/>
-
-          <path class="crab-line" d="M36 20 28 9"/>
-          <path class="crab-line" d="M60 20 68 9"/>
-          <circle class="crab-eye" cx="41" cy="37" r="4"/>
-          <circle class="crab-eye" cx="55" cy="37" r="4"/>
-          <circle class="crab-highlight" cx="39.7" cy="35.6" r="1.25"/>
-          <circle class="crab-highlight" cx="53.7" cy="35.6" r="1.25"/>
-          <path class="crab-line" d="M40 58c4 4 12 4 16 0"/>
-          <path class="crab-line" d="M34 48c8 4 20 4 28 0"/>
-        </svg>
-      </span>
+    <path class="crab-stroke" d="M24 49 11 55M27 55 16 66M56 49l13 6M53 55l11 11"/>
+    <path class="crab-stroke" d="M30 30 23 18M50 30l7-12"/>
+    <circle cx="31" cy="36" r="3" fill="#08111f"/>
+    <circle cx="49" cy="36" r="3" fill="#08111f"/>
+    <path class="crab-stroke" d="M34 48c4 3 8 3 12 0"/>
+  </svg>
+</span>
       HGX <span>员工信息</span>
     </div>
     <div class="amt-clock" id="clock">00:00:00 AMT</div>

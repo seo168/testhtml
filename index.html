@@ -201,10 +201,7 @@
       outline:none;
     }
 
-    .work-mode-btn,.onsite-role-btn{
-      min-width:130px;
-      padding:12px 22px;
-    }
+    .work-mode-btn,.onsite-role-btn{min-width:130px;padding:12px 22px}
 
     .work-mode-btn:hover,.onsite-role-btn:hover,.menu-btn:hover{
       transform:translateY(-1px);
@@ -239,13 +236,7 @@
       box-shadow:0 22px 58px rgba(0,0,0,.18);
     }
 
-    .overview-panel{
-      margin:1.2rem 0;
-      padding:1.2rem;
-      border-radius:26px;
-      position:relative;
-      overflow:hidden;
-    }
+    .overview-panel{margin:1.2rem 0;padding:1.2rem;border-radius:26px;position:relative;overflow:hidden}
 
     .section-title{
       font-size:1.02rem;
@@ -280,11 +271,7 @@
       overflow:hidden;
       transition:.25s ease;
     }
-    .dept-card:hover{
-      transform:translateY(-2px);
-      border-color:rgba(147,197,253,.32);
-      box-shadow:0 22px 58px rgba(0,0,0,.24);
-    }
+    .dept-card:hover{transform:translateY(-2px);border-color:rgba(147,197,253,.32);box-shadow:0 22px 58px rgba(0,0,0,.24)}
 
     .dept-title{
       font-size:.75rem;
@@ -297,13 +284,7 @@
       z-index:1;
     }
 
-    .chart-box{
-      width:96px;
-      height:96px;
-      margin:4px auto 12px;
-      position:relative;
-      z-index:1;
-    }
+    .chart-box{width:96px;height:96px;margin:4px auto 12px;position:relative;z-index:1}
 
     .chart-val{
       position:absolute;
@@ -330,37 +311,16 @@
       cursor:pointer;
       transition:.2s ease;
     }
-    .stat-row:hover{
-      background:rgba(30,41,59,.58);
-      border-color:rgba(147,197,253,.28);
-      transform:translateX(2px);
-    }
+    .stat-row:hover{background:rgba(30,41,59,.58);border-color:rgba(147,197,253,.28);transform:translateX(2px)}
 
     .indicator{display:flex;align-items:center;gap:9px;min-width:0;flex:1}
     .dot{width:10px;height:10px;border-radius:50%;flex:0 0 10px}
-    .remark-text{
-      font-size:.72rem;
-      font-weight:900;
-      color:#dbeafe;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      display:block;
-    }
-    .count-badge{
-      min-width:34px;
-      text-align:center;
-      padding:4px 9px;
-      border-radius:999px;
-      background:rgba(96,165,250,.12);
-      color:#bfdbfe;
-      font-size:.68rem;
-      font-weight:900;
-      border:1px solid rgba(96,165,250,.16);
-    }
+    .remark-text{font-size:.72rem;font-weight:900;color:#dbeafe;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+    .count-badge{min-width:34px;text-align:center;padding:4px 9px;border-radius:999px;background:rgba(96,165,250,.12);color:#bfdbfe;font-size:.68rem;font-weight:900;border:1px solid rgba(96,165,250,.16)}
 
     .nav-menu{
-      display:flex;
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
       gap:12px;
       margin-bottom:1rem;
       padding:10px;
@@ -370,36 +330,17 @@
       box-shadow:0 16px 44px rgba(0,0,0,.14);
     }
 
-    .menu-btn{
-      flex:1;
-      padding:14px;
-      font-size:.78rem;
-    }
+    .menu-btn{flex:1;padding:14px;font-size:.78rem}
 
     .page-content{display:none}
     .page-content.active{display:block;animation:fadeIn .35s ease}
     @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
-    .filter-wrapper{
-      padding:1.25rem;
-      border-radius:24px;
-      margin-bottom:1rem;
-    }
+    .filter-wrapper{padding:1.25rem;border-radius:24px;margin-bottom:1rem}
 
-    .filter-grid{
-      display:grid;
-      grid-template-columns:1.5fr 1fr 1fr 1fr 1fr 1fr;
-      gap:12px;
-    }
+    .filter-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1fr 1fr;gap:12px}
 
-    .filter-group label{
-      display:block;
-      font-size:.66rem;
-      font-weight:900;
-      color:#9fb0cf;
-      margin-bottom:6px;
-      text-transform:uppercase;
-    }
+    .filter-group label{display:block;font-size:.66rem;font-weight:900;color:#9fb0cf;margin-bottom:6px;text-transform:uppercase}
 
     .filter-group select,.filter-group input{
       width:100%;
@@ -414,11 +355,12 @@
       color:#eaf2ff;
     }
 
-    .table-container{
-      border-radius:24px;
-      overflow:hidden;
-      margin-bottom:2rem;
+    .filter-group select:focus,.filter-group input:focus,.shift-search-input:focus{
+      border-color:rgba(96,165,250,.48);
+      box-shadow:0 0 0 4px rgba(96,165,250,.08);
     }
+
+    .table-container{border-radius:24px;overflow:hidden;margin-bottom:2rem}
 
     .table-head-bar{
       padding:1.15rem 1.25rem;
@@ -455,24 +397,8 @@
     }
     tbody tr:hover td{background:rgba(96,165,250,.035)}
 
-    .id-link{
-      background:rgba(96,165,250,.12);
-      color:#bfdbfe;
-      padding:5px 12px;
-      border-radius:9px;
-      cursor:pointer;
-      font-weight:900;
-      transition:.2s;
-      display:inline-block;
-      border:1px solid rgba(96,165,250,.16);
-    }
-
-    .id-link:hover{
-      background:#2563eb;
-      color:#fff;
-      transform:scale(1.05);
-      box-shadow:0 0 18px rgba(37,99,235,.25);
-    }
+    .id-link{background:rgba(96,165,250,.12);color:#bfdbfe;padding:5px 12px;border-radius:9px;cursor:pointer;font-weight:900;transition:.2s;display:inline-block;border:1px solid rgba(96,165,250,.16)}
+    .id-link:hover{background:#2563eb;color:#fff;transform:scale(1.05);box-shadow:0 0 18px rgba(37,99,235,.25)}
 
     .tag-wd{background:rgba(96,165,250,.12);color:#bfdbfe;padding:5px 11px;border-radius:9px;border:1px solid rgba(96,165,250,.18)}
     .tag-cs{background:rgba(167,139,250,.12);color:#ddd6fe;padding:5px 11px;border-radius:9px;border:1px solid rgba(167,139,250,.18)}
@@ -480,42 +406,74 @@
     .date-badge{background:rgba(148,163,184,.12);color:#cbd5e1;padding:5px 11px;border-radius:9px;font-family:monospace;border:1px solid rgba(148,163,184,.18)}
     .status-absent{color:#fecaca;font-weight:900;background:rgba(248,113,113,.12);padding:5px 11px;border-radius:9px;font-size:.72rem;border:1px solid rgba(248,113,113,.18)}
 
-    .shift-board{
-      margin:1.2rem 0 2rem;
-      padding:1.2rem;
-      border-radius:26px;
-      position:relative;
-      overflow:hidden;
-    }
+    .shift-board{margin:1.2rem 0 2rem;padding:1.2rem;border-radius:26px;position:relative;overflow:hidden}
 
-    .shift-board-top{
+    .shift-board-top{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:1rem;flex-wrap:wrap}
+
+    .shift-board-title{font-size:1.02rem;font-weight:900;color:#eaf2ff;display:flex;align-items:center;gap:10px}
+
+    .shift-tools{
+      display:grid;
+      grid-template-columns:minmax(260px,1fr) auto auto;
+      gap:10px;
+      align-items:center;
+      width:100%;
+      margin-bottom:1rem;
       position:relative;
       z-index:1;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-      margin-bottom:1rem;
-      flex-wrap:wrap;
     }
 
-    .shift-board-title{
-      font-size:1.02rem;
-      font-weight:900;
+    .shift-search-wrap{position:relative;min-width:0}
+    .shift-search-wrap i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#7da1d8;font-size:.8rem}
+    .shift-search-input{
+      width:100%;
+      padding:12px 14px 12px 40px;
+      border-radius:15px;
+      border:1px solid rgba(148,163,184,.20);
+      background:rgba(8,17,31,.56);
       color:#eaf2ff;
-      display:flex;
-      align-items:center;
-      gap:10px;
+      font-size:.82rem;
+      font-weight:900;
+      outline:none;
     }
+    .shift-search-input::placeholder{color:#71829d}
 
-    .shift-three-grid{
+    .shift-view-btn{
+      padding:12px 16px;
+      border-radius:15px;
+      border:1px solid rgba(148,163,184,.20);
+      background:rgba(15,23,42,.66);
+      color:#b6c3d7;
+      font-size:.76rem;
+      font-weight:900;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      white-space:nowrap;
+    }
+    .shift-view-btn.active{background:linear-gradient(135deg,#2563eb,#475569);color:#fff;border-color:rgba(255,255,255,.18)}
+
+    .shift-summary-strip{
       position:relative;
       z-index:1;
       display:grid;
-      grid-template-columns:repeat(3,minmax(0,1fr));
-      gap:1rem;
-      align-items:start;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:10px;
+      margin-bottom:1rem;
     }
+    .shift-summary-box{
+      background:rgba(8,17,31,.36);
+      border:1px solid rgba(148,163,184,.14);
+      border-radius:18px;
+      padding:12px 14px;
+      min-width:0;
+    }
+    .shift-summary-label{font-size:.62rem;font-weight:900;color:#9fb0cf;text-transform:uppercase;margin-bottom:4px;letter-spacing:.3px}
+    .shift-summary-value{font-size:1.05rem;font-weight:900;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+    .shift-three-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;align-items:start}
 
     .shift-column-card{
       border-radius:22px;
@@ -526,179 +484,90 @@
       min-height:220px;
     }
 
-    .shift-column-head{
-      padding:14px 16px;
-      border-bottom:1px solid rgba(148,163,184,.14);
-      background:rgba(8,17,31,.48);
-    }
+    .shift-column-head{padding:14px 16px;border-bottom:1px solid rgba(148,163,184,.14);background:rgba(8,17,31,.48);position:sticky;top:0;z-index:3;backdrop-filter:blur(12px)}
 
-    .shift-column-title-row{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      margin-bottom:8px;
-    }
+    .shift-column-title-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
 
-    .shift-column-title{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      color:#fff;
-      font-size:.94rem;
-      font-weight:900;
-      min-width:0;
-    }
+    .shift-column-title{display:flex;align-items:center;gap:8px;color:#fff;font-size:.94rem;font-weight:900;min-width:0}
 
-    .shift-column-total{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-width:34px;
-      height:24px;
-      padding:0 9px;
-      border-radius:999px;
-      font-size:.7rem;
-      font-weight:900;
-      background:rgba(96,165,250,.12);
-      color:#bfdbfe;
-      border:1px solid rgba(96,165,250,.16);
-      flex:0 0 auto;
-    }
+    .shift-column-total{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:24px;padding:0 9px;border-radius:999px;font-size:.7rem;font-weight:900;background:rgba(96,165,250,.12);color:#bfdbfe;border:1px solid rgba(96,165,250,.16);flex:0 0 auto}
 
-    .shift-country-mini{
-      display:flex;
-      flex-wrap:wrap;
-      gap:5px;
-      min-height:24px;
-    }
+    .shift-country-mini{display:flex;flex-wrap:wrap;gap:5px;min-height:24px}
 
-    .shift-country-chip{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:4px;
-      max-width:100%;
-      padding:3px 7px;
-      border-radius:999px;
-      font-size:.62rem;
-      font-weight:900;
-      line-height:1;
-      color:#cbd5e1;
-      background:rgba(148,163,184,.10);
-      border:1px solid rgba(148,163,184,.13);
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
+    .shift-country-chip{display:inline-flex;align-items:center;justify-content:center;gap:4px;max-width:100%;padding:3px 7px;border-radius:999px;font-size:.62rem;font-weight:900;line-height:1;color:#cbd5e1;background:rgba(148,163,184,.10);border:1px solid rgba(148,163,184,.13);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
-    .shift-member-list{
-      max-height:620px;
-      overflow:auto;
-      padding:12px;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
+    .shift-member-list{max-height:660px;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:8px;scrollbar-gutter:stable}
+    .shift-member-list::-webkit-scrollbar{width:8px}
+    .shift-member-list::-webkit-scrollbar-thumb{background:rgba(147,197,253,.22);border-radius:999px}
 
     .shift-member-card{
       display:grid;
       grid-template-columns:minmax(0,1fr) auto;
-      gap:8px 10px;
-      padding:12px;
-      border-radius:16px;
+      gap:7px 10px;
+      padding:10px 11px;
+      border-radius:14px;
       background:rgba(8,17,31,.38);
       border:1px solid rgba(148,163,184,.12);
       transition:.2s ease;
+      cursor:pointer;
     }
+    .shift-member-card:nth-child(even){background:rgba(30,41,59,.30)}
+    .shift-member-card:hover{background:rgba(30,41,59,.54);border-color:rgba(147,197,253,.28);transform:translateY(-1px)}
 
-    .shift-member-card:hover{
-      background:rgba(30,41,59,.44);
-      border-color:rgba(147,197,253,.24);
-      transform:translateY(-1px);
-    }
+    .shift-member-name{color:#fff;font-size:.86rem;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left;min-width:0;letter-spacing:.1px}
 
-    .shift-member-name{
-      color:#fff;
-      font-size:.82rem;
-      font-weight:900;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      text-align:left;
-      min-width:0;
-    }
+    .shift-member-id{color:#bfdbfe;background:rgba(96,165,250,.12);border:1px solid rgba(96,165,250,.14);border-radius:999px;padding:3px 8px;font-size:.64rem;font-weight:900;white-space:nowrap}
 
-    .shift-member-id{
-      color:#bfdbfe;
-      background:rgba(96,165,250,.12);
-      border:1px solid rgba(96,165,250,.14);
-      border-radius:999px;
-      padding:3px 8px;
-      font-size:.64rem;
-      font-weight:900;
-      white-space:nowrap;
-    }
-
-    .shift-member-meta{
+    .shift-member-compact{
       grid-column:1 / -1;
-      display:grid;
-      grid-template-columns:1fr 1fr;
+      display:flex;
+      align-items:center;
       gap:6px;
+      min-width:0;
+      flex-wrap:wrap;
     }
 
-    .shift-meta-pill{
+    .shift-mini-tag{
       min-width:0;
-      padding:5px 8px;
-      border-radius:10px;
+      max-width:100%;
+      padding:4px 7px;
+      border-radius:9px;
       background:rgba(255,255,255,.045);
       border:1px solid rgba(148,163,184,.10);
       color:#dbeafe;
-      font-size:.66rem;
+      font-size:.64rem;
       font-weight:900;
       white-space:nowrap;
       overflow:hidden;
       text-overflow:ellipsis;
-      text-align:center;
+      line-height:1;
     }
 
-    .shift-empty{
-      padding:1.5rem;
-      text-align:center;
-      color:#9fb0cf;
-      font-weight:900;
-      font-size:.8rem;
-    }
+    .shift-mini-tag.country{color:#bbf7d0;background:rgba(52,211,153,.09);border-color:rgba(52,211,153,.12)}
+    .shift-mini-tag.platform{color:#bfdbfe;background:rgba(96,165,250,.09);border-color:rgba(96,165,250,.12)}
+    .shift-mini-tag.role{color:#fde68a;background:rgba(251,191,36,.09);border-color:rgba(251,191,36,.12)}
 
-    .modal-overlay,.stat-modal-overlay{
-      position:fixed;
-      inset:0;
-      background:rgba(8,17,31,.72);
-      display:none;
-      align-items:center;
-      justify-content:center;
-      z-index:3000;
-      backdrop-filter:blur(12px);
-      padding:24px;
-    }
+    .shift-list-view{position:relative;z-index:1;display:none;border-radius:20px;overflow:hidden;border:1px solid rgba(148,163,184,.16)}
+    .shift-list-table{width:100%;border-collapse:collapse;table-layout:fixed;min-width:980px}
+    .shift-list-table th,.shift-list-table td{height:48px;padding:.7rem .75rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left}
+    .shift-list-table th{text-align:left;position:sticky;top:0;z-index:2;background:rgba(8,17,31,.92)}
+    .shift-list-table tbody tr:nth-child(even) td{background:rgba(30,41,59,.20)}
+    .shift-list-table td:first-child,.shift-list-table th:first-child{text-align:center;width:86px}
 
-    .modal-content,.stat-modal-content{
-      background:linear-gradient(180deg,rgba(15,23,42,.96),rgba(8,17,31,.96));
-      border:1px solid rgba(148,163,184,.24);
-      color:#eaf2ff;
-      box-shadow:0 30px 90px rgba(0,0,0,.44);
-      border-radius:30px;
-    }
+    .shift-pill-small{display:inline-flex;align-items:center;justify-content:center;min-width:62px;padding:4px 8px;border-radius:999px;font-size:.64rem;font-weight:900;border:1px solid rgba(148,163,184,.16)}
+    .pill-day{background:rgba(96,165,250,.13);color:#bfdbfe}
+    .pill-mid{background:rgba(251,191,36,.13);color:#fde68a}
+    .pill-night{background:rgba(167,139,250,.13);color:#ddd6fe}
+    .pill-other{background:rgba(148,163,184,.13);color:#cbd5e1}
+
+    .shift-empty{padding:1.5rem;text-align:center;color:#9fb0cf;font-weight:900;font-size:.8rem}
+
+    .modal-overlay,.stat-modal-overlay{position:fixed;inset:0;background:rgba(8,17,31,.72);display:none;align-items:center;justify-content:center;z-index:3000;backdrop-filter:blur(12px);padding:24px}
+
+    .modal-content,.stat-modal-content{background:linear-gradient(180deg,rgba(15,23,42,.96),rgba(8,17,31,.96));border:1px solid rgba(148,163,184,.24);color:#eaf2ff;box-shadow:0 30px 90px rgba(0,0,0,.44);border-radius:30px}
 
     .modal-content{width:95%;max-width:620px;padding:2.2rem}
-    .modal-header{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-start;
-      margin-bottom:2rem;
-      border-bottom:1px solid rgba(148,163,184,.16);
-      padding-bottom:1.3rem;
-    }
+    .modal-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2rem;border-bottom:1px solid rgba(148,163,184,.16);padding-bottom:1.3rem}
 
     .perf-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
     .perf-item{background:rgba(30,41,59,.54);padding:18px;border-radius:20px;border:1px solid rgba(148,163,184,.16)}
@@ -737,16 +606,18 @@
       .filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
       .shift-three-grid{grid-template-columns:1fr}
       .shift-member-list{max-height:360px}
+      .shift-summary-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
     }
     @media(max-width:900px){
       .container{padding:1rem}
-      .dept-grid,.filter-grid,.stat-summary-grid,.stat-member-grid{grid-template-columns:1fr}
-      .nav-menu{overflow-x:auto}
+      .dept-grid,.filter-grid,.stat-summary-grid,.stat-member-grid,.shift-summary-strip{grid-template-columns:1fr}
+      .nav-menu{grid-template-columns:repeat(2,minmax(150px,1fr));overflow-x:auto}
       .menu-btn{min-width:150px}
       .amt-clock{min-width:auto;padding:10px 18px}
       .brand-title{font-size:1rem}
       .work-mode-btn,.onsite-role-btn{flex:1;min-width:135px}
       .table-container{overflow-x:auto}
+      .shift-tools{grid-template-columns:1fr}
     }
     @media(max-width:560px){
       nav{padding:.75rem 1rem}
@@ -763,7 +634,8 @@
       .modal-content{padding:1.4rem}
       .perf-grid{grid-template-columns:1fr}
       .perf-item.full{grid-column:span 1}
-      .shift-member-meta{grid-template-columns:1fr}
+      .shift-member-compact{gap:5px}
+      .shift-mini-tag{font-size:.61rem}
     }
   </style>
 </head>
@@ -902,7 +774,18 @@
             </button>
           </div>
 
+          <div class="shift-tools">
+            <div class="shift-search-wrap">
+              <i class="fas fa-search"></i>
+              <input class="shift-search-input" id="shiftSearchInput" type="text" placeholder="在排班里搜索姓名 / ID / 平台 / 组别 / 国家..." oninput="renderShiftPageTables()">
+            </div>
+            <button class="shift-view-btn active" id="shiftCardViewBtn" onclick="setShiftView('card')"><i class="fas fa-grip"></i> 卡片</button>
+            <button class="shift-view-btn" id="shiftListViewBtn" onclick="setShiftView('list')"><i class="fas fa-list"></i> 列表</button>
+          </div>
+
+          <div class="shift-summary-strip" id="shiftSummaryStrip"></div>
           <div class="shift-three-grid" id="shiftThreeGrid"></div>
+          <div class="shift-list-view" id="shiftListView"></div>
         </div>
       </div>
     </div>
@@ -965,6 +848,7 @@
     const mainRows = 10;
     let activeWorkMode = '全部';
     let activeOnsiteRole = '现场';
+    let activeShiftView = 'card';
 
     const palette = ["#60a5fa", "#a78bfa", "#fbbf24", "#f87171", "#38bdf8", "#34d399"];
 
@@ -1026,6 +910,13 @@
       if (shiftType === '中班') return 'fa-cloud-sun';
       if (shiftType === '夜班') return 'fa-moon';
       return 'fa-clock';
+    }
+
+    function getShiftPillClass(shiftType) {
+      if (shiftType === '白班') return 'pill-day';
+      if (shiftType === '中班') return 'pill-mid';
+      if (shiftType === '夜班') return 'pill-night';
+      return 'pill-other';
     }
 
     function updateWorkModeButtons() {
@@ -1114,6 +1005,13 @@
       document.getElementById(pageId).classList.add('active');
       document.getElementById('btn-' + pageId).classList.add('active');
 
+      renderShiftPageTables();
+    }
+
+    function setShiftView(view) {
+      activeShiftView = view;
+      document.getElementById('shiftCardViewBtn')?.classList.toggle('active', view === 'card');
+      document.getElementById('shiftListViewBtn')?.classList.toggle('active', view === 'list');
       renderShiftPageTables();
     }
 
@@ -1349,7 +1247,10 @@
     }
 
     function getShiftPageRows() {
-      return filtered.slice();
+      const keyword = String(document.getElementById('shiftSearchInput')?.value || '').trim().toLowerCase();
+      let rows = filtered.slice();
+      if (!keyword) return rows;
+      return rows.filter(r => r.join(' ').toLowerCase().includes(keyword));
     }
 
     function getCountrySummary(rows) {
@@ -1361,8 +1262,33 @@
       return Object.entries(map).sort((a, b) => b[1] - a[1] || String(a[0]).localeCompare(String(b[0]), 'zh'));
     }
 
+    function getTopValueFromRows(rows, index) {
+      const map = {};
+      rows.forEach(r => {
+        const val = r[index] || '-';
+        map[val] = (map[val] || 0) + 1;
+      });
+      const sorted = Object.entries(map).sort((a,b) => b[1] - a[1]);
+      return sorted.length ? `${sorted[0][0]} ${sorted[0][1]}` : '-';
+    }
+
+    function renderShiftSummary(rows) {
+      const strip = document.getElementById('shiftSummaryStrip');
+      if (!strip) return;
+      const dayCount = rows.filter(r => getShiftType(r[5]) === '白班').length;
+      const midCount = rows.filter(r => getShiftType(r[5]) === '中班').length;
+      const nightCount = rows.filter(r => getShiftType(r[5]) === '夜班').length;
+      strip.innerHTML = `
+        <div class="shift-summary-box"><div class="shift-summary-label">当前显示</div><div class="shift-summary-value">${rows.length} 人</div></div>
+        <div class="shift-summary-box"><div class="shift-summary-label">班次数量</div><div class="shift-summary-value">白 ${dayCount} / 中 ${midCount} / 夜 ${nightCount}</div></div>
+        <div class="shift-summary-box"><div class="shift-summary-label">最多国家</div><div class="shift-summary-value">${esc(getTopValueFromRows(rows, 8))}</div></div>
+        <div class="shift-summary-box"><div class="shift-summary-label">最多平台</div><div class="shift-summary-value">${esc(getTopValueFromRows(rows, 0))}</div></div>
+      `;
+    }
+
     function renderShiftColumn(type, rows) {
       const sortedRows = rows.sort((a,b) =>
+        String(a[8] || '').localeCompare(String(b[8] || ''), 'zh') ||
         String(a[0] || '').localeCompare(String(b[0] || ''), 'zh') ||
         String(a[1] || '').localeCompare(String(b[1] || ''), 'zh') ||
         String(a[3] || '').localeCompare(String(b[3] || ''), 'zh')
@@ -1375,20 +1301,20 @@
 
       const memberHtml = sortedRows.length
         ? sortedRows.map(r => {
+            const idx = dbMaster.indexOf(r);
             const mode = detectWorkMode(r);
             const role = getRoleDisplay(r);
             const typeText = detectOnsiteRole(r) ? '其他' : mode;
             return `
-              <div class="shift-member-card">
+              <div class="shift-member-card" onclick="openDetail(${idx})" title="${esc(r[3] || '-')}">
                 <div class="shift-member-name">${esc(r[3] || '-')}</div>
                 <div class="shift-member-id">#${esc(r[2] || '-')}</div>
-                <div class="shift-member-meta">
-                  <div class="shift-meta-pill">${esc(r[0] || '-')}</div>
-                  <div class="shift-meta-pill">${esc(r[1] || '-')}</div>
-                  <div class="shift-meta-pill">${esc(typeText)}</div>
-                  <div class="shift-meta-pill">${esc(role || '-')}</div>
-                  <div class="shift-meta-pill">${esc(r[8] || '-')}</div>
-                  <div class="shift-meta-pill">${esc(r[9] || '-')}</div>
+                <div class="shift-member-compact">
+                  <span class="shift-mini-tag platform">${esc(r[0] || '-')}</span>
+                  <span class="shift-mini-tag role">${esc(role || '-')}</span>
+                  <span class="shift-mini-tag">${esc(r[1] || '-')}</span>
+                  <span class="shift-mini-tag country">${esc(r[8] || '-')}</span>
+                  <span class="shift-mini-tag">${esc(typeText)}</span>
                 </div>
               </div>
             `;
@@ -1409,10 +1335,53 @@
       `;
     }
 
+    function renderShiftList(rows) {
+      const listView = document.getElementById('shiftListView');
+      if (!listView) return;
+      const sortedRows = rows.sort((a,b) =>
+        String(getShiftType(a[5] || '')).localeCompare(String(getShiftType(b[5] || '')), 'zh') ||
+        String(a[8] || '').localeCompare(String(b[8] || ''), 'zh') ||
+        String(a[3] || '').localeCompare(String(b[3] || ''), 'zh')
+      );
+
+      if (!sortedRows.length) {
+        listView.innerHTML = `<div class="shift-empty">暂无排班数据</div>`;
+        return;
+      }
+
+      listView.innerHTML = `
+        <table class="shift-list-table">
+          <thead>
+            <tr>
+              <th>班次</th><th>姓名</th><th>ID</th><th>平台</th><th>岗位</th><th>组别</th><th>国家</th><th>团队</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${sortedRows.map(r => {
+              const type = getShiftType(r[5] || '');
+              return `
+                <tr onclick="openDetail(${dbMaster.indexOf(r)})" style="cursor:pointer;">
+                  <td><span class="shift-pill-small ${getShiftPillClass(type)}">${esc(type)}</span></td>
+                  <td style="font-weight:900;color:#fff;">${esc(r[3] || '-')}</td>
+                  <td>#${esc(r[2] || '-')}</td>
+                  <td>${esc(r[0] || '-')}</td>
+                  <td>${esc(getRoleDisplay(r))}</td>
+                  <td>${esc(r[1] || '-')}</td>
+                  <td>${esc(r[8] || '-')}</td>
+                  <td>${esc(r[9] || '-')}</td>
+                </tr>
+              `;
+            }).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+
     function renderShiftPageTables() {
       const grid = document.getElementById('shiftThreeGrid');
+      const listView = document.getElementById('shiftListView');
       const title = document.getElementById('shiftPageTitle');
-      if (!grid || !title) return;
+      if (!grid || !title || !listView) return;
 
       const titleText = activeWorkMode === '全部'
         ? '全部排班'
@@ -1423,12 +1392,9 @@
       title.innerHTML = `<i class="fas fa-table-list"></i> ${titleText}`;
 
       const rows = getShiftPageRows();
-      const grouped = {
-        '白班': [],
-        '中班': [],
-        '夜班': []
-      };
+      renderShiftSummary(rows);
 
+      const grouped = {'白班': [], '中班': [], '夜班': []};
       rows.forEach(r => {
         const type = getShiftType(r[5] || '');
         if (type === '白班' || type === '中班' || type === '夜班') grouped[type].push(r);
@@ -1439,6 +1405,10 @@
         renderShiftColumn('中班', grouped['中班']),
         renderShiftColumn('夜班', grouped['夜班'])
       ].join('');
+
+      renderShiftList(rows);
+      grid.style.display = activeShiftView === 'card' ? 'grid' : 'none';
+      listView.style.display = activeShiftView === 'list' ? 'block' : 'none';
     }
 
     function downloadCurrentShiftCSV() {

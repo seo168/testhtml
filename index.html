@@ -130,65 +130,75 @@
     }
 
     .crab-logo{
-      width:42px;
-      height:42px;
+      width:46px;
+      height:46px;
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      border-radius:16px;
+      border-radius:18px;
       position:relative;
       isolation:isolate;
       background:
-        radial-gradient(circle at 28% 20%,rgba(255,255,255,.95),rgba(147,197,253,.55) 20%,transparent 34%),
-        linear-gradient(135deg,rgba(96,165,250,.35),rgba(167,139,250,.32),rgba(56,189,248,.22));
-      border:1px solid rgba(255,255,255,.28);
-      box-shadow:0 0 18px rgba(96,165,250,.34),0 0 38px rgba(167,139,250,.18),inset 0 1px 0 rgba(255,255,255,.35);
+        radial-gradient(circle at 30% 18%,rgba(255,255,255,.95),rgba(147,197,253,.45) 20%,transparent 36%),
+        linear-gradient(135deg,rgba(96,165,250,.36),rgba(167,139,250,.34),rgba(56,189,248,.22));
+      border:1px solid rgba(255,255,255,.30);
+      box-shadow:
+        0 0 20px rgba(96,165,250,.40),
+        0 0 42px rgba(167,139,250,.22),
+        inset 0 1px 0 rgba(255,255,255,.38);
       animation:crabGlow 3.4s ease-in-out infinite;
+      overflow:hidden;
     }
 
     .crab-logo::before{
       content:"";
       position:absolute;
       inset:-2px;
-      border-radius:18px;
+      border-radius:20px;
       padding:1px;
       background:linear-gradient(135deg,#dbeafe,#67e8f9,#c4b5fd,#f0abfc,#93c5fd);
       -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
       -webkit-mask-composite:xor;
       mask-composite:exclude;
-      opacity:.92;
+      opacity:.94;
       z-index:-1;
     }
 
     .crab-logo::after{
       content:"";
       position:absolute;
-      inset:6px;
-      border-radius:12px;
-      background:linear-gradient(120deg,transparent,rgba(255,255,255,.34),transparent 62%);
-      transform:translateX(-130%);
+      inset:5px;
+      border-radius:14px;
+      background:linear-gradient(120deg,transparent,rgba(255,255,255,.36),transparent 62%);
+      transform:translateX(-135%);
       animation:crabShine 3.8s ease-in-out infinite;
       pointer-events:none;
     }
 
     .crab-logo svg{
-      width:29px;
-      height:29px;
-      filter:drop-shadow(0 0 7px rgba(147,197,253,.85)) drop-shadow(0 0 12px rgba(216,180,254,.45));
+      width:37px;
+      height:37px;
+      filter:
+        drop-shadow(0 0 7px rgba(147,197,253,.88))
+        drop-shadow(0 0 14px rgba(216,180,254,.52));
+      z-index:1;
     }
 
-    .crab-logo .crab-fill{fill:url(#crabGradient)}
-    .crab-logo .crab-stroke{stroke:rgba(255,255,255,.82);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;fill:none}
+    .crab-main{fill:url(#crabBodyGradient)}
+    .crab-leg{fill:none;stroke:url(#crabStrokeGradient);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
+    .crab-line{fill:none;stroke:rgba(255,255,255,.82);stroke-width:1.55;stroke-linecap:round;stroke-linejoin:round}
+    .crab-eye{fill:#07111f;stroke:rgba(255,255,255,.75);stroke-width:.65}
+    .crab-highlight{fill:rgba(255,255,255,.38)}
 
     @keyframes crabGlow{
       0%,100%{transform:translateY(0) scale(1);filter:saturate(1)}
-      50%{transform:translateY(-1px) scale(1.04);filter:saturate(1.28)}
+      50%{transform:translateY(-1px) scale(1.045);filter:saturate(1.3)}
     }
 
     @keyframes crabShine{
-      0%,58%{transform:translateX(-135%);opacity:0}
+      0%,58%{transform:translateX(-140%);opacity:0}
       72%{opacity:1}
-      100%{transform:translateX(135%);opacity:0}
+      100%{transform:translateX(140%);opacity:0}
     }
 
     .brand-title span{
@@ -698,8 +708,8 @@
       .perf-item.full{grid-column:span 1}
       .shift-member-compact{gap:5px}
       .shift-mini-tag{font-size:.61rem}
-      .crab-logo{width:38px;height:38px;border-radius:14px}
-      .crab-logo svg{width:26px;height:26px}
+      .crab-logo{width:40px;height:40px;border-radius:15px}
+      .crab-logo svg{width:32px;height:32px}
     }
   </style>
 </head>
@@ -723,22 +733,42 @@
   <nav>
     <div class="brand-title">
       <span class="crab-logo" aria-label="Hologram Crab Logo">
-        <svg viewBox="0 0 64 64" role="img">
+        <svg viewBox="0 0 96 96" role="img">
           <defs>
-            <linearGradient id="crabGradient" x1="8" y1="4" x2="56" y2="60" gradientUnits="userSpaceOnUse">
+            <linearGradient id="crabBodyGradient" x1="16" y1="8" x2="80" y2="88" gradientUnits="userSpaceOnUse">
+              <stop offset="0" stop-color="#f8fbff"/>
+              <stop offset=".18" stop-color="#7dd3fc"/>
+              <stop offset=".47" stop-color="#818cf8"/>
+              <stop offset=".74" stop-color="#f0abfc"/>
+              <stop offset="1" stop-color="#67e8f9"/>
+            </linearGradient>
+            <linearGradient id="crabStrokeGradient" x1="10" y1="10" x2="86" y2="86" gradientUnits="userSpaceOnUse">
               <stop offset="0" stop-color="#e0f2fe"/>
-              <stop offset=".28" stop-color="#67e8f9"/>
-              <stop offset=".56" stop-color="#a78bfa"/>
-              <stop offset=".82" stop-color="#f0abfc"/>
-              <stop offset="1" stop-color="#93c5fd"/>
+              <stop offset=".35" stop-color="#67e8f9"/>
+              <stop offset=".7" stop-color="#c4b5fd"/>
+              <stop offset="1" stop-color="#f0abfc"/>
             </linearGradient>
           </defs>
-          <path class="crab-fill" d="M21 30c0-8 5-14 11-14s11 6 11 14v7c0 7-5 12-11 12s-11-5-11-12v-7Z"/>
-          <path class="crab-fill" d="M18 28c-5-6-9-7-12-4-3 4 1 9 8 9l4-5Zm28 0c5-6 9-7 12-4 3 4-1 9-8 9l-4-5Z"/>
-          <path class="crab-stroke" d="M20 34H8M44 34h12M21 39l-11 7M43 39l11 7M24 24l-7-8M40 24l7-8"/>
-          <circle cx="27" cy="27" r="2.4" fill="#08111f" opacity=".82"/>
-          <circle cx="37" cy="27" r="2.4" fill="#08111f" opacity=".82"/>
-          <path class="crab-stroke" d="M28 38c2.4 2 5.6 2 8 0"/>
+
+          <path class="crab-leg" d="M27 45C16 38 9 36 6 41c-3 5 2 11 14 11"/>
+          <path class="crab-leg" d="M69 45c11-7 18-9 21-4 3 5-2 11-14 11"/>
+          <path class="crab-leg" d="M27 56 12 65"/>
+          <path class="crab-leg" d="M69 56 84 65"/>
+          <path class="crab-leg" d="M31 66 18 77"/>
+          <path class="crab-leg" d="M65 66 78 77"/>
+
+          <path class="crab-main" d="M29 43c0-15 8-25 19-25s19 10 19 25v12c0 14-8 23-19 23s-19-9-19-23V43Z"/>
+          <path class="crab-main" d="M31 39c-9-11-16-14-22-9-6 6 1 17 16 16l6-7Z"/>
+          <path class="crab-main" d="M65 39c9-11 16-14 22-9 6 6-1 17-16 16l-6-7Z"/>
+
+          <path class="crab-line" d="M36 20 28 9"/>
+          <path class="crab-line" d="M60 20 68 9"/>
+          <circle class="crab-eye" cx="41" cy="37" r="4"/>
+          <circle class="crab-eye" cx="55" cy="37" r="4"/>
+          <circle class="crab-highlight" cx="39.7" cy="35.6" r="1.25"/>
+          <circle class="crab-highlight" cx="53.7" cy="35.6" r="1.25"/>
+          <path class="crab-line" d="M40 58c4 4 12 4 16 0"/>
+          <path class="crab-line" d="M34 48c8 4 20 4 28 0"/>
         </svg>
       </span>
       HGX <span>员工信息</span>
@@ -774,7 +804,7 @@
         </button>
       </div>
 
-      <div class="overview-panel">
+            <div class="overview-panel">
         <div class="section-title"><i class="fas fa-layer-group"></i> 汇总概览</div>
         <div class="dept-grid">
           <div class="dept-card">
@@ -1541,39 +1571,7 @@
       URL.revokeObjectURL(url);
     }
 
-    function updateExtraPages() {
-      const absBody = document.getElementById('tbody-absent');
-      if (absBody) {
-        absBody.innerHTML = filtered.slice(0,15).map(r => `
-          <tr>
-            <td>#${esc(r[2] || '-')}</td>
-            <td style="font-weight:900;color:#fff;">${esc(r[3] || '-')}</td>
-            <td><span class="status-absent">未上班</span></td>
-            <td>${esc(r[5] || '-')}</td>
-            <td>${esc(r[8] || '-')}</td>
-          </tr>
-        `).join('');
-      }
-
-      const salBody = document.getElementById('tbody-salary');
-      if (salBody) {
-        salBody.innerHTML = filtered.slice(0,15).map(r => {
-          const p = dbPerf.find(x => cleanID(x[0]) === cleanID(r[2]));
-          const base = 500;
-          const bonus = p ? (parseInt(p[3] || 0) * 0.05) : 0;
-
-          return `
-            <tr>
-              <td>#${esc(r[2] || '-')}</td>
-              <td style="font-weight:900;color:#fff;">${esc(r[3] || '-')}</td>
-              <td>$ ${base}</td>
-              <td>$ ${bonus.toFixed(2)}</td>
-              <td style="font-weight:900;color:#fff;">$ ${(base + bonus).toFixed(2)}</td>
-            </tr>
-          `;
-        }).join('');
-      }
-    }
+    function updateExtraPages() {}
 
     function openDetail(masterIdx) {
       const staff = dbMaster[masterIdx];
@@ -1728,4 +1726,3 @@
     loadData();
   </script>
 </body>
-</html>

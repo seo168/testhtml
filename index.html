@@ -1,1646 +1,1273 @@
-<!DOCTYPE html>
-<html lang="zh">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HGX | 员工绩效系统</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+
+  <title>YYGAME App Info — Version, Size, Welcome Bonus & Download (India)</title>
+  <meta name="description" content="Official app info for yygame (India): version, size, welcome bonus, and direct APK download link. UPI ₹ deposits, fast withdrawals. Mobile-first. 18+ only."/>
+  <meta name="robots" content="index,follow"/>
+
+  <link rel="canonical" href="https://yygame-in.com/app-info/"/>
+
+  <meta property="og:site_name" content="yygame" />
+  <meta property="og:title" content="YYGAME App Info (India)"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://yygame-in.com/app-info/"/>
+  <meta property="og:image" content="https://yygame-in.com/assets/hero.webp"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+
+  <meta name="theme-color" content="#b31c18" />
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png?v=4" sizes="180x180">
+  <link rel="manifest" href="/site.webmanifest?v=6">
+
+  <link rel="preload" as="image" href="/assets/hero.webp"/>
+  <link rel="preload" as="image" href="/assets/logo.webp"/>
 
   <style>
     :root{
-      --bg:#08111f;
-      --panel:rgba(15,23,42,.74);
-      --panel2:rgba(30,41,59,.50);
-      --border:rgba(148,163,184,.20);
-      --text-main:#eef4ff;
-      --text-muted:#9fb0c8;
-      --blue:#60a5fa;
-      --purple:#a78bfa;
-      --yellow:#fbbf24;
-      --red:#f87171;
-      --cyan:#38bdf8;
-      --green:#34d399;
-      --shadow:0 28px 80px rgba(0,0,0,.34);
+      --bg:#100608;
+      --card:#1a0e10;
+      --muted:#d8c9c3;
+      --text:#fff7f2;
+      --gold:#f4c15d;
+      --gold-3:#c6932a;
+      --border:#4a1b20;
     }
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{
-      min-height:100vh;
-      font-family:'Plus Jakarta Sans',sans-serif;
-      color:var(--text-main);
-      background:#08111f;
-      overflow-x:hidden;
+    *{box-sizing:border-box}
+
+    html,body{
+      margin:0;
+      padding:0;
+      background:
+        radial-gradient(circle at top left, rgba(244,193,93,.12), transparent 32%),
+        radial-gradient(circle at top right, rgba(179,28,24,.2), transparent 36%),
+        linear-gradient(180deg,#100608 0%,#1a0e10 100%);
+      color:var(--text);
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
       line-height:1.6;
     }
 
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      z-index:-10;
-      pointer-events:none;
-      background:
-        radial-gradient(circle at 12% 10%, rgba(96,165,250,.20), transparent 26%),
-        radial-gradient(circle at 86% 18%, rgba(167,139,250,.16), transparent 28%),
-        radial-gradient(circle at 50% 96%, rgba(56,189,248,.10), transparent 32%),
-        linear-gradient(135deg,#08111f 0%,#101d32 48%,#08111f 100%);
+    a{
+      color:var(--gold);
+      text-decoration:none;
     }
 
-    body::after{
-      content:"";
-      position:fixed;
-      inset:-40%;
-      z-index:-9;
-      pointer-events:none;
-      background-image:
-        linear-gradient(rgba(148,163,184,.06) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(148,163,184,.045) 1px,transparent 1px);
-      background-size:88px 88px;
-      transform:perspective(900px) rotateX(62deg) translateY(-180px) scale(1.42);
-      transform-origin:center top;
-      opacity:.32;
+    a:hover{
+      opacity:.92;
     }
 
-    .ambient-bg{position:fixed;inset:0;z-index:-8;pointer-events:none;overflow:hidden}
-    .halo{position:absolute;border-radius:999px;filter:blur(18px);opacity:.42;animation:haloFloat 16s ease-in-out infinite}
-    .halo.h1{width:480px;height:480px;left:-190px;top:12%;background:radial-gradient(circle,rgba(96,165,250,.22),rgba(37,99,235,.08),transparent 70%)}
-    .halo.h2{width:540px;height:540px;right:-240px;top:8%;background:radial-gradient(circle,rgba(167,139,250,.20),rgba(100,116,139,.10),transparent 70%);animation-delay:2.5s}
-    .halo.h3{width:460px;height:460px;left:38%;bottom:-250px;background:radial-gradient(circle,rgba(56,189,248,.14),rgba(59,130,246,.06),transparent 72%);animation-delay:5s}
-
-    @keyframes haloFloat{
-      0%,100%{transform:translate3d(0,0,0) scale(1)}
-      50%{transform:translate3d(32px,-26px,0) scale(1.08)}
+    img{
+      max-width:100%;
+      height:auto;
+      display:block;
     }
 
-    .float-word-layer{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:-5}
-    .float-word{
-      position:absolute;
-      padding:10px 18px;
-      border-radius:18px;
-      font-size:1rem;
-      font-weight:900;
-      letter-spacing:.08em;
-      color:rgba(219,234,254,.42);
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(148,163,184,.10);
-      backdrop-filter:blur(10px);
-      animation:wordFloat 16s ease-in-out infinite;
-      user-select:none;
-      white-space:nowrap;
-    }
-    .float-word.w1{left:5%;top:20%;animation-delay:0s}
-    .float-word.w2{right:8%;top:18%;animation-delay:2s}
-    .float-word.w3{left:16%;bottom:20%;animation-delay:4s}
-    .float-word.w4{right:14%;bottom:28%;animation-delay:6s}
-    .float-word.w5{left:48%;top:10%;animation-delay:8s}
-    .float-word.w6{right:4%;top:50%;animation-delay:10s}
-
-    @keyframes wordFloat{
-      0%,100%{transform:translate3d(0,0,0) rotate(-2deg);opacity:.24}
-      50%{transform:translate3d(18px,-16px,0) rotate(2deg);opacity:.48}
+    .container{
+      max-width:1120px;
+      margin:0 auto;
+      padding:24px;
     }
 
-    button,input,select{font-family:inherit}
-
-    nav{
+    header{
       position:sticky;
       top:0;
-      z-index:1000;
-      min-height:70px;
-      padding:.85rem 4.5%;
+      z-index:10;
+      backdrop-filter:blur(14px);
+      background:rgba(26,14,16,.88);
+      border-bottom:1px solid rgba(244,193,93,.16);
+      box-shadow:0 10px 28px rgba(0,0,0,.28);
+    }
+
+    .nav{
       display:flex;
+      align-items:center;
       justify-content:space-between;
-      align-items:center;
-      background:rgba(8,17,31,.82);
-      backdrop-filter:blur(22px);
-      border-bottom:1px solid rgba(148,163,184,.18);
-      box-shadow:0 18px 50px rgba(0,0,0,.20);
+      gap:16px;
     }
 
-    .brand-title{
-      font-size:1.2rem;
-      font-weight:900;
-      display:flex;
-      align-items:center;
-      gap:9px;
-      color:#fff;
-    }
-    .brand-title i{color:#93c5fd}
-    .brand-title span{
-      background:linear-gradient(135deg,#dbeafe,#93c5fd,#c4b5fd);
-      -webkit-background-clip:text;
-      color:transparent;
-    }
-
-    .amt-clock{
-      background:linear-gradient(135deg,rgba(37,99,235,.86),rgba(71,85,105,.82));
-      color:#fff;
-      min-width:240px;
-      text-align:center;
-      padding:10px 30px;
-      border-radius:999px;
-      font-size:.86rem;
-      font-weight:900;
-      box-shadow:0 18px 40px rgba(15,23,42,.24),inset 0 1px 0 rgba(255,255,255,.18);
-      border:1px solid rgba(255,255,255,.14);
-    }
-
-    .container{max-width:1680px;margin:0 auto;padding:1.35rem 1.5rem 2.4rem;position:relative;z-index:1}
-
-    .glass-shell{
-      background:linear-gradient(180deg,rgba(15,23,42,.74),rgba(8,17,31,.72));
-      border:1px solid rgba(148,163,184,.20);
-      border-radius:28px;
-      padding:1.45rem;
-      box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.04);
-      position:relative;
-      overflow:hidden;
-    }
-
-    .work-mode-wrap,.onsite-role-wrap{
-      background:rgba(15,23,42,.66);
-      border:1px solid rgba(148,163,184,.20);
-      border-radius:24px;
-      padding:12px;
-      margin-bottom:1rem;
-      display:flex;
-      align-items:center;
-      gap:12px;
-      flex-wrap:wrap;
-      box-shadow:0 16px 44px rgba(0,0,0,.14),inset 0 1px 0 rgba(255,255,255,.04);
-      backdrop-filter:blur(18px);
-    }
-    .onsite-role-wrap{display:none}
-
-    .work-mode-title,.onsite-role-title{
-      font-size:.75rem;
-      font-weight:900;
-      color:#dbeafe;
-      padding:0 10px;
-      letter-spacing:.5px;
-      text-transform:uppercase;
-      white-space:nowrap;
-    }
-
-    .work-mode-btn,.onsite-role-btn,.menu-btn{
-      border-radius:16px;
-      border:1px solid rgba(148,163,184,.20);
-      background:rgba(15,23,42,.66);
-      color:#b6c3d7;
-      font-size:.82rem;
-      font-weight:900;
-      cursor:pointer;
-      transition:.25s ease;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:9px;
-      outline:none;
-    }
-
-    .work-mode-btn,.onsite-role-btn{min-width:130px;padding:12px 22px}
-
-    .work-mode-btn:hover,.onsite-role-btn:hover,.menu-btn:hover{
-      transform:translateY(-1px);
-      border-color:rgba(147,197,253,.34);
-      color:#eaf2ff;
-    }
-
-    .work-mode-btn.active,.onsite-role-btn.active,.menu-btn.active{
-      color:#fff;
-      border-color:rgba(255,255,255,.18);
-      background:linear-gradient(135deg,#2563eb,#475569);
-      box-shadow:0 14px 32px rgba(15,23,42,.22);
-    }
-
-    .work-mode-count,.onsite-role-count{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-width:28px;
-      padding:3px 8px;
-      border-radius:999px;
-      font-size:.68rem;
-      font-weight:900;
-      background:rgba(96,165,250,.12);
-      color:#bfdbfe;
-      border:1px solid rgba(96,165,250,.18);
-    }
-
-    .overview-panel,.filter-wrapper,.shift-board,.table-container{
-      background:linear-gradient(145deg,rgba(15,23,42,.78),rgba(30,41,59,.48));
-      border:1px solid rgba(148,163,184,.20);
-      box-shadow:0 22px 58px rgba(0,0,0,.18);
-    }
-
-    .overview-panel{margin:1.2rem 0;padding:1.2rem;border-radius:26px;position:relative;overflow:hidden}
-
-    .section-title{
-      font-size:1.02rem;
-      font-weight:900;
-      color:#eaf2ff;
+    .brand{
       display:flex;
       align-items:center;
       gap:10px;
-      margin-bottom:1.05rem;
-      position:relative;
-      z-index:1;
-    }
-    .section-title i{color:#93c5fd}
-
-    .dept-grid{
-      display:grid;
-      grid-template-columns:repeat(5,minmax(0,1fr));
-      gap:1rem;
-      margin-bottom:1.2rem;
-      position:relative;
-      z-index:1;
+      font-weight:900;
+      letter-spacing:.3px;
     }
 
-    .dept-card{
-      background:linear-gradient(145deg,rgba(15,23,42,.78),rgba(30,41,59,.46));
-      padding:1rem;
-      border-radius:20px;
-      border:1px solid rgba(148,163,184,.20);
-      min-height:228px;
-      box-shadow:0 16px 42px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.035);
+    .brand .logo{
+      width:36px;
+      height:36px;
+      border-radius:12px;
+      object-fit:cover;
+      border:1px solid var(--gold-3);
+      box-shadow:0 0 30px rgba(244,193,93,.32);
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 16px;
+      border:1px solid var(--border);
+      border-radius:12px;
+      background:rgba(35,15,19,.75);
+      color:var(--text);
+      font-weight:700;
+      transition:all .22s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+      border-color:rgba(244,193,93,.5);
+      box-shadow:0 10px 26px rgba(0,0,0,.22);
+    }
+
+    .btn.primary{
+      background:linear-gradient(180deg,var(--gold),#e9b23a);
+      border-color:var(--gold-3);
+      color:#3a2200;
+      font-weight:800;
+    }
+    
+    .section{
+      padding-block:26px;
+    }
+
+    h1{
+      font-size:clamp(26px,4.8vw,42px);
+      line-height:1.12;
+      margin:14px 0;
+      letter-spacing:-.6px;
+    }
+
+    h2{
+      margin:8px 0 10px;
+      font-size:clamp(20px,3vw,26px);
+    }
+
+    .muted{
+      color:var(--muted);
+    }
+
+    .card{
+      position:relative;
+      background:
+        linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015)),
+        linear-gradient(180deg,#1a0e10,rgba(26,14,16,.72));
+      border:1px solid rgba(244,193,93,.16);
+      border-radius:22px;
+      padding:22px;
+      box-shadow:
+        0 18px 45px rgba(0,0,0,.28),
+        inset 0 1px 0 rgba(255,255,255,.05);
+      overflow:hidden;
+    }
+
+    .hero-head{
       position:relative;
       overflow:hidden;
-      transition:.25s ease;
-    }
-    .dept-card:hover{transform:translateY(-2px);border-color:rgba(147,197,253,.32);box-shadow:0 22px 58px rgba(0,0,0,.24)}
-
-    .dept-title{
-      font-size:.75rem;
-      font-weight:900;
-      text-align:left;
-      margin-bottom:12px;
-      text-transform:uppercase;
-      letter-spacing:.5px;
-      position:relative;
-      z-index:1;
+      padding-top:36px;
+      padding-bottom:20px;
     }
 
-    .chart-box{width:96px;height:96px;margin:4px auto 12px;position:relative;z-index:1}
-
-    .chart-val{
+    .hero-head::before{
+      content:"";
       position:absolute;
-      top:50%;
-      left:50%;
-      transform:translate(-50%,-50%);
-      font-weight:900;
-      font-size:1.04rem;
-      color:#fff;
-      text-shadow:0 0 12px rgba(255,255,255,.18);
+      inset:0;
+      background:no-repeat right center / min(520px,45vw) url("/assets/app-info-bg.webp");
+      opacity:.22;
+      pointer-events:none;
+      z-index:0;
     }
 
-    .stat-list{display:flex;flex-direction:column;gap:8px;margin-top:8px;position:relative;z-index:1}
-    .stat-row{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      background:rgba(15,23,42,.58);
-      border:1px solid rgba(148,163,184,.16);
-      border-radius:14px;
-      padding:8px 10px;
-      min-height:40px;
-      cursor:pointer;
-      transition:.2s ease;
-    }
-    .stat-row:hover{background:rgba(30,41,59,.58);border-color:rgba(147,197,253,.28);transform:translateX(2px)}
-
-    .indicator{display:flex;align-items:center;gap:9px;min-width:0;flex:1}
-    .dot{width:10px;height:10px;border-radius:50%;flex:0 0 10px}
-    .remark-text{font-size:.72rem;font-weight:900;color:#dbeafe;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
-    .count-badge{min-width:34px;text-align:center;padding:4px 9px;border-radius:999px;background:rgba(96,165,250,.12);color:#bfdbfe;font-size:.68rem;font-weight:900;border:1px solid rgba(96,165,250,.16)}
-
-    .nav-menu{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:12px;
-      margin-bottom:1rem;
-      padding:10px;
-      background:rgba(15,23,42,.66);
-      border-radius:22px;
-      border:1px solid rgba(148,163,184,.20);
-      box-shadow:0 16px 44px rgba(0,0,0,.14);
-    }
-
-    .menu-btn{flex:1;padding:14px;font-size:.78rem}
-
-    .page-content{display:none}
-    .page-content.active{display:block;animation:fadeIn .35s ease}
-    @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-
-    .filter-wrapper{padding:1.25rem;border-radius:24px;margin-bottom:1rem}
-
-    .filter-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr 1fr 1fr;gap:12px}
-
-    .filter-group label{display:block;font-size:.66rem;font-weight:900;color:#9fb0cf;margin-bottom:6px;text-transform:uppercase}
-
-    .filter-group select,.filter-group input{
-      width:100%;
-      padding:12px 16px;
-      border-radius:13px;
-      border:1px solid rgba(148,163,184,.20);
-      font-size:.78rem;
-      font-weight:800;
-      outline:none;
-      transition:.2s;
-      background:rgba(8,17,31,.56);
-      color:#eaf2ff;
-    }
-
-    .filter-group select:focus,.filter-group input:focus,.shift-search-input:focus{
-      border-color:rgba(96,165,250,.48);
-      box-shadow:0 0 0 4px rgba(96,165,250,.08);
-    }
-
-    .table-container{border-radius:24px;overflow:hidden;margin-bottom:2rem}
-
-    .table-head-bar{
-      padding:1.15rem 1.25rem;
-      background:rgba(15,23,42,.72);
-      font-weight:900;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      border-bottom:1px solid rgba(148,163,184,.14);
-      color:#eaf2ff;
-    }
-
-    table{width:100%;border-collapse:collapse}
-    th{
-      background:rgba(8,17,31,.72);
-      padding:1.05rem 1rem;
-      font-size:.72rem;
-      font-weight:900;
-      color:#9fb0cf;
-      border-bottom:1px solid rgba(148,163,184,.14);
-      text-transform:uppercase;
-      text-align:center;
-      white-space:nowrap;
-    }
-    td{
-      padding:1rem;
-      border-bottom:1px solid rgba(148,163,184,.10);
-      font-size:.82rem;
-      font-weight:800;
-      text-align:center;
-      color:#dbeafe;
-      white-space:nowrap;
-      vertical-align:middle;
-    }
-    tbody tr:hover td{background:rgba(96,165,250,.035)}
-
-    .id-link{background:rgba(96,165,250,.12);color:#bfdbfe;padding:5px 12px;border-radius:9px;cursor:pointer;font-weight:900;transition:.2s;display:inline-block;border:1px solid rgba(96,165,250,.16)}
-    .id-link:hover{background:#2563eb;color:#fff;transform:scale(1.05);box-shadow:0 0 18px rgba(37,99,235,.25)}
-
-    .tag-wd{background:rgba(96,165,250,.12);color:#bfdbfe;padding:5px 11px;border-radius:9px;border:1px solid rgba(96,165,250,.18)}
-    .tag-cs{background:rgba(167,139,250,.12);color:#ddd6fe;padding:5px 11px;border-radius:9px;border:1px solid rgba(167,139,250,.18)}
-    .tag-fn{background:rgba(251,191,36,.12);color:#fde68a;padding:5px 11px;border-radius:9px;border:1px solid rgba(251,191,36,.18)}
-    .date-badge{background:rgba(148,163,184,.12);color:#cbd5e1;padding:5px 11px;border-radius:9px;font-family:monospace;border:1px solid rgba(148,163,184,.18)}
-    .status-absent{color:#fecaca;font-weight:900;background:rgba(248,113,113,.12);padding:5px 11px;border-radius:9px;font-size:.72rem;border:1px solid rgba(248,113,113,.18)}
-
-    .shift-board{margin:1.2rem 0 2rem;padding:1.2rem;border-radius:26px;position:relative;overflow:hidden}
-
-    .shift-board-top{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:1rem;flex-wrap:wrap}
-
-    .shift-board-title{font-size:1.02rem;font-weight:900;color:#eaf2ff;display:flex;align-items:center;gap:10px}
-
-    .shift-tools{
-      display:grid;
-      grid-template-columns:minmax(260px,1fr) auto auto;
-      gap:10px;
-      align-items:center;
-      width:100%;
-      margin-bottom:1rem;
+    .hero-head>*{
       position:relative;
       z-index:1;
+      max-width:760px;
     }
 
-    .shift-search-wrap{position:relative;min-width:0}
-    .shift-search-wrap i{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#7da1d8;font-size:.8rem}
-    .shift-search-input{
-      width:100%;
-      padding:12px 14px 12px 40px;
-      border-radius:15px;
-      border:1px solid rgba(148,163,184,.20);
-      background:rgba(8,17,31,.56);
-      color:#eaf2ff;
-      font-size:.82rem;
-      font-weight:900;
-      outline:none;
-    }
-    .shift-search-input::placeholder{color:#71829d}
-
-    .shift-view-btn{
-      padding:12px 16px;
-      border-radius:15px;
-      border:1px solid rgba(148,163,184,.20);
-      background:rgba(15,23,42,.66);
-      color:#b6c3d7;
-      font-size:.76rem;
-      font-weight:900;
-      cursor:pointer;
+    .business-btn{
+      position:relative;
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      gap:8px;
-      white-space:nowrap;
-    }
-    .shift-view-btn.active{background:linear-gradient(135deg,#2563eb,#475569);color:#fff;border-color:rgba(255,255,255,.18)}
-
-    .shift-summary-strip{
-      position:relative;
-      z-index:1;
-      display:grid;
-      grid-template-columns:repeat(4,minmax(0,1fr));
-      gap:10px;
-      margin-bottom:1rem;
-    }
-    .shift-summary-box{
-      background:rgba(8,17,31,.36);
-      border:1px solid rgba(148,163,184,.14);
-      border-radius:18px;
-      padding:12px 14px;
-      min-width:0;
-    }
-    .shift-summary-label{font-size:.62rem;font-weight:900;color:#9fb0cf;text-transform:uppercase;margin-bottom:4px;letter-spacing:.3px}
-    .shift-summary-value{font-size:1.05rem;font-weight:900;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-
-    .shift-three-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;align-items:start}
-
-    .shift-column-card{
-      border-radius:22px;
+      width:100%;
+      max-width:460px;
+      padding:18px 28px;
+      border-radius:999px;
+      background:linear-gradient(135deg,#f4c15d,#ff7a18,#f4c15d);
+      background-size:220% 220%;
+      color:#2b1600 !important;
+      font-size:17px;
+      font-weight:1000;
+      letter-spacing:.35px;
+      text-align:center;
+      line-height:1.35;
+      border:1px solid rgba(255,255,255,.28);
+      box-shadow:
+        0 0 18px rgba(244,193,93,.6),
+        0 0 42px rgba(255,122,24,.28),
+        0 18px 35px rgba(0,0,0,.32);
+      animation:
+        businessGlow 2s ease-in-out infinite,
+        businessMove 3s linear infinite,
+        businessFloat 2.6s ease-in-out infinite;
       overflow:hidden;
-      background:rgba(15,23,42,.58);
-      border:1px solid rgba(148,163,184,.18);
-      box-shadow:0 16px 42px rgba(0,0,0,.16);
-      min-height:220px;
+      transition:all .25s ease;
     }
 
-    .shift-column-head{padding:14px 16px;border-bottom:1px solid rgba(148,163,184,.14);background:rgba(8,17,31,.48);position:sticky;top:0;z-index:3;backdrop-filter:blur(12px)}
+    .business-btn::before{
+      content:"";
+      position:absolute;
+      top:0;
+      left:-80%;
+      width:60%;
+      height:100%;
+      background:linear-gradient(120deg,transparent,rgba(255,255,255,.72),transparent);
+      transform:skewX(-25deg);
+      animation:businessShine 2.5s infinite;
+    }
 
-    .shift-column-title-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+    .business-btn::after{
+      content:"";
+      position:absolute;
+      inset:4px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.28);
+      pointer-events:none;
+    }
 
-    .shift-column-title{display:flex;align-items:center;gap:8px;color:#fff;font-size:.94rem;font-weight:900;min-width:0}
+    .business-btn:hover{
+      transform:translateY(-4px) scale(1.04);
+    }
 
-    .shift-column-total{display:inline-flex;align-items:center;justify-content:center;min-width:34px;height:24px;padding:0 9px;border-radius:999px;font-size:.7rem;font-weight:900;background:rgba(96,165,250,.12);color:#bfdbfe;border:1px solid rgba(96,165,250,.16);flex:0 0 auto}
+    .hero-buttons{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:14px;
+}
 
-    .shift-country-mini{display:flex;flex-wrap:wrap;gap:5px;min-height:24px}
+.secondary-agent-btn{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  max-width:460px;
+  padding:18px 28px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#f4c15d,#ff7a18,#f4c15d);
+  background-size:220% 220%;
+  color:#2b1600 !important;
+  font-size:17px;
+  font-weight:1000;
+  letter-spacing:.35px;
+  text-align:center;
+  line-height:1.35;
+  border:1px solid rgba(255,255,255,.28);
+  box-shadow:
+    0 0 18px rgba(244,193,93,.6),
+    0 0 42px rgba(255,122,24,.28),
+    0 18px 35px rgba(0,0,0,.32);
+  animation:
+    businessGlow 2s ease-in-out infinite,
+    businessMove 3s linear infinite,
+    businessFloat 2.6s ease-in-out infinite;
+  overflow:hidden;
+  transition:all .25s ease;
+}
 
-    .shift-country-chip{display:inline-flex;align-items:center;justify-content:center;gap:4px;max-width:100%;padding:3px 7px;border-radius:999px;font-size:.62rem;font-weight:900;line-height:1;color:#cbd5e1;background:rgba(148,163,184,.10);border:1px solid rgba(148,163,184,.13);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.secondary-agent-btn::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-80%;
+  width:60%;
+  height:100%;
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.72),
+    transparent
+  );
+  transform:skewX(-25deg);
+  animation:businessShine 2.5s infinite;
+}
 
-    .shift-member-list{max-height:660px;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:8px;scrollbar-gutter:stable}
-    .shift-member-list::-webkit-scrollbar{width:8px}
-    .shift-member-list::-webkit-scrollbar-thumb{background:rgba(147,197,253,.22);border-radius:999px}
+.secondary-agent-btn::after{
+  content:"";
+  position:absolute;
+  inset:4px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.22);
+  pointer-events:none;
+}
 
-    .shift-member-card{
+.secondary-agent-btn:hover{
+  transform:translateY(-4px) scale(1.03);
+  box-shadow:
+    0 0 28px rgba(255,170,0,.65),
+    0 0 60px rgba(255,140,0,.35),
+    0 18px 38px rgba(0,0,0,.32);
+}
+
+@keyframes secondGlow{
+  0%,100%{
+    box-shadow:
+      0 0 18px rgba(255,170,0,.4),
+      0 0 42px rgba(255,140,0,.22),
+      0 14px 30px rgba(0,0,0,.28);
+  }
+
+  50%{
+    box-shadow:
+      0 0 30px rgba(255,190,0,.8),
+      0 0 70px rgba(255,140,0,.45),
+      0 18px 38px rgba(0,0,0,.32);
+  }
+}
+
+@keyframes secondMove{
+  0%{
+    background-position:0% 50%;
+  }
+
+  100%{
+    background-position:220% 50%;
+  }
+}
+
+@keyframes secondShine{
+  0%{
+    left:-80%;
+  }
+
+  60%{
+    left:130%;
+  }
+
+  100%{
+    left:130%;
+  }
+}
+
+@media (max-width:768px){
+
+  .hero-buttons{
+    gap:12px;
+  }
+
+  .secondary-agent-btn{
+    max-width:100%;
+    padding:14px 16px;
+    border-radius:16px;
+    font-size:14px;
+  }
+
+}
+
+    @keyframes businessGlow{
+      0%,100%{
+        box-shadow:
+          0 0 18px rgba(244,193,93,.6),
+          0 0 42px rgba(255,122,24,.28),
+          0 18px 35px rgba(0,0,0,.32);
+      }
+
+      50%{
+        box-shadow:
+          0 0 30px rgba(244,193,93,.95),
+          0 0 72px rgba(255,122,24,.5),
+          0 18px 35px rgba(0,0,0,.32);
+      }
+    }
+
+    @keyframes businessMove{
+      0%{background-position:0% 50%}
+      100%{background-position:220% 50%}
+    }
+
+    @keyframes businessShine{
+      0%{left:-80%}
+      60%{left:130%}
+      100%{left:130%}
+    }
+
+    @keyframes businessFloat{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-4px)}
+    }
+
+    .app-details-list{
       display:grid;
-      grid-template-columns:minmax(0,1fr) auto;
-      gap:7px 10px;
-      padding:10px 11px;
-      border-radius:14px;
-      background:rgba(8,17,31,.38);
-      border:1px solid rgba(148,163,184,.12);
-      transition:.2s ease;
-      cursor:pointer;
+      gap:12px;
+      margin-top:16px;
     }
-    .shift-member-card:nth-child(even){background:rgba(30,41,59,.30)}
-    .shift-member-card:hover{background:rgba(30,41,59,.54);border-color:rgba(147,197,253,.28);transform:translateY(-1px)}
 
-    .shift-member-name{color:#fff;font-size:.86rem;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left;min-width:0;letter-spacing:.1px}
-
-    .shift-member-id{color:#bfdbfe;background:rgba(96,165,250,.12);border:1px solid rgba(96,165,250,.14);border-radius:999px;padding:3px 8px;font-size:.64rem;font-weight:900;white-space:nowrap}
-
-    .shift-member-compact{
-      grid-column:1 / -1;
+    .detail-item{
       display:flex;
       align-items:center;
-      gap:6px;
-      min-width:0;
-      flex-wrap:wrap;
+      justify-content:space-between;
+      gap:12px;
+      padding:15px 16px;
+      border:1px solid rgba(244,193,93,.16);
+      border-radius:16px;
+      background:rgba(35,15,19,.72);
+      box-shadow:0 8px 20px rgba(0,0,0,.16);
     }
 
-    .shift-mini-tag{
-      min-width:0;
-      max-width:100%;
-      padding:4px 7px;
-      border-radius:9px;
-      background:rgba(255,255,255,.045);
-      border:1px solid rgba(148,163,184,.10);
-      color:#dbeafe;
-      font-size:.64rem;
+    .detail-item span{
+      color:var(--muted);
+      font-size:14px;
+      font-weight:700;
+    }
+
+    .detail-item strong{
+      color:var(--text);
+      font-size:15px;
+      text-align:right;
+    }
+
+    .download-main-btn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      margin-top:4px;
+      padding:16px 18px;
+      border-radius:16px;
+      background:linear-gradient(180deg,var(--gold),#e9b23a);
+      border:1px solid var(--gold-3);
+      color:#3a2200 !important;
+      font-size:16px;
       font-weight:900;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      line-height:1;
+      text-decoration:none;
+      box-shadow:0 12px 28px rgba(244,193,93,.22);
+      transition:all .22s ease;
     }
 
-    .shift-mini-tag.country{color:#bbf7d0;background:rgba(52,211,153,.09);border-color:rgba(52,211,153,.12)}
-    .shift-mini-tag.platform{color:#bfdbfe;background:rgba(96,165,250,.09);border-color:rgba(96,165,250,.12)}
-    .shift-mini-tag.role{color:#fde68a;background:rgba(251,191,36,.09);border-color:rgba(251,191,36,.12)}
-
-    .shift-list-view{position:relative;z-index:1;display:none;border-radius:20px;overflow:hidden;border:1px solid rgba(148,163,184,.16)}
-    .shift-list-table{width:100%;border-collapse:collapse;table-layout:fixed;min-width:980px}
-    .shift-list-table th,.shift-list-table td{height:48px;padding:.7rem .75rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:left}
-    .shift-list-table th{text-align:left;position:sticky;top:0;z-index:2;background:rgba(8,17,31,.92)}
-    .shift-list-table tbody tr:nth-child(even) td{background:rgba(30,41,59,.20)}
-    .shift-list-table td:first-child,.shift-list-table th:first-child{text-align:center;width:86px}
-
-    .shift-pill-small{display:inline-flex;align-items:center;justify-content:center;min-width:62px;padding:4px 8px;border-radius:999px;font-size:.64rem;font-weight:900;border:1px solid rgba(148,163,184,.16)}
-    .pill-day{background:rgba(96,165,250,.13);color:#bfdbfe}
-    .pill-mid{background:rgba(251,191,36,.13);color:#fde68a}
-    .pill-night{background:rgba(167,139,250,.13);color:#ddd6fe}
-    .pill-other{background:rgba(148,163,184,.13);color:#cbd5e1}
-
-    .shift-empty{padding:1.5rem;text-align:center;color:#9fb0cf;font-weight:900;font-size:.8rem}
-
-    .modal-overlay,.stat-modal-overlay{position:fixed;inset:0;background:rgba(8,17,31,.72);display:none;align-items:center;justify-content:center;z-index:3000;backdrop-filter:blur(12px);padding:24px}
-
-    .modal-content,.stat-modal-content{background:linear-gradient(180deg,rgba(15,23,42,.96),rgba(8,17,31,.96));border:1px solid rgba(148,163,184,.24);color:#eaf2ff;box-shadow:0 30px 90px rgba(0,0,0,.44);border-radius:30px}
-
-    .modal-content{width:95%;max-width:620px;padding:2.2rem}
-    .modal-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2rem;border-bottom:1px solid rgba(148,163,184,.16);padding-bottom:1.3rem}
-
-    .perf-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
-    .perf-item{background:rgba(30,41,59,.54);padding:18px;border-radius:20px;border:1px solid rgba(148,163,184,.16)}
-    .perf-item.highlight{background:linear-gradient(135deg,#2563eb,#475569);border:none}
-    .perf-item.full{grid-column:span 2}
-    .perf-label{font-size:.65rem;font-weight:900;color:#9fb0cf;text-transform:uppercase;margin-bottom:5px;display:flex;align-items:center;gap:6px}
-    .highlight .perf-label{color:rgba(255,255,255,.72)}
-    .perf-val{font-size:1.1rem;font-weight:900;color:#fff}
-
-    .stat-modal-content{width:min(1100px,96vw);max-height:90vh;overflow:hidden;display:flex;flex-direction:column}
-    .stat-modal-top{padding:1.25rem 1.5rem;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;border-bottom:1px solid rgba(148,163,184,.16);background:rgba(15,23,42,.72)}
-    .stat-modal-title-wrap{display:flex;align-items:center;gap:14px;min-width:0}
-    .stat-modal-dot{width:14px;height:14px;border-radius:50%;flex:0 0 14px}
-    .stat-modal-title{font-size:1.1rem;font-weight:900;color:#fff;line-height:1.2}
-    .stat-modal-sub{margin-top:4px;font-size:.72rem;font-weight:900;color:#9fb0cf;letter-spacing:.3px;text-transform:uppercase}
-    .stat-modal-close{border:none;background:rgba(148,163,184,.12);color:#9fb0cf;width:42px;height:42px;border-radius:999px;cursor:pointer;font-size:1rem;flex:0 0 42px}
-    .stat-modal-close:hover{background:rgba(96,165,250,.14);color:#fff}
-    .stat-summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:1rem 1.5rem .25rem}
-    .stat-summary-card{background:rgba(30,41,59,.54);border:1px solid rgba(148,163,184,.16);border-radius:20px;padding:14px 16px}
-    .stat-summary-label{font-size:.65rem;font-weight:900;color:#9fb0cf;text-transform:uppercase;margin-bottom:6px;letter-spacing:.3px}
-    .stat-summary-value{font-size:1rem;font-weight:900;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .stat-modal-body{padding:1rem 1.5rem 1.5rem;overflow:auto}
-    .stat-member-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-    .stat-member-card{background:rgba(30,41,59,.54);border:1px solid rgba(148,163,184,.16);border-radius:24px;padding:16px;box-shadow:0 6px 18px rgba(0,0,0,.12)}
-    .stat-member-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
-    .stat-member-name{font-size:.92rem;font-weight:900;color:#fff;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-    .stat-member-id{background:rgba(96,165,250,.12);color:#bfdbfe;padding:4px 10px;border-radius:999px;font-size:.68rem;font-weight:900;white-space:nowrap}
-    .stat-member-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-    .stat-member-item{background:rgba(8,17,31,.36);border:1px solid rgba(148,163,184,.12);border-radius:16px;padding:10px 12px;min-width:0}
-    .stat-member-k{font-size:.62rem;font-weight:900;color:#9fb0cf;text-transform:uppercase;margin-bottom:4px;letter-spacing:.3px}
-    .stat-member-v{font-size:.78rem;font-weight:900;color:#dbeafe;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-    .stat-empty{padding:2rem;text-align:center;color:#9fb0cf;font-weight:900}
-
-    @media(max-width:1200px){
-      .dept-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .filter-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .shift-three-grid{grid-template-columns:1fr}
-      .shift-member-list{max-height:360px}
-      .shift-summary-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .download-main-btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 16px 34px rgba(244,193,93,.32);
     }
-    @media(max-width:900px){
-      .container{padding:1rem}
-      .dept-grid,.filter-grid,.stat-summary-grid,.stat-member-grid,.shift-summary-strip{grid-template-columns:1fr}
-      .nav-menu{grid-template-columns:repeat(2,minmax(150px,1fr));overflow-x:auto}
-      .menu-btn{min-width:150px}
-      .amt-clock{min-width:auto;padding:10px 18px}
-      .brand-title{font-size:1rem}
-      .work-mode-btn,.onsite-role-btn{flex:1;min-width:135px}
-      .table-container{overflow-x:auto}
-      .shift-tools{grid-template-columns:1fr}
+
+    ul.muted li{
+      margin-bottom:8px;
     }
-    @media(max-width:560px){
-      nav{padding:.75rem 1rem}
-      .brand-title span{display:none}
-      .container{padding:.85rem}
-      .glass-shell{padding:.9rem;border-radius:22px}
-      .work-mode-wrap,.onsite-role-wrap{border-radius:20px;padding:10px}
-      .work-mode-title,.onsite-role-title{width:100%;padding:0 4px}
-      .work-mode-btn,.onsite-role-btn{min-width:calc(50% - 8px);padding:11px 12px}
-      .dept-card{min-height:210px}
-      .filter-wrapper{padding:1rem}
-      .table-head-bar{min-width:720px}
-      .table-container table{min-width:760px}
-      .modal-content{padding:1.4rem}
-      .perf-grid{grid-template-columns:1fr}
-      .perf-item.full{grid-column:span 1}
-      .shift-member-compact{gap:5px}
-      .shift-mini-tag{font-size:.61rem}
+
+    footer{
+      border-top:1px solid rgba(244,193,93,.16);
+      margin-top:40px;
+      background:rgba(16,6,8,.35);
     }
+
+    .foot{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      padding-block:22px;
+    }
+
+    @media (max-width:900px){
+      .hero-head::before{
+        background-position:center right 10px;
+        background-size:min(400px,70vw);
+        opacity:.32;
+      }
+    }
+
+    @media (max-width:768px){
+      .container{
+        padding:18px;
+      }
+
+      .section{
+        padding-block:22px;
+      }
+
+      .card{
+        border-radius:20px;
+        padding:18px;
+      }
+
+      .business-btn{
+        width:100%;
+        max-width:100%;
+        padding:16px 18px;
+        font-size:15px;
+        border-radius:20px;
+      }
+
+      .detail-item{
+        padding:14px;
+        border-radius:14px;
+      }
+
+      .foot{
+        flex-direction:column;
+      }
+    }
+
+    @media (max-width:480px){
+      h1{
+        font-size:26px;
+      }
+
+      h2{
+        font-size:21px;
+      }
+
+      .business-btn{
+        font-size:14px;
+        padding:15px 14px;
+        line-height:1.45;
+      }
+
+      .detail-item span{
+        font-size:13px;
+      }
+
+      .detail-item strong{
+        font-size:14px;
+      }
+
+      .download-main-btn{
+        padding:15px 16px;
+        font-size:15px;
+      }
+    }
+
+
+/* =========================================================
+   XX5 PARTNER PROMO — SMALL, NON-INTRUSIVE
+========================================================= */
+
+.xx5-promo{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  z-index:9999;
+
+  width:min(360px,calc(100vw - 36px));
+
+  display:none;
+  opacity:0;
+
+  transform:translateY(16px);
+
+  transition:
+    opacity .22s ease,
+    transform .22s ease;
+
+  pointer-events:none;
+}
+
+.xx5-promo.show{
+  display:block;
+  opacity:1;
+
+  transform:translateY(0);
+
+  pointer-events:auto;
+}
+
+.xx5-promo-card{
+  position:relative;
+  overflow:hidden;
+
+  border:
+    1px solid
+    rgba(244,193,93,.28);
+
+  border-radius:20px;
+
+  padding:16px;
+
+  background:
+    radial-gradient(
+      circle at 90% 0%,
+      rgba(244,193,93,.16),
+      transparent 35%
+    ),
+    linear-gradient(
+      155deg,
+      #1c0b0d,
+      #2c1012 58%,
+      #170809
+    );
+
+  box-shadow:
+    0 18px 45px
+    rgba(0,0,0,.42);
+}
+
+.xx5-promo-close{
+  position:absolute;
+
+  top:8px;
+  right:8px;
+
+  width:30px;
+  height:30px;
+
+  border:0;
+  border-radius:50%;
+
+  background:
+    rgba(255,255,255,.09);
+
+  color:#fff;
+
+  font-size:19px;
+  line-height:1;
+
+  cursor:pointer;
+}
+
+.xx5-promo-top{
+  display:grid;
+
+  grid-template-columns:
+    54px
+    minmax(0,1fr);
+
+  gap:12px;
+
+  align-items:center;
+
+  padding-right:28px;
+}
+
+.xx5-promo-logo{
+  width:54px;
+  height:54px;
+
+  border-radius:14px;
+
+  overflow:hidden;
+
+  background:#111;
+
+  box-shadow:
+    0 8px 20px
+    rgba(0,0,0,.28);
+}
+
+.xx5-promo-logo img{
+  width:100%;
+  height:100%;
+
+  object-fit:cover;
+
+  display:block;
+}
+
+.xx5-promo-kicker{
+  margin:
+    0 0 3px;
+
+  color:#ffd978;
+
+  font-size:9px;
+
+  font-weight:900;
+
+  letter-spacing:.7px;
+
+  text-transform:uppercase;
+}
+
+.xx5-promo-title{
+  margin:0;
+
+  color:#fff;
+
+  font-size:18px;
+
+  line-height:1.15;
+}
+
+.xx5-promo-copy{
+  margin:
+    11px 0 12px;
+
+  color:#d7c9c4;
+
+  font-size:11px;
+
+  line-height:1.55;
+}
+
+.xx5-promo-offer{
+  display:flex;
+
+  align-items:baseline;
+
+  gap:7px;
+
+  margin:
+    0 0 12px;
+
+  padding:
+    10px 12px;
+
+  border-radius:12px;
+
+  background:
+    rgba(244,193,93,.09);
+
+  border:
+    1px solid
+    rgba(244,193,93,.16);
+}
+
+.xx5-promo-offer strong{
+  color:#ffd45e;
+
+  font-size:25px;
+
+  line-height:1;
+}
+
+.xx5-promo-offer span{
+  color:#f5e7c3;
+
+  font-size:11px;
+
+  font-weight:800;
+}
+
+.xx5-promo-actions{
+  display:flex;
+
+  gap:8px;
+
+  align-items:center;
+}
+
+.xx5-promo-cta{
+  flex:1;
+
+  display:inline-flex;
+
+  align-items:center;
+  justify-content:center;
+
+  min-height:42px;
+
+  padding:
+    10px 13px;
+
+  border-radius:11px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffd45e,
+      #ff9d18
+    );
+
+  color:#351600 !important;
+
+  font-size:12px;
+
+  font-weight:1000;
+
+  box-shadow:
+    0 8px 20px
+    rgba(255,157,24,.22);
+}
+
+.xx5-promo-later{
+  flex:0 0 auto;
+
+  min-height:42px;
+
+  padding:
+    9px 11px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.10);
+
+  border-radius:11px;
+
+  background:
+    rgba(255,255,255,.05);
+
+  color:#c6b8b3;
+
+  font-size:10px;
+
+  cursor:pointer;
+}
+
+.xx5-promo-note{
+  margin:
+    7px 0 0;
+
+  color:#806f6b;
+
+  font-size:8px;
+
+  text-align:center;
+}
+
+
+/* MOBILE */
+
+@media(max-width:620px){
+
+  .xx5-promo{
+    right:10px;
+    bottom:10px;
+
+    width:
+      calc(100vw - 20px);
+  }
+
+  .xx5-promo-card{
+    padding:14px;
+
+    border-radius:17px;
+  }
+
+  .xx5-promo-top{
+    grid-template-columns:
+      48px
+      minmax(0,1fr);
+  }
+
+  .xx5-promo-logo{
+    width:48px;
+    height:48px;
+  }
+
+  .xx5-promo-title{
+    font-size:16px;
+  }
+
+  .xx5-promo-copy{
+    font-size:10.5px;
+  }
+
+  .xx5-promo-offer strong{
+    font-size:22px;
+  }
+
+}    
   </style>
 </head>
 
 <body>
-  <div class="ambient-bg">
-    <div class="halo h1"></div>
-    <div class="halo h2"></div>
-    <div class="halo h3"></div>
-  </div>
-
-  <div class="float-word-layer">
-    <div class="float-word w1">财务</div>
-    <div class="float-word w2">风控</div>
-    <div class="float-word w3">出款</div>
-    <div class="float-word w4">客服</div>
-    <div class="float-word w5">排班</div>
-    <div class="float-word w6">HGX</div>
-  </div>
-
-  <nav>
-    <div class="brand-title"><i class="fas fa-chart-pie"></i> HGX <span>员工信息</span></div>
-    <div class="amt-clock" id="clock">00:00:00 AMT</div>
-  </nav>
-
-  <div class="container">
-    <div class="glass-shell">
-      <div class="work-mode-wrap">
-        <div class="work-mode-title">工作模式</div>
-        <button class="work-mode-btn active" id="modeBtn-all" onclick="setWorkMode('全部')">
-          <span>全部</span><span class="work-mode-count" id="countModeAll">0</span>
-        </button>
-        <button class="work-mode-btn" id="modeBtn-jvjia" onclick="setWorkMode('居家')">
-          <span>居家</span><span class="work-mode-count" id="countModeJuJia">0</span>
-        </button>
-        <button class="work-mode-btn" id="modeBtn-xianchangjvjia" onclick="setWorkMode('现场居家')">
-          <span>现场居家</span><span class="work-mode-count" id="countModeXianChangJuJia">0</span>
-        </button>
-        <button class="work-mode-btn" id="modeBtn-xianchang" onclick="setWorkMode('现场')">
-          <span>现场</span><span class="work-mode-count" id="countModeXianChang">0</span>
-        </button>
-      </div>
-
-      <div class="onsite-role-wrap" id="onsiteRoleWrap">
-        <div class="onsite-role-title">现场职业分类</div>
-        <button class="onsite-role-btn active" id="roleBtn-xianchang" onclick="setOnsiteRole('现场')">
-          <span>现场</span><span class="onsite-role-count" id="countRoleXianChang">0</span>
-        </button>
-        <button class="onsite-role-btn" id="roleBtn-other" onclick="setOnsiteRole('其他')">
-          <span>其他</span><span class="onsite-role-count" id="countRoleOther">0</span>
-        </button>
-      </div>
-
-      <div class="overview-panel">
-        <div class="section-title"><i class="fas fa-layer-group"></i> 汇总概览</div>
-        <div class="dept-grid">
-          <div class="dept-card">
-            <div style="color:var(--blue)" class="dept-title">出款/风控</div>
-            <div class="chart-box"><canvas id="cWD"></canvas><div class="chart-val" id="tWD">0</div></div>
-            <div class="stat-list" id="list_cWD"></div>
-          </div>
-          <div class="dept-card">
-            <div style="color:var(--purple)" class="dept-title">客服</div>
-            <div class="chart-box"><canvas id="cCS"></canvas><div class="chart-val" id="tCS">0</div></div>
-            <div class="stat-list" id="list_cCS"></div>
-          </div>
-          <div class="dept-card">
-            <div style="color:var(--yellow)" class="dept-title">财务</div>
-            <div class="chart-box"><canvas id="cFN"></canvas><div class="chart-val" id="tFN">0</div></div>
-            <div class="stat-list" id="list_cFN"></div>
-          </div>
-          <div class="dept-card">
-            <div style="color:var(--red)" class="dept-title">国家分类</div>
-            <div class="chart-box"><canvas id="cGEO"></canvas><div class="chart-val" id="tGEO">0</div></div>
-            <div class="stat-list" id="list_cGEO"></div>
-          </div>
-          <div class="dept-card">
-            <div style="color:var(--cyan)" class="dept-title">班次</div>
-            <div class="chart-box"><canvas id="cSH"></canvas><div class="chart-val" id="tSH">0</div></div>
-            <div class="stat-list" id="list_cSH"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="nav-menu">
-        <button onclick="showPage('overview')" id="btn-overview" class="menu-btn active"><i class="fas fa-layer-group"></i> 总览</button>
-        <button onclick="showPage('performance')" id="btn-performance" class="menu-btn"><i class="fas fa-calendar-days"></i> 排班</button>
-      </div>
-
-      <div id="overview" class="page-content active">
-        <div class="filter-wrapper">
-          <div class="filter-grid">
-            <div class="filter-group"><label>搜索姓名/ID</label><input type="text" id="searchName" placeholder="请输入姓名或 ID..."></div>
-            <div class="filter-group"><label>班次</label><select id="fShift"></select></div>
-            <div class="filter-group"><label>团队</label><select id="fTeam"></select></div>
-            <div class="filter-group"><label>组别</label><select id="fGroup"></select></div>
-            <div class="filter-group"><label>国家</label><select id="fCountry"></select></div>
-            <div class="filter-group"><label>平台</label><select id="fPlatform"></select></div>
-          </div>
-        </div>
-
-        <div class="table-container">
-          <div class="table-head-bar">
-            <span><i class="fas fa-users"></i> 员工信息列表</span>
-            <div style="display:flex;gap:10px;align-items:center;">
-              <button class="menu-btn" style="padding:6px 16px;min-width:auto;" onclick="changeMainPage(-1)"><i class="fas fa-chevron-left"></i></button>
-              <span id="infoMain" style="font-size:.76rem;font-weight:900;min-width:110px;text-align:center;">第 1 页</span>
-              <button class="menu-btn" style="padding:6px 16px;min-width:auto;" onclick="changeMainPage(1)"><i class="fas fa-chevron-right"></i></button>
-            </div>
-          </div>
-          <table>
-            <thead>
-              <tr>
-                <th>平台</th><th>组别</th><th>团队</th><th>ID</th><th>姓名</th><th>班次</th><th>入职日期</th><th>国家</th>
-              </tr>
-            </thead>
-            <tbody id="tbody"></tbody>
-          </table>
-        </div>
-      </div>
-
-      <div id="performance" class="page-content">
-        <div class="filter-wrapper">
-          <h3 style="font-weight:900;color:#eaf2ff;">
-            <i class="fas fa-calendar-days"></i> 排班表
-          </h3>
-        </div>
-
-        <div class="shift-board">
-          <div class="shift-board-top">
-            <div class="shift-board-title" id="shiftPageTitle">
-              <i class="fas fa-table-list"></i> 全部排班
-            </div>
-            <button class="menu-btn" style="padding:8px 16px;min-width:auto;flex:0 0 auto;" onclick="downloadCurrentShiftCSV()">
-              <i class="fas fa-download"></i> 下载CSV
-            </button>
-          </div>
-
-          <div class="shift-tools">
-            <div class="shift-search-wrap">
-              <i class="fas fa-search"></i>
-              <input class="shift-search-input" id="shiftSearchInput" type="text" placeholder="在排班里搜索姓名 / ID / 平台 / 组别 / 国家..." oninput="renderShiftPageTables()">
-            </div>
-            <button class="shift-view-btn active" id="shiftCardViewBtn" onclick="setShiftView('card')"><i class="fas fa-grip"></i> 卡片</button>
-            <button class="shift-view-btn" id="shiftListViewBtn" onclick="setShiftView('list')"><i class="fas fa-list"></i> 列表</button>
-          </div>
-
-          <div class="shift-summary-strip" id="shiftSummaryStrip"></div>
-          <div class="shift-three-grid" id="shiftThreeGrid"></div>
-          <div class="shift-list-view" id="shiftListView"></div>
-        </div>
+  <header aria-label="Main navigation">
+    <div class="container nav">
+      <div class="brand">
+        <img class="logo" src="/assets/logo.webp" alt="yygame logo" width="32" height="32" />
+        <span>yygame</span>
       </div>
     </div>
-  </div>
+  </header>
 
-  <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
-    <div class="modal-content" onclick="event.stopPropagation()">
-      <div class="modal-header">
-        <div>
-          <h2 id="mName" style="font-weight:900;color:#fff;">姓名</h2>
-          <span id="mID" style="color:#bfdbfe;font-weight:900;">#ID</span>
+  <main class="container" id="main">
+
+    <section class="section hero-head">
+      <h1>yygame — App Information (India)</h1>
+      <p class="muted">
+        Quick details about the yygame Android app for Indian players.
+        UPI ₹ deposits, fast withdrawals, free spins & daily promos.
+        18+ only — play responsibly.
+      </p>
+    </section>
+
+    <section class="section" style="padding-top:0">
+  <div class="hero-buttons">
+
+    <a
+      class="business-btn"
+      href="/agent-homepage/"
+    >
+      🚀 Become Agent
+    </a>
+
+    <a
+      class="secondary-agent-btn"
+      href="/alliance/"
+    >
+      🎯 View All Partner Platforms
+    </a>
+
+  </div>
+</section>
+
+    <section class="card section" aria-labelledby="app-details">
+      <h2 id="app-details">App details</h2>
+
+      <div class="app-details-list">
+        <div class="detail-item">
+          <span>Name</span>
+          <strong>yygame</strong>
         </div>
-        <i class="fas fa-times-circle" style="cursor:pointer;font-size:1.5rem;color:#9fb0cf" onclick="closeModal()"></i>
-      </div>
-      <div class="perf-grid">
-        <div class="perf-item highlight full"><div class="perf-label"><i class="fas fa-hourglass-half"></i> 在职时长</div><div class="perf-val" id="mTenure">-</div></div>
-        <div class="perf-item"><div class="perf-label"><i class="fas fa-chart-line"></i> 日均</div><div class="perf-val" id="mAvg">-</div></div>
-        <div class="perf-item"><div class="perf-label"><i class="fas fa-shopping-cart"></i> 总订单</div><div class="perf-val" id="mTotalOrder">-</div></div>
-        <div class="perf-item"><div class="perf-label"><i class="fas fa-user-circle"></i> 账号名称</div><div class="perf-val" id="mAccountName">-</div></div>
-        <div class="perf-item"><div class="perf-label"><i class="fas fa-user-tie"></i> 导师</div><div class="perf-val" id="mMentor">-</div></div>
-      </div>
-    </div>
-  </div>
 
-  <div class="stat-modal-overlay" id="statModalOverlay" onclick="closeStatModal()">
-    <div class="stat-modal-content" onclick="event.stopPropagation()">
-      <div class="stat-modal-top">
-        <div class="stat-modal-title-wrap">
-          <span class="stat-modal-dot" id="statModalDot"></span>
-          <div>
-            <div class="stat-modal-title" id="statModalTitle">统计详情</div>
-            <div class="stat-modal-sub" id="statModalSub">成员明细</div>
-          </div>
+        <div class="detail-item">
+          <span>Version</span>
+          <strong>1.0.4</strong>
         </div>
-        <button class="stat-modal-close" onclick="closeStatModal()"><i class="fas fa-times"></i></button>
+
+        <div class="detail-item">
+          <span>Size</span>
+          <strong>~20 MB</strong>
+        </div>
+
+        <div class="detail-item">
+          <span>Welcome Bonus</span>
+          <strong>₹500</strong>
+        </div>
+
+        <a
+          class="download-main-btn"
+          href="https://dclaa7imbttae.cloudfront.net/apk/yy.tpnja.apk"
+          aria-label="Download yygame"
+        >
+          Download
+        </a>
       </div>
 
-      <div class="stat-summary-grid">
-        <div class="stat-summary-card"><div class="stat-summary-label">员工总数</div><div class="stat-summary-value" id="statTotalStaff">0</div></div>
-        <div class="stat-summary-card"><div class="stat-summary-label">分类</div><div class="stat-summary-value" id="statCategory">-</div></div>
-        <div class="stat-summary-card"><div class="stat-summary-label">主要平台</div><div class="stat-summary-value" id="statTopPlatform">-</div></div>
-        <div class="stat-summary-card"><div class="stat-summary-label">主要班次</div><div class="stat-summary-value" id="statTopShift">-</div></div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;justify-content:center">
+        <a class="btn" href="https://yy.games/chatRoomNew.html?metadata=%7B%22comment%22:%22774303678902702004%22%7D&entid=d9b3bd12538784d88382296cd03c374a">Can't install?</a>
+      </div>
+    </section>
+
+    <section class="card section" aria-labelledby="notes">
+      <h2 id="notes">Notes</h2>
+
+      <ul class="muted" style="margin:0;padding-left:18px">
+        <li>Enable “Install unknown apps” on Android if prompted.</li>
+        <li>Bonus availability depends on terms and local/state laws in India.</li>
+        <li>
+          Mobile-first UI for smoother play on most Android devices.
+          See the <a href="/how-to-download/">How to Download guide</a>.
+        </li>
+      </ul>
+    </section>
+
+    <section class="card section" aria-labelledby="business">
+      <h2 id="business">Business Partnership</h2>
+
+      <p class="muted" style="margin:0">
+        Interested in growing together with yygame?
+        We are open for long-term business partnerships,
+        marketing collaborations, and agent cooperation.
+        Contact us anytime for more details and partnership opportunities.
+      </p>
+    </section>
+
+    <section class="card section" aria-labelledby="disclaimer">
+      <h2 id="disclaimer">Disclaimer</h2>
+
+      <p class="muted" style="margin:0">
+        yygame-in.com is only for sharing direct download/referral links
+        for yy.game and other gaming apk.
+        This app is owned by YYGAME, contact them if you have any questions or queries.
+        We do not own the app nor claim copyright for images and logos.
+        This website is just for APK download.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- =========================================================
+     XX5 PARTNER PROMO
+========================================================= -->
+
+<aside
+  class="xx5-promo"
+  id="xx5Promo"
+  aria-label="XX5 partner offer">
+
+  <div class="xx5-promo-card">
+
+    <button
+      class="xx5-promo-close"
+      type="button"
+      onclick="closeXX5Promo()"
+      aria-label="Close XX5 offer">
+      ×
+    </button>
+
+
+    <div class="xx5-promo-top">
+
+      <div class="xx5-promo-logo">
+
+        <img
+          src="https://xx5-india.com/assets/xx5-logokotak.webp"
+          alt="XX5 India logo"
+          width="54"
+          height="54"
+          loading="lazy"
+          decoding="async">
+
       </div>
 
-      <div class="stat-modal-body">
-        <div class="stat-member-grid" id="statMemberGrid"></div>
+
+      <div>
+
+        <p class="xx5-promo-kicker">
+          Partner platform
+        </p>
+
+        <h2 class="xx5-promo-title">
+          Explore XX5 India
+        </h2>
+
       </div>
+
     </div>
+
+
+    <p class="xx5-promo-copy">
+
+      Looking for another mobile gaming option?
+      Explore XX5 India and check the current
+      welcome offer for new players.
+
+    </p>
+
+
+    <div class="xx5-promo-offer">
+
+      <strong>
+        ₹500
+      </strong>
+
+      <span>
+        WELCOME BONUS*
+      </span>
+
+    </div>
+
+
+    <div class="xx5-promo-actions">
+
+      <a
+        class="xx5-promo-cta"
+        href="https://xx5-india.com/"
+        target="_blank"
+        rel="noopener noreferrer">
+
+        Check ₹500 Offer →
+
+      </a>
+
+
+      <button
+        class="xx5-promo-later"
+        type="button"
+        onclick="closeXX5Promo()">
+
+        Later
+
+      </button>
+
+    </div>
+
+
+    <p class="xx5-promo-note">
+      *Eligibility, availability and terms may apply.
+    </p>
+
   </div>
+
+</aside>
+  
+  <footer>
+    <div class="container foot">
+      <span>© <span id="y"></span> yygame. All rights reserved.</span>
+      <span class="muted">
+        <a href="/#privacy">Privacy Policy</a> ·
+        <a href="/#terms">Terms</a>
+      </span>
+    </div>
+  </footer>
 
   <script>
-    const URL_MASTER = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRTWdis5deT7Foc0n9WvjY45n-Yl5oujgHKUKo8yncqAiMfxi42VZEh3OezV3BSozJsY_b9jexKArco/pub?gid=0&output=csv";
-    const URL_PERF = "https://docs.google.com/spreadsheets/d/1nVAlnCEtdkhwC52l7Vo9Q1ywfpPUBR4bscYzMpH4sLg/export?format=csv&gid=1680695165";
 
-    let dbMaster = [];
-    let dbPerf = [];
-    let filtered = [];
-    let charts = {};
-    let mainPage = 1;
-    const mainRows = 10;
-    let activeWorkMode = '全部';
-    let activeOnsiteRole = '现场';
-    let activeShiftView = 'card';
+  document.getElementById('y').textContent =
+    new Date().getFullYear();
 
-    const palette = ["#60a5fa", "#a78bfa", "#fbbf24", "#f87171", "#38bdf8", "#34d399"];
 
-    const cleanID = s => String(s || "").replace(/\D/g, '');
-    const clean = s => String(s || "").trim().toUpperCase();
-    const esc = s => String(s || "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;");
+  /* =========================================================
+     XX5 PARTNER PROMO
+  ========================================================= */
 
-    function smartParse(text) {
-      return text
-        .split(/\r?\n/)
-        .filter(l => l.trim() !== "")
-        .map(line => line.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).map(c => c.replace(/^"|"$/g, '').trim()));
-    }
+  const XX5_PROMO_STORAGE_KEY =
+    'yygameXX5PromoDismissedAt';
 
-    function detectWorkMode(row) {
-      const text = row.join(' ').replace(/\s+/g, '');
-      if (text.includes('现场居家')) return '现场居家';
-      if (text.includes('居家')) return '居家';
-      return '现场';
-    }
+  const XX5_PROMO_HIDE_FOR =
+    24 * 60 * 60 * 1000;
 
-    function detectOnsiteRole(row) {
-      const text = row.join(' ').replace(/\s+/g, '');
-      if (text.includes('行政')) return '行政';
-      if (text.includes('保姆')) return '保姆';
-      if (text.includes('厨师')) return '厨师';
-      return '';
-    }
 
-    function getRoleDisplay(row) {
-      const onsiteRole = detectOnsiteRole(row);
-      if (onsiteRole) return onsiteRole;
+  const xx5Promo =
+    document.getElementById(
+      'xx5Promo'
+    );
 
-      const group = row[1] || '';
-      const team = row[9] || '';
 
-      if (group.includes('出款') || team.includes('出款')) return '出款';
-      if (group.includes('风控') || team.includes('风控')) return '风控';
-      if (group.includes('客服') || team.includes('客服')) return '客服';
-      if (group.includes('财务') || team.includes('财务')) return '财务';
+  let xx5PromoShown =
+    false;
 
-      return group || team || '-';
-    }
 
-    function getShiftType(shift) {
-      const s = clean(shift);
-      if (s.includes('DAY') || s.includes('白班')) return '白班';
-      if (s.includes('MID') || s.includes('中班')) return '中班';
-      if (s.includes('NIGHT') || s.includes('夜班')) return '夜班';
-      return '其他';
-    }
+  function canShowXX5Promo(){
 
-    function getShiftIcon(shiftType) {
-      if (shiftType === '白班') return 'fa-sun';
-      if (shiftType === '中班') return 'fa-cloud-sun';
-      if (shiftType === '夜班') return 'fa-moon';
-      return 'fa-clock';
-    }
+    try{
 
-    function getShiftPillClass(shiftType) {
-      if (shiftType === '白班') return 'pill-day';
-      if (shiftType === '中班') return 'pill-mid';
-      if (shiftType === '夜班') return 'pill-night';
-      return 'pill-other';
-    }
+      const last =
+        Number(
+          localStorage.getItem(
+            XX5_PROMO_STORAGE_KEY
+          ) || 0
+        );
 
-    function updateWorkModeButtons() {
-      document.querySelectorAll('.work-mode-btn').forEach(btn => btn.classList.remove('active'));
-
-      const map = {
-        '全部':'modeBtn-all',
-        '现场':'modeBtn-xianchang',
-        '现场居家':'modeBtn-xianchangjvjia',
-        '居家':'modeBtn-jvjia'
-      };
-
-      const activeBtn = document.getElementById(map[activeWorkMode]);
-      if (activeBtn) activeBtn.classList.add('active');
-    }
-
-    function updateOnsiteRoleButtons() {
-      document.querySelectorAll('.onsite-role-btn').forEach(btn => btn.classList.remove('active'));
-
-      if (activeOnsiteRole === '现场') {
-        document.getElementById('roleBtn-xianchang')?.classList.add('active');
-      } else {
-        document.getElementById('roleBtn-other')?.classList.add('active');
-      }
-    }
-
-    function toggleOnsiteRoleWrap() {
-      const wrap = document.getElementById('onsiteRoleWrap');
-      if (!wrap) return;
-      wrap.style.display = activeWorkMode === '现场' ? 'flex' : 'none';
-    }
-
-    function updateWorkModeCounts() {
-      const counts = {'全部':0,'现场':0,'现场居家':0,'居家':0};
-
-      dbMaster.forEach(r => {
-        const mode = detectWorkMode(r);
-        counts[mode] = (counts[mode] || 0) + 1;
-        counts['全部']++;
-      });
-
-      document.getElementById('countModeAll').innerText = counts['全部'] || 0;
-      document.getElementById('countModeXianChang').innerText = counts['现场'] || 0;
-      document.getElementById('countModeXianChangJuJia').innerText = counts['现场居家'] || 0;
-      document.getElementById('countModeJuJia').innerText = counts['居家'] || 0;
-    }
-
-    function updateOnsiteRoleCounts() {
-      let onsiteCount = 0;
-      let otherCount = 0;
-
-      dbMaster.forEach(r => {
-        if (detectWorkMode(r) !== '现场') return;
-        const role = detectOnsiteRole(r);
-        if (role === '') onsiteCount++;
-        else otherCount++;
-      });
-
-      document.getElementById('countRoleXianChang').innerText = onsiteCount;
-      document.getElementById('countRoleOther').innerText = otherCount;
-    }
-
-    function setWorkMode(mode) {
-      activeWorkMode = mode;
-      if (mode !== '现场') activeOnsiteRole = '现场';
-      mainPage = 1;
-
-      updateWorkModeButtons();
-      updateOnsiteRoleButtons();
-      toggleOnsiteRoleWrap();
-      runFilters();
-    }
-
-    function setOnsiteRole(role) {
-      activeOnsiteRole = role;
-      mainPage = 1;
-
-      updateOnsiteRoleButtons();
-      runFilters();
-    }
-
-    function showPage(pageId) {
-      document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
-      document.querySelectorAll('.nav-menu .menu-btn').forEach(b => b.classList.remove('active'));
-
-      document.getElementById(pageId).classList.add('active');
-      document.getElementById('btn-' + pageId).classList.add('active');
-
-      renderShiftPageTables();
-    }
-
-    function setShiftView(view) {
-      activeShiftView = view;
-      document.getElementById('shiftCardViewBtn')?.classList.toggle('active', view === 'card');
-      document.getElementById('shiftListViewBtn')?.classList.toggle('active', view === 'list');
-      renderShiftPageTables();
-    }
-
-    async function loadData() {
-      try {
-        const [resM, resP] = await Promise.all([
-          fetch(`${URL_MASTER}&t=${Date.now()}`),
-          fetch(`${URL_PERF}&t=${Date.now()}`)
-        ]);
-
-        dbMaster = smartParse(await resM.text()).slice(1).filter(r => r[2]);
-        dbPerf = smartParse(await resP.text()).slice(1);
-
-        initFilters();
-        updateWorkModeCounts();
-        updateOnsiteRoleCounts();
-        updateWorkModeButtons();
-        updateOnsiteRoleButtons();
-        toggleOnsiteRoleWrap();
-        runFilters();
-
-        updateClock();
-        setInterval(updateClock, 1000);
-
-      } catch (e) {
-        console.error("Koneksi gagal", e);
-      }
-    }
-
-    function updateClock() {
-      const clock = document.getElementById('clock');
-      if (!clock) return;
-
-      clock.innerText =
-        new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Yerevan" }))
-          .toLocaleTimeString('en-GB') + " AMT";
-    }
-
-    function initFilters() {
-      const getU = i => [...new Set(dbMaster.map(r => r[i]))].filter(v => v && v !== "-").sort();
-
-      const fill = (id, values) => {
-        const s = document.getElementById(id);
-        if (!s) return;
-        s.innerHTML = `<option value="">全部</option>` + values.map(x => `<option value="${esc(x)}">${esc(x)}</option>`).join('');
-      };
-
-      fill('fPlatform', getU(0));
-      fill('fGroup', getU(1));
-      fill('fTeam', getU(9));
-      fill('fShift', getU(5));
-      fill('fCountry', getU(8));
-
-      ['searchName','fShift','fTeam','fGroup','fCountry','fPlatform'].forEach(id => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        el.addEventListener('input', () => {
-          mainPage = 1;
-          runFilters();
-        });
-      });
-    }
-
-    function runFilters() {
-      const sn = document.getElementById('searchName')?.value.toLowerCase() || '';
-      const sf = document.getElementById('fShift')?.value || '';
-      const st = document.getElementById('fTeam')?.value || '';
-      const sg = document.getElementById('fGroup')?.value || '';
-      const sc = document.getElementById('fCountry')?.value || '';
-      const sp = document.getElementById('fPlatform')?.value || '';
-
-      filtered = dbMaster.filter(r => {
-        const mode = detectWorkMode(r);
-        const role = detectOnsiteRole(r);
-
-        const modeOk = activeWorkMode === '全部' ? true : mode === activeWorkMode;
-
-        const onsiteRoleOk = activeWorkMode !== '现场'
-          ? true
-          : activeOnsiteRole === '现场'
-            ? role === ''
-            : ['行政','保姆','厨师'].includes(role);
-
-        const formOk =
-          r.join(' ').toLowerCase().includes(sn) &&
-          (!sf || r[5] === sf) &&
-          (!sg || r[1] === sg) &&
-          (!st || r[9] === st) &&
-          (!sc || r[8] === sc) &&
-          (!sp || r[0] === sp);
-
-        return modeOk && onsiteRoleOk && formOk;
-      });
-
-      updateUI();
-      renderShiftPageTables();
-    }
-
-    function updateUI() {
-      const total = Math.ceil(filtered.length / mainRows) || 1;
-      if (mainPage < 1) mainPage = 1;
-      if (mainPage > total) mainPage = total;
-
-      const start = (mainPage - 1) * mainRows;
-      const current = filtered.slice(start, start + mainRows);
-
-      const tbody = document.getElementById('tbody');
-      tbody.innerHTML = current.map(r => {
-        const group = r[1] || "";
-        const team = r[9] || "";
-        const role = detectOnsiteRole(r);
-
-        let cls = 'tag-fn';
-        let groupText = group || '-';
-
-        if (activeWorkMode === '现场' && activeOnsiteRole === '其他' && role) {
-          groupText = role;
-          cls = role === '行政' ? 'tag-wd' : role === '保姆' ? 'tag-cs' : 'tag-fn';
-        } else {
-          cls = (group.includes('出款') || team.includes('出款') || group.includes('风控')) ? 'tag-wd'
-            : (group.includes('客服') || team.includes('客服')) ? 'tag-cs'
-            : 'tag-fn';
-        }
-
-        return `
-          <tr>
-            <td><b>${esc(r[0] || '-')}</b></td>
-            <td><span class="${cls}">${esc(groupText)}</span></td>
-            <td>${esc(r[9] || '-')}</td>
-            <td><span class="id-link" onclick="openDetail(${dbMaster.indexOf(r)})">#${esc(r[2] || '-')}</span></td>
-            <td style="font-weight:900;color:#fff;">${esc(r[3] || '-')}</td>
-            <td>${esc(r[5] || '-')}</td>
-            <td><span class="date-badge">${esc(r[6] || '-')}</span></td>
-            <td>${esc(r[8] || '-')}</td>
-          </tr>
-        `;
-      }).join('');
-
-      document.getElementById('infoMain').innerText = `第 ${mainPage} 页 / 共 ${total} 页`;
-
-      syncCharts();
-      updateExtraPages();
-    }
-
-    function changeMainPage(step) {
-      mainPage += step;
-      updateUI();
-    }
-
-    function updateDeptTitles() {
-      const cards = document.querySelectorAll('.dept-card .dept-title');
-      const isOther = activeWorkMode === '现场' && activeOnsiteRole === '其他';
-
-      if (cards[0]) cards[0].innerText = isOther ? '行政' : '出款/风控';
-      if (cards[1]) cards[1].innerText = isOther ? '保姆' : '客服';
-      if (cards[2]) cards[2].innerText = isOther ? '厨师' : '财务';
-    }
-
-    function syncCharts() {
-      updateDeptTitles();
-
-      let ds = { cWD:{}, cCS:{}, cFN:{}, cGEO:{}, cSH:{} };
-      const isOther = activeWorkMode === '现场' && activeOnsiteRole === '其他';
-
-      filtered.forEach(r => {
-        const group = r[1] || "";
-        const team = r[9] || "";
-        const role = detectOnsiteRole(r);
-
-        if (isOther) {
-          if (role === '行政') ds.cWD['行政'] = (ds.cWD['行政'] || 0) + 1;
-          if (role === '保姆') ds.cCS['保姆'] = (ds.cCS['保姆'] || 0) + 1;
-          if (role === '厨师') ds.cFN['厨师'] = (ds.cFN['厨师'] || 0) + 1;
-        } else {
-          if (group.includes('出款') || team.includes('出款') || group.includes('风控')) {
-            const key = group || team || '出款/风控';
-            ds.cWD[key] = (ds.cWD[key] || 0) + 1;
-          } else if (group.includes('客服') || team.includes('客服')) {
-            const key = group || team || '客服';
-            ds.cCS[key] = (ds.cCS[key] || 0) + 1;
-          } else if (group.includes('财务') || team.includes('财务')) {
-            const key = group || team || '财务';
-            ds.cFN[key] = (ds.cFN[key] || 0) + 1;
-          }
-        }
-
-        if (r[8]) ds.cGEO[r[8]] = (ds.cGEO[r[8]] || 0) + 1;
-        if (r[5]) ds.cSH[r[5]] = (ds.cSH[r[5]] || 0) + 1;
-      });
-
-      Object.keys(ds).forEach(id => {
-        const entries = Object.entries(ds[id]).sort((a,b) => b[1] - a[1]);
-        const vals = entries.map(e => e[1]);
-        const colors = entries.map((_, i) => palette[i % palette.length]);
-        const canvas = document.getElementById(id);
-
-        if (!canvas) return;
-        if (charts[id]) charts[id].destroy();
-
-        charts[id] = new Chart(canvas.getContext('2d'), {
-          type:'doughnut',
-          data:{
-            datasets:[{
-              data: vals.length ? vals : [1],
-              backgroundColor: vals.length ? colors : ['rgba(148,163,184,0.25)'],
-              borderWidth:0
-            }]
-          },
-          options:{
-            plugins:{legend:false},
-            cutout:'76%',
-            animation:{duration:450},
-            responsive:true,
-            maintainAspectRatio:true
-          }
-        });
-
-        document.getElementById('t' + id.slice(1)).innerText = vals.reduce((a,b) => a + b, 0);
-
-        const list = document.getElementById('list_' + id);
-        if (list) {
-          list.innerHTML = entries.slice(0,4).map(([n,v],i) => `
-            <div class="stat-row" onclick="openStatModal('${id}', '${encodeURIComponent(n)}', '${colors[i] || '#60a5fa'}')">
-              <div class="indicator">
-                <span class="dot" style="background:${colors[i] || '#60a5fa'}"></span>
-                <span><span class="remark-text">${esc(n)}</span></span>
-              </div>
-              <span class="count-badge">${v}</span>
-            </div>
-          `).join('');
-        }
-      });
-    }
-
-    function getShiftPageRows() {
-      const keyword = String(document.getElementById('shiftSearchInput')?.value || '').trim().toLowerCase();
-      let rows = filtered.slice();
-      if (!keyword) return rows;
-      return rows.filter(r => r.join(' ').toLowerCase().includes(keyword));
-    }
-
-    function getCountrySummary(rows) {
-      const map = {};
-      rows.forEach(r => {
-        const country = r[8] || '-';
-        map[country] = (map[country] || 0) + 1;
-      });
-      return Object.entries(map).sort((a, b) => b[1] - a[1] || String(a[0]).localeCompare(String(b[0]), 'zh'));
-    }
-
-    function getTopValueFromRows(rows, index) {
-      const map = {};
-      rows.forEach(r => {
-        const val = r[index] || '-';
-        map[val] = (map[val] || 0) + 1;
-      });
-      const sorted = Object.entries(map).sort((a,b) => b[1] - a[1]);
-      return sorted.length ? `${sorted[0][0]} ${sorted[0][1]}` : '-';
-    }
-
-    function renderShiftSummary(rows) {
-      const strip = document.getElementById('shiftSummaryStrip');
-      if (!strip) return;
-      const dayCount = rows.filter(r => getShiftType(r[5]) === '白班').length;
-      const midCount = rows.filter(r => getShiftType(r[5]) === '中班').length;
-      const nightCount = rows.filter(r => getShiftType(r[5]) === '夜班').length;
-      strip.innerHTML = `
-        <div class="shift-summary-box"><div class="shift-summary-label">当前显示</div><div class="shift-summary-value">${rows.length} 人</div></div>
-        <div class="shift-summary-box"><div class="shift-summary-label">班次数量</div><div class="shift-summary-value">白 ${dayCount} / 中 ${midCount} / 夜 ${nightCount}</div></div>
-        <div class="shift-summary-box"><div class="shift-summary-label">最多国家</div><div class="shift-summary-value">${esc(getTopValueFromRows(rows, 8))}</div></div>
-        <div class="shift-summary-box"><div class="shift-summary-label">最多平台</div><div class="shift-summary-value">${esc(getTopValueFromRows(rows, 0))}</div></div>
-      `;
-    }
-
-    function renderShiftColumn(type, rows) {
-      const sortedRows = rows.sort((a,b) =>
-        String(a[8] || '').localeCompare(String(b[8] || ''), 'zh') ||
-        String(a[0] || '').localeCompare(String(b[0] || ''), 'zh') ||
-        String(a[1] || '').localeCompare(String(b[1] || ''), 'zh') ||
-        String(a[3] || '').localeCompare(String(b[3] || ''), 'zh')
+      return (
+        !last ||
+        (
+          Date.now() - last >
+          XX5_PROMO_HIDE_FOR
+        )
       );
 
-      const countries = getCountrySummary(sortedRows);
-      const countryHtml = countries.length
-        ? countries.map(([name, count]) => `<span class="shift-country-chip">${esc(name)} ${count}</span>`).join('')
-        : `<span class="shift-country-chip">暂无</span>`;
+    }catch(error){
 
-      const memberHtml = sortedRows.length
-        ? sortedRows.map(r => {
-            const idx = dbMaster.indexOf(r);
-            const mode = detectWorkMode(r);
-            const role = getRoleDisplay(r);
-            const typeText = detectOnsiteRole(r) ? '其他' : mode;
-            return `
-              <div class="shift-member-card" onclick="openDetail(${idx})" title="${esc(r[3] || '-')}">
-                <div class="shift-member-name">${esc(r[3] || '-')}</div>
-                <div class="shift-member-id">#${esc(r[2] || '-')}</div>
-                <div class="shift-member-compact">
-                  <span class="shift-mini-tag platform">${esc(r[0] || '-')}</span>
-                  <span class="shift-mini-tag role">${esc(role || '-')}</span>
-                  <span class="shift-mini-tag">${esc(r[1] || '-')}</span>
-                  <span class="shift-mini-tag country">${esc(r[8] || '-')}</span>
-                  <span class="shift-mini-tag">${esc(typeText)}</span>
-                </div>
-              </div>
-            `;
-          }).join('')
-        : `<div class="shift-empty">暂无排班数据</div>`;
+      return true;
 
-      return `
-        <div class="shift-column-card">
-          <div class="shift-column-head">
-            <div class="shift-column-title-row">
-              <div class="shift-column-title"><i class="fas ${getShiftIcon(type)}"></i> ${type}</div>
-              <div class="shift-column-total">${sortedRows.length}</div>
-            </div>
-            <div class="shift-country-mini">${countryHtml}</div>
-          </div>
-          <div class="shift-member-list">${memberHtml}</div>
-        </div>
-      `;
     }
 
-    function renderShiftList(rows) {
-      const listView = document.getElementById('shiftListView');
-      if (!listView) return;
-      const sortedRows = rows.sort((a,b) =>
-        String(getShiftType(a[5] || '')).localeCompare(String(getShiftType(b[5] || '')), 'zh') ||
-        String(a[8] || '').localeCompare(String(b[8] || ''), 'zh') ||
-        String(a[3] || '').localeCompare(String(b[3] || ''), 'zh')
+  }
+
+
+  function showXX5Promo(){
+
+    if(
+      xx5PromoShown ||
+      !xx5Promo ||
+      !canShowXX5Promo()
+    ){
+      return;
+    }
+
+
+    xx5PromoShown =
+      true;
+
+
+    xx5Promo.style.display =
+      'block';
+
+
+    requestAnimationFrame(
+      function(){
+
+        xx5Promo.classList.add(
+          'show'
+        );
+
+      }
+    );
+
+
+    window.removeEventListener(
+      'scroll',
+      onXX5PromoScroll
+    );
+
+  }
+
+
+  function closeXX5Promo(){
+
+    if(!xx5Promo){
+      return;
+    }
+
+
+    xx5Promo.classList.remove(
+      'show'
+    );
+
+
+    try{
+
+      localStorage.setItem(
+        XX5_PROMO_STORAGE_KEY,
+        String(Date.now())
       );
 
-      if (!sortedRows.length) {
-        listView.innerHTML = `<div class="shift-empty">暂无排班数据</div>`;
-        return;
+    }catch(error){}
+
+
+    setTimeout(
+      function(){
+
+        xx5Promo.style.display =
+          'none';
+
+      },
+      220
+    );
+
+  }
+
+
+  function onXX5PromoScroll(){
+
+    const doc =
+      document.documentElement;
+
+
+    const maxScroll =
+      Math.max(
+        1,
+        doc.scrollHeight -
+        window.innerHeight
+      );
+
+
+    const scrollRatio =
+      window.scrollY /
+      maxScroll;
+
+
+    if(
+      window.scrollY >= 260 ||
+      scrollRatio >= 0.22
+    ){
+
+      showXX5Promo();
+
+    }
+
+  }
+
+
+  if(canShowXX5Promo()){
+
+    window.addEventListener(
+      'scroll',
+      onXX5PromoScroll,
+      {
+        passive:true
       }
+    );
 
-      listView.innerHTML = `
-        <table class="shift-list-table">
-          <thead>
-            <tr>
-              <th>班次</th><th>姓名</th><th>ID</th><th>平台</th><th>岗位</th><th>组别</th><th>国家</th><th>团队</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${sortedRows.map(r => {
-              const type = getShiftType(r[5] || '');
-              return `
-                <tr onclick="openDetail(${dbMaster.indexOf(r)})" style="cursor:pointer;">
-                  <td><span class="shift-pill-small ${getShiftPillClass(type)}">${esc(type)}</span></td>
-                  <td style="font-weight:900;color:#fff;">${esc(r[3] || '-')}</td>
-                  <td>#${esc(r[2] || '-')}</td>
-                  <td>${esc(r[0] || '-')}</td>
-                  <td>${esc(getRoleDisplay(r))}</td>
-                  <td>${esc(r[1] || '-')}</td>
-                  <td>${esc(r[8] || '-')}</td>
-                  <td>${esc(r[9] || '-')}</td>
-                </tr>
-              `;
-            }).join('')}
-          </tbody>
-        </table>
-      `;
-    }
+  }
 
-    function renderShiftPageTables() {
-      const grid = document.getElementById('shiftThreeGrid');
-      const listView = document.getElementById('shiftListView');
-      const title = document.getElementById('shiftPageTitle');
-      if (!grid || !title || !listView) return;
-
-      const titleText = activeWorkMode === '全部'
-        ? '全部排班'
-        : activeWorkMode === '现场' && activeOnsiteRole === '其他'
-          ? '现场其他排班'
-          : `${activeWorkMode}排班`;
-
-      title.innerHTML = `<i class="fas fa-table-list"></i> ${titleText}`;
-
-      const rows = getShiftPageRows();
-      renderShiftSummary(rows);
-
-      const grouped = {'白班': [], '中班': [], '夜班': []};
-      rows.forEach(r => {
-        const type = getShiftType(r[5] || '');
-        if (type === '白班' || type === '中班' || type === '夜班') grouped[type].push(r);
-      });
-
-      grid.innerHTML = [
-        renderShiftColumn('白班', grouped['白班']),
-        renderShiftColumn('中班', grouped['中班']),
-        renderShiftColumn('夜班', grouped['夜班'])
-      ].join('');
-
-      renderShiftList(rows);
-      grid.style.display = activeShiftView === 'card' ? 'grid' : 'none';
-      listView.style.display = activeShiftView === 'list' ? 'block' : 'none';
-    }
-
-    function downloadCurrentShiftCSV() {
-      const rows = getShiftPageRows();
-
-      const headers = ["班次","岗位盘口","岗位","类型","工作内容","姓名","ID","国籍"];
-
-      const data = rows.map(r => {
-        const mode = detectWorkMode(r);
-        const role = getRoleDisplay(r);
-        const typeText = detectOnsiteRole(r) ? "其他" : mode;
-        const workContent = role || r[1] || "-";
-
-        return [
-          r[5] || "",
-          r[0] || "",
-          r[1] || "",
-          typeText,
-          workContent,
-          r[3] || "",
-          r[2] || "",
-          r[8] || ""
-        ];
-      });
-
-      const csv = [headers, ...data]
-        .map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(","))
-        .join("\n");
-
-      const modeName = activeWorkMode === '全部'
-        ? '全部'
-        : activeWorkMode === '现场' && activeOnsiteRole === '其他'
-          ? '现场其他'
-          : activeWorkMode;
-
-      const blob = new Blob(["\uFEFF" + csv], { type:"text/csv;charset=utf-8;" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-
-      a.href = url;
-      a.download = `HGX_${modeName}_排班表_${new Date().toISOString().slice(0,10)}.csv`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    }
-
-    function updateExtraPages() {
-      const absBody = document.getElementById('tbody-absent');
-      if (absBody) {
-        absBody.innerHTML = filtered.slice(0,15).map(r => `
-          <tr>
-            <td>#${esc(r[2] || '-')}</td>
-            <td style="font-weight:900;color:#fff;">${esc(r[3] || '-')}</td>
-            <td><span class="status-absent">未上班</span></td>
-            <td>${esc(r[5] || '-')}</td>
-            <td>${esc(r[8] || '-')}</td>
-          </tr>
-        `).join('');
-      }
-
-      const salBody = document.getElementById('tbody-salary');
-      if (salBody) {
-        salBody.innerHTML = filtered.slice(0,15).map(r => {
-          const p = dbPerf.find(x => cleanID(x[0]) === cleanID(r[2]));
-          const base = 500;
-          const bonus = p ? (parseInt(p[3] || 0) * 0.05) : 0;
-
-          return `
-            <tr>
-              <td>#${esc(r[2] || '-')}</td>
-              <td style="font-weight:900;color:#fff;">${esc(r[3] || '-')}</td>
-              <td>$ ${base}</td>
-              <td>$ ${bonus.toFixed(2)}</td>
-              <td style="font-weight:900;color:#fff;">$ ${(base + bonus).toFixed(2)}</td>
-            </tr>
-          `;
-        }).join('');
-      }
-    }
-
-    function openDetail(masterIdx) {
-      const staff = dbMaster[masterIdx];
-      if (!staff) return;
-
-      const targetIDNum = cleanID(staff[2]);
-      const p = dbPerf.find(row => cleanID(row[0]) === targetIDNum);
-
-      document.getElementById('mName').innerText = staff[3] || "-";
-      document.getElementById('mID').innerText = "#" + (staff[2] || "-");
-      document.getElementById('mAccountName').innerText = staff[4] || "-";
-
-      if (p) {
-        document.getElementById('mMentor').innerText = p[2] || "-";
-        document.getElementById('mTotalOrder').innerText = p[3] || "0";
-        document.getElementById('mAvg').innerText = p[4] || "0";
-      } else {
-        document.getElementById('mMentor').innerText = "-";
-        document.getElementById('mTotalOrder').innerText = "0";
-        document.getElementById('mAvg').innerText = "0";
-      }
-
-      const joinDate = new Date(staff[6]);
-      document.getElementById('mTenure').innerText =
-        !isNaN(joinDate)
-          ? Math.ceil(Math.abs(new Date() - joinDate) / (1000 * 60 * 60 * 24)) + " 日 (" + staff[6] + ")"
-          : "-";
-
-      document.getElementById('modalOverlay').style.display = 'flex';
-    }
-
-    function closeModal() {
-      document.getElementById('modalOverlay').style.display = 'none';
-    }
-
-    function openStatModal(chartId, encodedLabel, color) {
-      const label = decodeURIComponent(encodedLabel || '');
-      const members = getStatMembers(chartId, label);
-
-      document.getElementById('statModalOverlay').style.display = 'flex';
-      document.getElementById('statModalDot').style.background = color || '#3b82f6';
-      document.getElementById('statModalTitle').innerText = label || '统计详情';
-      document.getElementById('statModalSub').innerText = getStatModalSub(chartId);
-      document.getElementById('statTotalStaff').innerText = members.length;
-      document.getElementById('statCategory').innerText = label || '-';
-      document.getElementById('statTopPlatform').innerText = getTopValue(members.map(x => x.platform)) || '-';
-      document.getElementById('statTopShift').innerText = getTopValue(members.map(x => x.shift)) || '-';
-
-      const grid = document.getElementById('statMemberGrid');
-      if (!members.length) {
-        grid.innerHTML = `<div class="stat-empty">此分类暂无员工数据。</div>`;
-        return;
-      }
-
-      grid.innerHTML = members.map(m => `
-        <div class="stat-member-card">
-          <div class="stat-member-head">
-            <div class="stat-member-name">${esc(m.name)}</div>
-            <div class="stat-member-id">#${esc(m.id)}</div>
-          </div>
-          <div class="stat-member-meta">
-            <div class="stat-member-item"><div class="stat-member-k">平台</div><div class="stat-member-v">${esc(m.platform)}</div></div>
-            <div class="stat-member-item"><div class="stat-member-k">班次</div><div class="stat-member-v">${esc(m.shift)}</div></div>
-            <div class="stat-member-item"><div class="stat-member-k">组别</div><div class="stat-member-v">${esc(m.group)}</div></div>
-            <div class="stat-member-item"><div class="stat-member-k">团队</div><div class="stat-member-v">${esc(m.team)}</div></div>
-            <div class="stat-member-item"><div class="stat-member-k">国家</div><div class="stat-member-v">${esc(m.country)}</div></div>
-            <div class="stat-member-item"><div class="stat-member-k">分类</div><div class="stat-member-v">${esc(m.role)}</div></div>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function closeStatModal() {
-      document.getElementById('statModalOverlay').style.display = 'none';
-    }
-
-    function getStatModalSub(chartId) {
-      const isOther = activeWorkMode === '现场' && activeOnsiteRole === '其他';
-
-      if (isOther) {
-        const mapOther = {
-          cWD:'行政成员明细',
-          cCS:'保姆成员明细',
-          cFN:'厨师成员明细',
-          cGEO:'国家成员明细',
-          cSH:'班次成员明细'
-        };
-        return mapOther[chartId] || '成员明细';
-      }
-
-      const map = {
-        cWD:'出款/风控成员明细',
-        cCS:'客服成员明细',
-        cFN:'财务成员明细',
-        cGEO:'国家成员明细',
-        cSH:'班次成员明细'
-      };
-
-      return map[chartId] || '成员明细';
-    }
-
-    function getStatMembers(chartId, label) {
-      const isOther = activeWorkMode === '现场' && activeOnsiteRole === '其他';
-
-      return filtered.filter(r => {
-        const group = r[1] || '';
-        const team = r[9] || '';
-        const role = detectOnsiteRole(r);
-
-        if (isOther) {
-          if (chartId === 'cWD') return role === '行政';
-          if (chartId === 'cCS') return role === '保姆';
-          if (chartId === 'cFN') return role === '厨师';
-          if (chartId === 'cGEO') return (r[8] || '') === label;
-          if (chartId === 'cSH') return (r[5] || '') === label;
-          return false;
-        }
-
-        if (chartId === 'cWD') return (group.includes('出款') || team.includes('出款') || group.includes('风控')) && (group === label || team === label);
-        if (chartId === 'cCS') return (group.includes('客服') || team.includes('客服')) && (group === label || team === label);
-        if (chartId === 'cFN') return (group.includes('财务') || team.includes('财务')) && (group === label || team === label);
-        if (chartId === 'cGEO') return (r[8] || '') === label;
-        if (chartId === 'cSH') return (r[5] || '') === label;
-
-        return false;
-      }).map(r => ({
-        platform:r[0] || '-',
-        group:r[1] || '-',
-        team:r[9] || '-',
-        id:r[2] || '-',
-        name:r[3] || '-',
-        shift:r[5] || '-',
-        country:r[8] || '-',
-        role:getRoleDisplay(r)
-      }));
-    }
-
-    function getTopValue(arr) {
-      const map = {};
-      arr.filter(Boolean).forEach(v => map[v] = (map[v] || 0) + 1);
-      const sorted = Object.entries(map).sort((a,b) => b[1] - a[1]);
-      return sorted.length ? sorted[0][0] : '';
-    }
-
-    document.addEventListener('keydown', e => {
-      if (e.key === "Escape") {
-        closeModal();
-        closeStatModal();
-      }
-    });
-
-    loadData();
-  </script>
+</script>
 </body>
 </html>

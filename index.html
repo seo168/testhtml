@@ -1054,18 +1054,786 @@
 
 }
 
-  if(canShowXX5Promo()){
 
-    window.addEventListener(
-      'scroll',
-      onXX5PromoScroll,
-      {
-        passive:true
+</style>
+</head>
+
+<body>
+
+  <!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header aria-label="Main navigation">
+
+  <div class="container nav">
+
+    <div class="brand">
+
+      <img
+        class="logo"
+        src="/assets/logo.webp"
+        alt="yygame logo"
+        width="36"
+        height="36"
+      >
+
+      <span>
+        yygame
+      </span>
+
+    </div>
+
+  </div>
+
+</header>
+
+
+<!-- =========================================================
+     MAIN CONTENT
+========================================================= -->
+
+<main
+  class="container"
+  id="main"
+>
+
+
+  <!-- =======================================================
+       HERO
+  ======================================================== -->
+
+  <section class="section hero-head">
+
+    <h1>
+      yygame — App Information (India)
+    </h1>
+
+    <p class="muted">
+      Quick details about the yygame Android app for Indian players.
+      UPI ₹ deposits, fast withdrawals, free spins &amp; daily promos.
+      18+ only — play responsibly.
+    </p>
+
+  </section>
+
+
+
+  <!-- =======================================================
+       MAIN BUTTONS
+  ======================================================== -->
+
+  <section
+    class="section"
+    style="padding-top:0"
+  >
+
+    <div class="hero-buttons">
+
+      <a
+        class="business-btn"
+        href="/agent-homepage/"
+      >
+        🚀 Become Agent
+      </a>
+
+
+      <a
+        class="secondary-agent-btn"
+        href="/alliance/"
+      >
+        🎯 View All Partner Platforms
+      </a>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =======================================================
+       APP DETAILS
+  ======================================================== -->
+
+  <section
+    class="card section"
+    aria-labelledby="app-details"
+  >
+
+    <h2 id="app-details">
+      App details
+    </h2>
+
+
+    <div class="app-details-list">
+
+
+      <div class="detail-item">
+
+        <span>
+          Name
+        </span>
+
+        <strong>
+          yygame
+        </strong>
+
+      </div>
+
+
+      <div class="detail-item">
+
+        <span>
+          Version
+        </span>
+
+        <strong>
+          1.0.4
+        </strong>
+
+      </div>
+
+
+      <div class="detail-item">
+
+        <span>
+          Size
+        </span>
+
+        <strong>
+          ~20 MB
+        </strong>
+
+      </div>
+
+
+      <div class="detail-item">
+
+        <span>
+          Welcome Bonus
+        </span>
+
+        <strong>
+          ₹500
+        </strong>
+
+      </div>
+
+
+      <a
+        class="download-main-btn"
+        href="https://dclaa7imbttae.cloudfront.net/apk/yy.tpnja.apk"
+        aria-label="Download yygame APK"
+      >
+        Download
+      </a>
+
+    </div>
+
+
+    <div
+      style="
+        display:flex;
+        gap:10px;
+        flex-wrap:wrap;
+        margin-top:14px;
+        justify-content:center;
+      "
+    >
+
+      <a
+        class="btn"
+        href="https://yy.games/chatRoomNew.html?metadata=%7B%22comment%22:%22774303678902702004%22%7D&entid=d9b3bd12538784d88382296cd03c374a"
+      >
+        Can't install?
+      </a>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =======================================================
+       NOTES
+  ======================================================== -->
+
+  <section
+    class="card section"
+    aria-labelledby="notes"
+  >
+
+    <h2 id="notes">
+      Notes
+    </h2>
+
+
+    <ul
+      class="muted"
+      style="
+        margin:0;
+        padding-left:18px;
+      "
+    >
+
+      <li>
+        Enable “Install unknown apps” on Android if prompted.
+      </li>
+
+      <li>
+        Bonus availability depends on terms and local/state laws in India.
+      </li>
+
+      <li>
+        Mobile-first UI for smoother play on most Android devices.
+        See the
+        <a href="/how-to-download/">
+          How to Download guide
+        </a>.
+      </li>
+
+    </ul>
+
+  </section>
+
+
+
+  <!-- =======================================================
+       BUSINESS PARTNERSHIP
+  ======================================================== -->
+
+  <section
+    class="card section"
+    aria-labelledby="business"
+  >
+
+    <h2 id="business">
+      Business Partnership
+    </h2>
+
+
+    <p
+      class="muted"
+      style="margin:0"
+    >
+      Interested in growing together with yygame?
+      We are open for long-term business partnerships,
+      marketing collaborations, and agent cooperation.
+      Contact us anytime for more details and partnership opportunities.
+    </p>
+
+  </section>
+
+
+
+  <!-- =======================================================
+       DISCLAIMER
+  ======================================================== -->
+
+  <section
+    class="card section"
+    aria-labelledby="disclaimer"
+  >
+
+    <h2 id="disclaimer">
+      Disclaimer
+    </h2>
+
+
+    <p
+      class="muted"
+      style="margin:0"
+    >
+      yygame-in.com is only for sharing direct download/referral links
+      for yy.game and other gaming APK.
+      This app is owned by YYGAME.
+      Contact them if you have any questions or queries.
+      We do not own the app nor claim copyright for images and logos.
+      This website is provided for APK download information.
+    </p>
+
+  </section>
+
+
+</main>
+
+
+
+<!-- =========================================================
+     XX5 PARTNER PROMO
+========================================================= -->
+
+<aside
+  class="xx5-promo"
+  id="xx5Promo"
+  aria-label="XX5 partner offer"
+>
+
+  <div class="xx5-promo-card">
+
+
+    <!-- CLOSE BUTTON -->
+
+    <button
+      class="xx5-promo-close"
+      type="button"
+      onclick="closeXX5Promo()"
+      aria-label="Close XX5 offer"
+    >
+      ×
+    </button>
+
+
+
+    <!-- LOGO + TITLE -->
+
+    <div class="xx5-promo-top">
+
+
+      <div class="xx5-promo-logo">
+
+        <img
+          src="https://xx5-india.com/assets/xx5-logokotak.webp"
+          alt="XX5 India logo"
+          width="64"
+          height="64"
+          loading="lazy"
+          decoding="async"
+        >
+
+      </div>
+
+
+      <div>
+
+        <p class="xx5-promo-kicker">
+          Partner Platform
+        </p>
+
+        <h2 class="xx5-promo-title">
+          Explore XX5 India
+        </h2>
+
+      </div>
+
+
+    </div>
+
+
+
+    <!-- DESCRIPTION -->
+
+    <p class="xx5-promo-copy">
+
+      Looking for another mobile gaming option?
+      Explore XX5 India and check the current
+      welcome offer available for new players.
+
+    </p>
+
+
+
+    <!-- BONUS -->
+
+    <div class="xx5-promo-offer">
+
+      <strong>
+        ₹500
+      </strong>
+
+      <span>
+        WELCOME BONUS*
+      </span>
+
+    </div>
+
+
+
+    <!-- BUTTONS -->
+
+    <div class="xx5-promo-actions">
+
+
+      <a
+        class="xx5-promo-cta"
+        href="https://xx5-india.com/"
+      >
+        🎁 Check ₹500 Offer →
+      </a>
+
+
+      <button
+        class="xx5-promo-later"
+        type="button"
+        onclick="closeXX5Promo()"
+      >
+        Continue on YYGAME
+      </button>
+
+
+    </div>
+
+
+    <p class="xx5-promo-note">
+      *Eligibility, availability and terms may apply.
+    </p>
+
+
+  </div>
+
+</aside>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+  <div class="container foot">
+
+
+    <span>
+
+      ©
+      <span id="y"></span>
+      yygame. All rights reserved.
+
+    </span>
+
+
+    <span class="muted">
+
+      <a href="/#privacy">
+        Privacy Policy
+      </a>
+
+      ·
+
+      <a href="/#terms">
+        Terms
+      </a>
+
+    </span>
+
+
+  </div>
+
+</footer>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+  /* =========================================================
+     FOOTER YEAR
+  ========================================================= */
+
+  const yearElement =
+    document.getElementById("y");
+
+  if(yearElement){
+
+    yearElement.textContent =
+      new Date().getFullYear();
+
+  }
+
+
+
+  /* =========================================================
+     XX5 PROMO CONFIGURATION
+  ========================================================= */
+
+  const XX5_PROMO_STORAGE_KEY =
+    "yygameXX5PromoDismissedAt";
+
+
+  const XX5_PROMO_HIDE_FOR =
+    24 * 60 * 60 * 1000;
+
+
+  const xx5Promo =
+    document.getElementById(
+      "xx5Promo"
+    );
+
+
+  let xx5PromoShown =
+    false;
+
+
+
+  /* =========================================================
+     CHECK WHETHER PROMO CAN SHOW
+  ========================================================= */
+
+  function canShowXX5Promo(){
+
+    try{
+
+      const storedValue =
+        localStorage.getItem(
+          XX5_PROMO_STORAGE_KEY
+        );
+
+
+      if(!storedValue){
+
+        return true;
+
       }
+
+
+      const lastShown =
+        Number(
+          storedValue
+        );
+
+
+      if(
+        !Number.isFinite(
+          lastShown
+        )
+      ){
+
+        return true;
+
+      }
+
+
+      return (
+
+        Date.now() -
+        lastShown
+
+        >
+
+        XX5_PROMO_HIDE_FOR
+
+      );
+
+
+    }catch(error){
+
+      return true;
+
+    }
+
+  }
+
+
+
+  /* =========================================================
+     SHOW PROMO
+  ========================================================= */
+
+  function showXX5Promo(){
+
+    if(
+      !xx5Promo ||
+      xx5PromoShown ||
+      !canShowXX5Promo()
+    ){
+
+      return;
+
+    }
+
+
+    xx5PromoShown =
+      true;
+
+
+    xx5Promo.style.display =
+      "block";
+
+
+    requestAnimationFrame(
+      function(){
+
+        requestAnimationFrame(
+          function(){
+
+            xx5Promo.classList.add(
+              "show"
+            );
+
+          }
+        );
+
+      }
+    );
+
+
+    window.removeEventListener(
+      "scroll",
+      onXX5PromoScroll
     );
 
   }
 
+
+
+  /* =========================================================
+     CLOSE PROMO
+  ========================================================= */
+
+  function closeXX5Promo(){
+
+    if(!xx5Promo){
+
+      return;
+
+    }
+
+
+    xx5Promo.classList.remove(
+      "show"
+    );
+
+
+    try{
+
+      localStorage.setItem(
+
+        XX5_PROMO_STORAGE_KEY,
+
+        String(
+          Date.now()
+        )
+
+      );
+
+    }catch(error){
+
+      /* localStorage unavailable */
+
+    }
+
+
+    setTimeout(
+      function(){
+
+        xx5Promo.style.display =
+          "none";
+
+      },
+
+      260
+    );
+
+  }
+
+
+
+  /* =========================================================
+     SCROLL TRIGGER
+  ========================================================= */
+
+  function onXX5PromoScroll(){
+
+    const documentElement =
+      document.documentElement;
+
+
+    const maximumScroll =
+      Math.max(
+
+        1,
+
+        documentElement.scrollHeight -
+        window.innerHeight
+
+      );
+
+
+    const scrollRatio =
+      window.scrollY /
+      maximumScroll;
+
+
+    /*
+      Show after visitor has actually
+      started reading the page.
+
+      Trigger:
+      260px scroll
+      OR
+      22% page progress.
+    */
+
+    if(
+
+      window.scrollY >= 260 ||
+
+      scrollRatio >= 0.22
+
+    ){
+
+      showXX5Promo();
+
+    }
+
+  }
+
+
+
+  /* =========================================================
+     ACTIVATE PROMO
+  ========================================================= */
+
+  if(
+    xx5Promo &&
+    canShowXX5Promo()
+  ){
+
+    window.addEventListener(
+
+      "scroll",
+
+      onXX5PromoScroll,
+
+      {
+        passive:true
+      }
+
+    );
+
+  }
+
+
+
+  /* =========================================================
+     ESCAPE KEY
+  ========================================================= */
+
+  document.addEventListener(
+
+    "keydown",
+
+    function(event){
+
+      if(
+        event.key === "Escape" &&
+        xx5Promo
+      ){
+
+        closeXX5Promo();
+
+      }
+
+    }
+
+  );
+
 </script>
+
+
 </body>
 </html>

@@ -543,1216 +543,359 @@
       }
     }
 
-
-/* =========================================================
-   XX5 PARTNER PROMO — CLEAN DESKTOP + MOBILE
-========================================================= */
-
-.xx5-promo{
-  position:fixed;
-  right:24px;
-  bottom:24px;
-  z-index:9999;
-
-  width:380px;
-  max-width:calc(100vw - 32px);
-
-  display:none;
-  opacity:0;
-
-  transform:translateY(20px);
-
-  transition:
-    opacity .25s ease,
-    transform .25s ease;
-
-  pointer-events:none;
-}
-
-.xx5-promo.show{
-  display:block;
-  opacity:1;
-  transform:translateY(0);
-  pointer-events:auto;
-}
-
-
-/* CARD */
-
-.xx5-promo-card{
-  position:relative;
-  overflow:hidden;
-
-  width:100%;
-  padding:20px;
-
-  border-radius:20px;
-
-  background:
-    radial-gradient(
-      circle at 100% 0%,
-      rgba(244,193,93,.18),
-      transparent 38%
-    ),
-    linear-gradient(
-      145deg,
-      #1b0a0c 0%,
-      #301012 58%,
-      #19090a 100%
-    );
-
-  border:1px solid rgba(244,193,93,.35);
-
-  box-shadow:
-    0 22px 60px rgba(0,0,0,.55),
-    0 0 35px rgba(244,193,93,.10);
-
-  color:#fff;
-}
-
-
-/* CLOSE */
-
-.xx5-promo-close{
-  position:absolute;
-  top:10px;
-  right:10px;
-  z-index:5;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  width:32px;
-  height:32px;
-
-  padding:0;
-
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:50%;
-
-  background:rgba(255,255,255,.10);
-
-  color:#fff;
-
-  font-family:Arial,sans-serif;
-  font-size:18px;
-  line-height:1;
-
-  cursor:pointer;
-
-  transition:
-    background .2s ease,
-    transform .2s ease;
-}
-
-.xx5-promo-close:hover{
-  background:rgba(255,255,255,.18);
-  transform:scale(1.06);
-}
-
-
-/* TOP */
-
-.xx5-promo-top{
-  display:grid;
-
-  grid-template-columns:64px minmax(0,1fr);
-
-  gap:14px;
-
-  align-items:center;
-
-  padding-right:30px;
-}
-
-
-/* LOGO */
-
-.xx5-promo-logo{
-  width:64px;
-  height:64px;
-
-  flex:none;
-
-  overflow:hidden;
-
-  border-radius:15px;
-
-  background:#130708;
-
-  border:1px solid rgba(244,193,93,.30);
-
-  box-shadow:
-    0 8px 22px rgba(0,0,0,.35);
-}
-
-.xx5-promo-logo img{
-  display:block;
-
-  width:100%;
-  height:100%;
-
-  object-fit:cover;
-}
-
-
-/* PARTNER LABEL */
-
-.xx5-promo-kicker{
-  margin:0 0 5px;
-
-  color:#ffd978;
-
-  font-size:10px;
-  line-height:1.2;
-
-  font-weight:900;
-
-  letter-spacing:.8px;
-
-  text-transform:uppercase;
-}
-
-
-/* TITLE */
-
-.xx5-promo-title{
-  margin:0;
-
-  color:#fff;
-
-  font-size:21px;
-  line-height:1.15;
-
-  font-weight:900;
-
-  letter-spacing:-.2px;
-}
-
-
-/* DESCRIPTION */
-
-.xx5-promo-copy{
-  margin:15px 0 13px;
-
-  color:#d9cac5;
-
-  font-size:12px;
-  line-height:1.55;
-}
-
-
-/* BONUS BOX */
-
-.xx5-promo-offer{
-  display:flex;
-
-  align-items:center;
-
-  gap:9px;
-
-  width:100%;
-
-  margin:0 0 13px;
-
-  padding:12px 14px;
-
-  border-radius:13px;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(244,193,93,.15),
-      rgba(255,157,24,.07)
-    );
-
-  border:1px solid rgba(244,193,93,.24);
-}
-
-.xx5-promo-offer strong{
-  display:block;
-
-  color:#ffd45e;
-
-  font-size:28px;
-  line-height:1;
-
-  font-weight:1000;
-
-  white-space:nowrap;
-}
-
-.xx5-promo-offer span{
-  display:block;
-
-  color:#f8e8bf;
-
-  font-size:10px;
-  line-height:1.2;
-
-  font-weight:900;
-
-  letter-spacing:.3px;
-}
-
-
-/* ACTIONS */
-
-.xx5-promo-actions{
-  display:grid;
-
-  grid-template-columns:1fr;
-
-  gap:7px;
-
-  width:100%;
-}
-
-
-/* MAIN CTA */
-
-.xx5-promo-cta{
-  display:flex;
-
-  align-items:center;
-  justify-content:center;
-
-  width:100%;
-  min-height:48px;
-
-  padding:12px 16px;
-
-  border-radius:12px;
-
-  background:
-    linear-gradient(
-      135deg,
-      #ffd65f,
-      #ffad28
-    );
-
-  border:1px solid rgba(255,220,120,.7);
-
-  color:#321700 !important;
-
-  font-size:13px;
-  line-height:1.2;
-
-  font-weight:1000;
-
-  text-align:center;
-  text-decoration:none;
-
-  box-shadow:
-    0 9px 22px rgba(255,157,24,.25);
-
-  transition:
-    transform .2s ease,
-    box-shadow .2s ease;
-}
-
-.xx5-promo-cta:hover{
-  opacity:1;
-
-  transform:translateY(-1px);
-
-  box-shadow:
-    0 12px 28px rgba(255,157,24,.34);
-}
-
-
-/* LATER BUTTON */
-
-.xx5-promo-later{
-  display:block;
-
-  width:100%;
-
-  min-height:34px;
-
-  padding:7px 10px;
-
-  border:0;
-
-  background:transparent;
-
-  color:#a99892;
-
-  font-family:inherit;
-  font-size:10px;
-  font-weight:600;
-
-  text-align:center;
-
-  cursor:pointer;
-}
-
-.xx5-promo-later:hover{
-  color:#fff;
-}
-
-
-/* TERMS */
-
-.xx5-promo-note{
-  margin:3px 0 0;
-
-  color:#8e7b75;
-
-  font-size:9px;
-  line-height:1.4;
-
-  text-align:center;
-}
-
-
-/* =========================================================
-   TABLET
-========================================================= */
-
-@media(max-width:900px){
-
-  .xx5-promo{
-    right:16px;
-    bottom:16px;
-
-    width:360px;
-  }
-
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media(max-width:620px){
-
-  .xx5-promo{
-    left:10px;
-    right:10px;
-    bottom:10px;
-
-    width:auto;
-    max-width:none;
-  }
-
-
-  .xx5-promo-card{
-    padding:15px;
-
-    border-radius:17px;
-  }
-
-
-  .xx5-promo-top{
-    grid-template-columns:52px minmax(0,1fr);
-
-    gap:11px;
-
-    padding-right:28px;
-  }
-
-
-  .xx5-promo-logo{
-    width:52px;
-    height:52px;
-
-    border-radius:13px;
-  }
-
-
-  .xx5-promo-kicker{
-    margin-bottom:3px;
-
-    font-size:8px;
-  }
-
-
-  .xx5-promo-title{
-    font-size:17px;
-  }
-
-
-  .xx5-promo-copy{
-    margin:11px 0;
-
-    font-size:10.5px;
-    line-height:1.45;
-  }
-
-
-  .xx5-promo-offer{
-    margin-bottom:10px;
-
-    padding:10px 12px;
-  }
-
-
-  .xx5-promo-offer strong{
-    font-size:23px;
-  }
-
-
-  .xx5-promo-offer span{
-    font-size:9px;
-  }
-
-
-  .xx5-promo-cta{
-    min-height:44px;
-
-    padding:10px 12px;
-
-    font-size:12px;
-  }
-
-
-  .xx5-promo-later{
-    min-height:30px;
-
-    padding:5px;
-
-    font-size:9px;
-  }
-
-
-  .xx5-promo-note{
-    margin-top:2px;
-
-    font-size:8px;
-  }
-
-}
-
-
-/* VERY SMALL PHONE */
-
-@media(max-width:360px){
-
-  .xx5-promo{
-    left:7px;
-    right:7px;
-    bottom:7px;
-  }
-
-
-  .xx5-promo-card{
-    padding:13px;
-  }
-
-
-  .xx5-promo-copy{
-    display:none;
-  }
-
-
-  .xx5-promo-offer{
-    margin-top:10px;
-  }
-
-}
-
-
-</style>
+    /* Optional partner card. It is injected only after genuine user activity,
+       so it does not alter the indexed main-content structure or page layout. */
+    .xx5-promo{
+      position:fixed;
+      right:20px;
+      bottom:20px;
+      z-index:30;
+      width:min(360px,calc(100vw - 32px));
+      opacity:0;
+      visibility:hidden;
+      transform:translateY(14px);
+      transition:opacity .2s ease,transform .2s ease,visibility .2s;
+    }
+
+    .xx5-promo-trigger{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      max-width:460px;
+      padding:13px 18px;
+      border:1px solid rgba(244,193,93,.42);
+      border-radius:16px;
+      background:rgba(35,15,19,.82);
+      color:var(--gold);
+      font:800 14px/1.35 inherit;
+      cursor:pointer;
+      box-shadow:0 8px 20px rgba(0,0,0,.18);
+      transition:transform .2s ease,border-color .2s ease,background .2s ease;
+    }
+
+    .xx5-promo-trigger:hover,
+    .xx5-promo-trigger:focus-visible{
+      transform:translateY(-2px);
+      border-color:var(--gold);
+      background:rgba(55,23,27,.94);
+    }
+
+    .xx5-promo.is-visible{
+      opacity:1;
+      visibility:visible;
+      transform:none;
+    }
+
+    .xx5-promo-card{
+      position:relative;
+      padding:17px;
+      border:1px solid rgba(244,193,93,.38);
+      border-radius:18px;
+      background:linear-gradient(145deg,#1b0a0c,#301012 58%,#19090a);
+      color:#fff;
+      box-shadow:0 18px 46px rgba(0,0,0,.5);
+    }
+
+    .xx5-promo-close{
+      position:absolute;
+      top:8px;
+      right:8px;
+      width:32px;
+      height:32px;
+      padding:0;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:50%;
+      background:rgba(255,255,255,.1);
+      color:#fff;
+      font:20px/1 Arial,sans-serif;
+      cursor:pointer;
+    }
+
+    .xx5-promo-top{
+      display:grid;
+      grid-template-columns:54px minmax(0,1fr);
+      gap:12px;
+      align-items:center;
+      padding-right:28px;
+    }
+
+    .xx5-promo-logo{
+      width:54px;
+      height:54px;
+      border-radius:13px;
+      object-fit:cover;
+    }
+
+    .xx5-promo-kicker{
+      margin:0 0 2px;
+      color:#ffd978;
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.6px;
+      text-transform:uppercase;
+    }
+
+    .xx5-promo-title{
+      margin:0;
+      font-size:19px;
+      line-height:1.2;
+    }
+
+    .xx5-promo-copy{
+      margin:12px 0;
+      color:#d9cac5;
+      font-size:12px;
+      line-height:1.45;
+    }
+
+    .xx5-promo-cta{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:44px;
+      padding:10px 14px;
+      border-radius:12px;
+      background:linear-gradient(135deg,#ffd65f,#ffad28);
+      color:#321700 !important;
+      font-size:13px;
+      font-weight:900;
+      text-align:center;
+    }
+
+    .xx5-promo-note{
+      margin:8px 0 0;
+      color:#a99892;
+      font-size:9px;
+      text-align:center;
+    }
+
+    @media (max-width:620px){
+      .xx5-promo{
+        right:10px;
+        bottom:10px;
+        width:calc(100vw - 20px);
+      }
+
+      .xx5-promo-card{padding:13px}
+      .xx5-promo-copy{display:none}
+      .xx5-promo-top{grid-template-columns:44px minmax(0,1fr)}
+      .xx5-promo-logo{width:44px;height:44px;border-radius:11px}
+      .xx5-promo-title{font-size:16px}
+      .xx5-promo-cta{min-height:40px;margin-top:10px}
+      .xx5-promo-trigger{max-width:100%;padding:12px 14px}
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      .xx5-promo{transition:none}
+    }
+  </style>
 </head>
 
 <body>
-
-  <!-- =========================================================
-     HEADER
-========================================================= -->
-
-<header aria-label="Main navigation">
-
-  <div class="container nav">
-
-    <div class="brand">
-
-      <img
-        class="logo"
-        src="/assets/logo.webp"
-        alt="yygame logo"
-        width="36"
-        height="36"
-      >
-
-      <span>
-        yygame
-      </span>
-
-    </div>
-
-  </div>
-
-</header>
-
-
-<!-- =========================================================
-     MAIN CONTENT
-========================================================= -->
-
-<main
-  class="container"
-  id="main"
->
-
-
-  <!-- =======================================================
-       HERO
-  ======================================================== -->
-
-  <section class="section hero-head">
-
-    <h1>
-      yygame — App Information (India)
-    </h1>
-
-    <p class="muted">
-      Quick details about the yygame Android app for Indian players.
-      UPI ₹ deposits, fast withdrawals, free spins &amp; daily promos.
-      18+ only — play responsibly.
-    </p>
-
-  </section>
-
-
-
-  <!-- =======================================================
-       MAIN BUTTONS
-  ======================================================== -->
-
-  <section
-    class="section"
-    style="padding-top:0"
-  >
-
-    <div class="hero-buttons">
-
-      <a
-        class="business-btn"
-        href="/agent-homepage/"
-      >
-        🚀 Become Agent
-      </a>
-
-
-      <a
-        class="secondary-agent-btn"
-        href="/alliance/"
-      >
-        🎯 View All Partner Platforms
-      </a>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- =======================================================
-       APP DETAILS
-  ======================================================== -->
-
-  <section
-    class="card section"
-    aria-labelledby="app-details"
-  >
-
-    <h2 id="app-details">
-      App details
-    </h2>
-
-
-    <div class="app-details-list">
-
-
-      <div class="detail-item">
-
-        <span>
-          Name
-        </span>
-
-        <strong>
-          yygame
-        </strong>
-
+  <header aria-label="Main navigation">
+    <div class="container nav">
+      <div class="brand">
+        <img class="logo" src="/assets/logo.webp" alt="yygame logo" width="32" height="32" />
+        <span>yygame</span>
       </div>
-
-
-      <div class="detail-item">
-
-        <span>
-          Version
-        </span>
-
-        <strong>
-          1.0.4
-        </strong>
-
-      </div>
-
-
-      <div class="detail-item">
-
-        <span>
-          Size
-        </span>
-
-        <strong>
-          ~20 MB
-        </strong>
-
-      </div>
-
-
-      <div class="detail-item">
-
-        <span>
-          Welcome Bonus
-        </span>
-
-        <strong>
-          ₹500
-        </strong>
-
-      </div>
-
-
-      <a
-        class="download-main-btn"
-        href="https://dclaa7imbttae.cloudfront.net/apk/yy.tpnja.apk"
-        aria-label="Download yygame APK"
-      >
-        Download
-      </a>
-
     </div>
+  </header>
 
+  <main class="container" id="main">
 
-    <div
-      style="
-        display:flex;
-        gap:10px;
-        flex-wrap:wrap;
-        margin-top:14px;
-        justify-content:center;
-      "
+    <section class="section hero-head">
+      <h1>yygame — App Information (India)</h1>
+      <p class="muted">
+        Quick details about the yygame Android app for Indian players.
+        UPI ₹ deposits, fast withdrawals, free spins & daily promos.
+        18+ only — play responsibly.
+      </p>
+    </section>
+
+    <section class="section" style="padding-top:0">
+  <div class="hero-buttons">
+
+    <a
+      class="business-btn"
+      href="/agent-homepage/"
     >
+      🚀 Become Agent
+    </a>
 
-      <a
-        class="btn"
-        href="https://yy.games/chatRoomNew.html?metadata=%7B%22comment%22:%22774303678902702004%22%7D&entid=d9b3bd12538784d88382296cd03c374a"
-      >
-        Can't install?
-      </a>
-
-    </div>
-
-  </section>
-
-
-
-  <!-- =======================================================
-       NOTES
-  ======================================================== -->
-
-  <section
-    class="card section"
-    aria-labelledby="notes"
-  >
-
-    <h2 id="notes">
-      Notes
-    </h2>
-
-
-    <ul
-      class="muted"
-      style="
-        margin:0;
-        padding-left:18px;
-      "
+    <a
+      class="secondary-agent-btn"
+      href="/alliance/"
     >
-
-      <li>
-        Enable “Install unknown apps” on Android if prompted.
-      </li>
-
-      <li>
-        Bonus availability depends on terms and local/state laws in India.
-      </li>
-
-      <li>
-        Mobile-first UI for smoother play on most Android devices.
-        See the
-        <a href="/how-to-download/">
-          How to Download guide
-        </a>.
-      </li>
-
-    </ul>
-
-  </section>
-
-
-
-  <!-- =======================================================
-       BUSINESS PARTNERSHIP
-  ======================================================== -->
-
-  <section
-    class="card section"
-    aria-labelledby="business"
-  >
-
-    <h2 id="business">
-      Business Partnership
-    </h2>
-
-
-    <p
-      class="muted"
-      style="margin:0"
-    >
-      Interested in growing together with yygame?
-      We are open for long-term business partnerships,
-      marketing collaborations, and agent cooperation.
-      Contact us anytime for more details and partnership opportunities.
-    </p>
-
-  </section>
-
-
-
-  <!-- =======================================================
-       DISCLAIMER
-  ======================================================== -->
-
-  <section
-    class="card section"
-    aria-labelledby="disclaimer"
-  >
-
-    <h2 id="disclaimer">
-      Disclaimer
-    </h2>
-
-
-    <p
-      class="muted"
-      style="margin:0"
-    >
-      yygame-in.com is only for sharing direct download/referral links
-      for yy.game and other gaming APK.
-      This app is owned by YYGAME.
-      Contact them if you have any questions or queries.
-      We do not own the app nor claim copyright for images and logos.
-      This website is provided for APK download information.
-    </p>
-
-  </section>
-
-
-</main>
-
-
-
-<!-- =========================================================
-     XX5 PARTNER PROMO
-========================================================= -->
-
-<aside
-  class="xx5-promo"
-  id="xx5Promo"
-  aria-label="XX5 partner offer"
->
-
-  <div class="xx5-promo-card">
-
-
-    <!-- CLOSE BUTTON -->
+      🎯 View All Partner Platforms
+    </a>
 
     <button
-      class="xx5-promo-close"
+      class="xx5-promo-trigger"
+      id="xx5PromoTrigger"
       type="button"
-      onclick="closeXX5Promo()"
-      aria-label="Close XX5 offer"
+      aria-haspopup="dialog"
+      aria-controls="xx5Promo"
+      aria-expanded="false"
     >
-      ×
+      🎁 Check XX5 Partner ₹500 Offer
     </button>
 
+  </div>
+</section>
 
+    <section class="card section" aria-labelledby="app-details">
+      <h2 id="app-details">App details</h2>
 
-    <!-- LOGO + TITLE -->
+      <div class="app-details-list">
+        <div class="detail-item">
+          <span>Name</span>
+          <strong>yygame</strong>
+        </div>
 
-    <div class="xx5-promo-top">
+        <div class="detail-item">
+          <span>Version</span>
+          <strong>1.0.4</strong>
+        </div>
 
+        <div class="detail-item">
+          <span>Size</span>
+          <strong>~20 MB</strong>
+        </div>
 
-      <div class="xx5-promo-logo">
+        <div class="detail-item">
+          <span>Welcome Bonus</span>
+          <strong>₹500</strong>
+        </div>
 
-        <img
-          src="https://xx5-india.com/assets/xx5-logokotak.webp"
-          alt="XX5 India logo"
-          width="64"
-          height="64"
-          loading="lazy"
-          decoding="async"
+        <a
+          class="download-main-btn"
+          href="https://dclaa7imbttae.cloudfront.net/apk/yy.tpnja.apk"
+          aria-label="Download yygame"
         >
-
+          Download
+        </a>
       </div>
 
-
-      <div>
-
-        <p class="xx5-promo-kicker">
-          Partner Platform
-        </p>
-
-        <h2 class="xx5-promo-title">
-          Explore XX5 India
-        </h2>
-
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;justify-content:center">
+        <a class="btn" href="https://yy.games/chatRoomNew.html?metadata=%7B%22comment%22:%22774303678902702004%22%7D&entid=d9b3bd12538784d88382296cd03c374a">Can't install?</a>
       </div>
+    </section>
 
+    <section class="card section" aria-labelledby="notes">
+      <h2 id="notes">Notes</h2>
 
-    </div>
+      <ul class="muted" style="margin:0;padding-left:18px">
+        <li>Enable “Install unknown apps” on Android if prompted.</li>
+        <li>Bonus availability depends on terms and local/state laws in India.</li>
+        <li>
+          Mobile-first UI for smoother play on most Android devices.
+          See the <a href="/how-to-download/">How to Download guide</a>.
+        </li>
+      </ul>
+    </section>
 
+    <section class="card section" aria-labelledby="business">
+      <h2 id="business">Business Partnership</h2>
 
+      <p class="muted" style="margin:0">
+        Interested in growing together with yygame?
+        We are open for long-term business partnerships,
+        marketing collaborations, and agent cooperation.
+        Contact us anytime for more details and partnership opportunities.
+      </p>
+    </section>
 
-    <!-- DESCRIPTION -->
+    <section class="card section" aria-labelledby="disclaimer">
+      <h2 id="disclaimer">Disclaimer</h2>
 
-    <p class="xx5-promo-copy">
+      <p class="muted" style="margin:0">
+        yygame-in.com is only for sharing direct download/referral links
+        for yy.game and other gaming apk.
+        This app is owned by YYGAME, contact them if you have any questions or queries.
+        We do not own the app nor claim copyright for images and logos.
+        This website is just for APK download.
+      </p>
+    </section>
 
-      Looking for another mobile gaming option?
-      Explore XX5 India and check the current
-      welcome offer available for new players.
+  </main>
 
-    </p>
-
-
-
-    <!-- BONUS -->
-
-    <div class="xx5-promo-offer">
-
-      <strong>
-        ₹500
-      </strong>
-
-      <span>
-        WELCOME BONUS*
+  <footer>
+    <div class="container foot">
+      <span>© <span id="y"></span> yygame. All rights reserved.</span>
+      <span class="muted">
+        <a href="/#privacy">Privacy Policy</a> ·
+        <a href="/#terms">Terms</a>
       </span>
-
     </div>
+  </footer>
 
+  <script>
+  document.getElementById('y').textContent = new Date().getFullYear();
 
+  (function(){
+    'use strict';
 
-    <!-- BUTTONS -->
+    var promo;
+    var trigger = document.getElementById('xx5PromoTrigger');
 
-    <div class="xx5-promo-actions">
-
-
-      <a
-        class="xx5-promo-cta"
-        href="https://xx5-india.com/"
-      >
-        🎁 Check ₹500 Offer →
-      </a>
-
-
-      <button
-        class="xx5-promo-later"
-        type="button"
-        onclick="closeXX5Promo()"
-      >
-        Continue on YYGAME
-      </button>
-
-
-    </div>
-
-
-    <p class="xx5-promo-note">
-      *Eligibility, availability and terms may apply.
-    </p>
-
-
-  </div>
-
-</aside>
-
-
-
-<!-- =========================================================
-     FOOTER
-========================================================= -->
-
-<footer>
-
-  <div class="container foot">
-
-
-    <span>
-
-      ©
-      <span id="y"></span>
-      yygame. All rights reserved.
-
-    </span>
-
-
-    <span class="muted">
-
-      <a href="/#privacy">
-        Privacy Policy
-      </a>
-
-      ·
-
-      <a href="/#terms">
-        Terms
-      </a>
-
-    </span>
-
-
-  </div>
-
-</footer>
-
-
-
-<!-- =========================================================
-     JAVASCRIPT
-========================================================= -->
-
-<script>
-
-  /* =========================================================
-     FOOTER YEAR
-  ========================================================= */
-
-  const yearElement =
-    document.getElementById("y");
-
-  if(yearElement){
-
-    yearElement.textContent =
-      new Date().getFullYear();
-
-  }
-
-
-
-  /* =========================================================
-     XX5 PROMO CONFIGURATION
-  ========================================================= */
-
-
-  const xx5Promo =
-    document.getElementById(
-      "xx5Promo"
-    );
-
-
-  let xx5PromoShown =
-    false;
-
-
-
-  /* =========================================================
-     CHECK WHETHER PROMO CAN SHOW
-  ========================================================= */
-
-  function canShowXX5Promo(){
-  return true;
-}
-
-
-
-  /* =========================================================
-     SHOW PROMO
-  ========================================================= */
-
-  function showXX5Promo(){
-
-    if(
-      !xx5Promo ||
-      xx5PromoShown ||
-      !canShowXX5Promo()
-    ){
-
-      return;
-
+    function closePromo(){
+      if(!promo){ return; }
+      promo.classList.remove('is-visible');
+      if(trigger){
+        trigger.setAttribute('aria-expanded','false');
+        trigger.focus();
+      }
+      window.setTimeout(function(){
+        if(promo){ promo.remove(); promo = null; }
+      },220);
     }
 
+    function buildPromo(){
+      var aside = document.createElement('aside');
+      aside.id = 'xx5Promo';
+      aside.className = 'xx5-promo';
+      aside.setAttribute('role','dialog');
+      aside.setAttribute('aria-modal','false');
+      aside.setAttribute('aria-label','XX5 partner offer');
+      aside.innerHTML =
+        '<div class="xx5-promo-card">' +
+          '<button class="xx5-promo-close" type="button" aria-label="Close partner offer">&times;</button>' +
+          '<div class="xx5-promo-top">' +
+            '<img class="xx5-promo-logo" src="https://xx5-india.com/assets/xx5-logokotak.webp" alt="XX5 India" width="54" height="54" loading="lazy" decoding="async">' +
+            '<div><p class="xx5-promo-kicker">Partner platform</p><p class="xx5-promo-title"><strong>Explore XX5 India</strong></p></div>' +
+          '</div>' +
+          '<p class="xx5-promo-copy">Explore another mobile gaming option and check the current welcome offer for new players.</p>' +
+          '<a class="xx5-promo-cta" href="https://xx5-india.com/" rel="sponsored nofollow noopener" target="_blank">Check ₹500 Offer →</a>' +
+          '<p class="xx5-promo-note">18+ only. Eligibility, availability and terms may apply.</p>' +
+        '</div>';
+      aside.querySelector('.xx5-promo-close').addEventListener('click',closePromo);
+      return aside;
+    }
 
-    xx5PromoShown =
-      true;
-
-
-    xx5Promo.style.display =
-      "block";
-
-
-    requestAnimationFrame(
-      function(){
-
-        requestAnimationFrame(
-          function(){
-
-            xx5Promo.classList.add(
-              "show"
-            );
-
+    function showPromo(){
+      if(promo){ return; }
+      promo = buildPromo();
+      document.body.appendChild(promo);
+      if(trigger){ trigger.setAttribute('aria-expanded','true'); }
+      window.requestAnimationFrame(function(){
+        window.requestAnimationFrame(function(){
+          if(promo){
+            promo.classList.add('is-visible');
+            promo.querySelector('.xx5-promo-close').focus();
           }
-        );
-
-      }
-    );
-
-
-    window.removeEventListener(
-      "scroll",
-      onXX5PromoScroll
-    );
-
-  }
-
-
-
-  /* =========================================================
-     CLOSE PROMO
-  ========================================================= */
-
-  function closeXX5Promo(){
-
-  if(!xx5Promo){
-    return;
-  }
-
-  xx5Promo.classList.remove(
-    "show"
-  );
-
-  setTimeout(
-    function(){
-
-      xx5Promo.style.display =
-        "none";
-
-    },
-    260
-  );
-
-}
-
-
-
-  /* =========================================================
-     SCROLL TRIGGER
-  ========================================================= */
-
-  function onXX5PromoScroll(){
-
-    const documentElement =
-      document.documentElement;
-
-
-    const maximumScroll =
-      Math.max(
-
-        1,
-
-        documentElement.scrollHeight -
-        window.innerHeight
-
-      );
-
-
-    const scrollRatio =
-      window.scrollY /
-      maximumScroll;
-
-
-    /*
-      Show after visitor has actually
-      started reading the page.
-
-      Trigger:
-      260px scroll
-      OR
-      22% page progress.
-    */
-
-    if(
-
-      window.scrollY >= 260 ||
-
-      scrollRatio >= 0.22
-
-    ){
-
-      showXX5Promo();
-
+        });
+      });
     }
 
-  }
-
-
-
-  /* =========================================================
-     ACTIVATE PROMO
-  ========================================================= */
-
-  if(
-    xx5Promo &&
-    canShowXX5Promo()
-  ){
-
-    window.addEventListener(
-
-      "scroll",
-
-      onXX5PromoScroll,
-
-      {
-        passive:true
-      }
-
-    );
-
-  }
-
-
-
-  /* =========================================================
-     ESCAPE KEY
-  ========================================================= */
-
-  document.addEventListener(
-
-    "keydown",
-
-    function(event){
-
-      if(
-        event.key === "Escape" &&
-        xx5Promo
-      ){
-
-        closeXX5Promo();
-
-      }
-
+    if(trigger){
+      trigger.addEventListener('click',showPromo);
     }
 
-  );
-
-</script>
-
-
+    document.addEventListener('keydown',function(event){
+      if(event.key === 'Escape'){ closePromo(); }
+    });
+  }());
+  </script>
 </body>
 </html>
